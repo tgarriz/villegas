@@ -21,7 +21,7 @@ class DatabaseConnect {
     public function dbConnectSimple(){
         $dbsystem='pgsql';
         $host='127.0.0.1';
-        $dbname='catastro';
+        $dbname='villegasdb';
         $username='postgres';
         $passwd='postgres';
         return $this->dbConnect($dbsystem, $host, $dbname, $username, $passwd);
