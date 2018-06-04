@@ -9,7 +9,7 @@
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
 
-        <title>PHP Customerdb - Minería</title>
+        <title>Catastro - Gral. Villegas</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,14 +32,14 @@
 	<!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
         <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
         <script src="js/bootstrap.min.js"></script>
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="js/app.js"></script>
+        <script src="js/appPFisicas.js"></script>
     </head>
 
     <body>
@@ -62,15 +62,35 @@
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="codigo">Codigo</label>
-                                      <input type="number" class="form-control" id="codigo" name="codigo" placeholder="codigo" required>
+                                      <label for="nombre">Nombre</label>
+                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
-                                    <div class="input-group">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" maxlength="250" required>
-                                        <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                    </div>
+                                  <div class="input-group">
+                                      <label for="apellido">Apellido</label>
+                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="tipo_doc">Tipo Documento</label>
+                                      <input type="text" class="form-control" id="tipo_doc" name="tipo_doc" placeholder="tipo_doc" maxlength="3" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="nro_doc">Nro. Documento</label>
+                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="domicilio">Domicilio</label>
+                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="cuit">Cuit</label>
+                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
                                 </div>
                                 <div class="modal-footer">
 		                                <button id="update-language" name="update-language" type="submit" class="btn btn-primary">Actualizar</button>
@@ -91,22 +111,43 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCbProductor" method="post" action="index.php">
+                            <form role="form" name="formCbPFisica" method="post" action="index.php">
                                 <div class="modal-body">
                                   <div class="input-group">
-                                      <label for="">Id</label>
+                                      <label for="id">Id</label>
                                       <input type="text" readolny class="form-control" id="id" name="id">
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
-                                    <div class="input-group">
-                                        <label for="codigo">Codigo</label>
-                                        <input type="number" class="form-control" id="codigo" name="codigo" placeholder="codigo" required>
-                                        <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="nombre">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" maxlength="250" required> <!-- aria-describedby="sizing-addon2">-->
-                                    </div>
+                                  <div class="input-group">
+                                      <label for="nombre">Nombre</label>
+                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="apellido">Apellido</label>
+                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="tipo_doc">Tipo Documento</label>
+                                      <input type="text" class="form-control" id="tipo_doc" name="tipo_doc" placeholder="tipo_doc" maxlength="3" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="nro_doc">Nro. Documento</label>
+                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="domicilio">Domicilio</label>
+                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="cuit">Cuit</label>
+                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
@@ -125,14 +166,14 @@
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Productor</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbProductor" method="post" action="index.php">
+                	    <form role="form" name="formDeleteCbPFisica" method="post" action="index.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label for="idProductor">¿Se va a eliminar el registro del productor seleccionado?</label>
+	                                    <label for="idPFisica">¿Se va a eliminar el registro del productor seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
-         	                      	    <label for="idProductor">Id productor</label>
-                	                    <input type="text" readonly class="form-control" id="idproductordelete" name="idproductordelete" readonly>
+         	                      	    <label for="id">Id P. Fisica</label>
+                	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
                                       <label for="nombre">Nombre</label>
@@ -140,7 +181,7 @@
                                   </div>
 	                        </div>
         	                <div class="modal-footer">
-                	                <button id="delete-productor-select" name="delete-productor-select" type="submit" class="btn btn-primary">Aceptar</button>
+                	                <button id="delete-pfisica-select" name="delete-pfisica-select" type="submit" class="btn btn-primary">Aceptar</button>
                         	        <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	                        </div>
         	            </form>
@@ -175,68 +216,82 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#">Productores <span class="sr-only">(current)</span></a></li>
-                        <li><a href="minerales.php">Minerales</a></li>
-                        <li><a href="derechos.php">Derechos</a></li>
-			                  <li><a href="estados.php">Estados</a></li>
-			                  <li><a href="canteras.php">Canteras</a></li>
+                        <li class="active"><a href="#">Pers.Fisicas <span class="sr-only">(current)</span></a></li>
+                        <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
+                        <li><a href="profesinales.php">Profesionales</a></li>
+                        <li><a href="planos_m_ph.php">Planos Mens. o PH</a></li>
+                        <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Productores</h2>
+                    <h2 class="sub-header">Personas Fisicas</h2>
 
         <?php
             include 'database/DatabaseConnect.php';
-	          include 'database/CbProductorController.php';
+	          include 'database/CbPFisicaController.php';
 
  	          $dConnect = new DatabaseConnect;
 	          $cdb = $dConnect->dbConnectSimple();
-	          $CbProductorController = new CbProductorController();
-	          $CbProductorController->cdb = $cdb;
+	          $CbPFisicaController = new CbPFisicaController();
+	          $CbPFisicaController->cdb = $cdb;
 
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];
-        	     $codigo = $_POST['codigo'];
         	     $nombre = $_POST['nombre'];
+               $apellido = $_POST['apellido'];
+               $tipo_doc = $_POST['tipo_doc'];
+               $nro_doc = $_POST['nro_doc'];
+               $domicilio = $_POST['domicilio'];
+               $cuit = $_POST['cuit'];
         	if (isset($_POST["save-language"])){
-        	    $CbProductorController->create($codigo, $nombre);
+        	    $CbPFisicaController->create($nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
         	}else{
-        	    $CbProductorController->update($codigo, $nombre, $id);
+        	    $CbPFisicaController->update($id,$nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
         	}
-             }
+        }
 
-	     if (isset($_POST["delete-productor-select"]) ) {
- 	        $id = $_POST['idproductordelete'];
+	     if (isset($_POST["delete-pfisica-select"]) ) {
+ 	        $id = $_POST['id'];
           $fp = fopen("/tmp/logphp.txt", "w");
           fputs($fp, "Id = ".$id."\n");
           $fp = fclose($fp);
-		      $CbProductorController->delete($id);
+		      $CbPFisicaController->delete($id);
 	     }
 
         ?>
 	<!-- Añadimos un botón para el diálogo modal -->
-	<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProductor()'>NUEVO</button>
+	<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbPFisica()'>NUEVO</button>
          <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>CODIGO</th>
+                                    <th>ID</th>
                                     <th>NOMBRE</th>
+                                    <th>APELLIDO</th>
+                                    <th>TIPO_DOC</th>
+                                    <th>NRO_DOC</th>
+                                    <th>DOMICILIO</th>
+                                    <th>CUIT</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <form role="form" name="formListCbLanguage" method="post" action="index.php">
                                 <?php
                                 try {
-                                    $rows = $CbProductorController->readAll();
+                                    $rows = $CbPFisicaController->readAll();
 
                                     foreach ($rows as $row) {
                                 ?>
                                         <tr>
-                                            <td><?php print($row->codigo); ?></td>
+                                            <td><?php print($row->id); ?></td>
                                             <td><?php print($row->nombre); ?></td>
+                                            <td><?php print($row->apellido); ?></td>
+                                            <td><?php print($row->tipo_doc); ?></td>
+                                            <td><?php print($row->nro_doc); ?></td>
+                                            <td><?php print($row->domicilio); ?></td>
+                                            <td><?php print($row->cuit); ?></td>
                                             <td>
 						<button id="see-language"
 							name="see-language"
@@ -244,30 +299,38 @@
 							class="btn btn-success"
 							data-toggle="modal"
 							data-target="#myModal"
-							onclick="openCbProductor('see',
+							onclick="openCbPFisica('see',
 								    '<?php print($row->id); ?>',
-										'<?php print($row->codigo); ?>',
-										'<?php print($row->nombre); ?>')">Ver</button>
+										'<?php print($row->nombre); ?>',
+										'<?php print($row->apellido); ?>',
+                    '<?php print($row->tipo_doc); ?>',
+                    '<?php print($row->nro_doc); ?>',
+                    '<?php print($row->domicilio); ?>',
+                    '<?php print($row->cuit); ?>')">Ver</button>
 					    </td>
 					    <td>
 						<button id="edit-language"
 							name="edit-language"
 							type="button"
-						        class="btn btn-primary"
-						        data-toggle="modal"
-						        data-target="#myModalUpdate"
-						        onclick="openEditProductor('<?php print($row->id); ?>',
-				           '<?php print($row->codigo); ?>',
-									 '<?php print($row->nombre); ?>')">Editar</button>
+						  class="btn btn-primary"
+						  data-toggle="modal"
+						  data-target="#myModalUpdate"
+						  onclick="openEditPFisica('<?php print($row->id); ?>',
+				           '<?php print($row->nombre); ?>',
+                   '<?php print($row->apellido); ?>',
+                   '<?php print($row->tipo_doc); ?>',
+                   '<?php print($row->nro_doc); ?>',
+                   '<?php print($row->domicilio); ?>',
+									 '<?php print($row->cuit); ?>')">Editar</button>
 					    </td>
 				      <td>
 					    	<button id="delete-language-modal"
 							name="delete-language-modal"
 							type="button"
-			                                class="btn btn-danger"
-                        			        data-toggle="modal"
-			                                data-target="#myModalDelete"
-                        			        onclick="deleteCbProductor('<?php print($row->id); ?>','<?php print($row->nombre); ?>')"
+			        class="btn btn-danger"
+              data-toggle="modal"
+			        data-target="#myModalDelete"
+              onclick="deleteCbPFisica('<?php print($row->id); ?>','<?php print($row->nombre); ?>','<?php print($row->apellido); ?>')"
 						>Eliminar</button>
 					   </td>
 

@@ -3,29 +3,8 @@
  * We open a modal window to create a new element.
  * @returns {undefined}
  */
-
-/*  function newCbProductor(){
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    });
-  }
-  function newDerecho(){
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    });
-  }
-  function newMineral(){
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').focus()
-    });
-  }*/
-/**
- * Abrimos la ventana modal para crear un nuevo elemento.
- * We open a modal window to create a new element.
- * @returns {undefined}
- */
-function newCbProductor(){
-    openCbProductor('new', null, null,null);
+function newCbPFisica(){
+    openCbPFisica('new', null, null,null,null,null,null);
 }
 
 function newCbDerecho(){
@@ -158,31 +137,43 @@ function newCbCantera(){
 
      });
  }
-/*------------Productores---------------*/
- function openEditProductor(id, codigo, nombre){
+/*------------PersonasFisicas---------------*/
+ function openEditPFisica(id,nombre,apellido,tipo_doc,nro_doc,domicilio,cuit){
    document.formEdit.id.value = id;
-   document.formEdit.codigo.value = codigo;
    document.formEdit.nombre.value = nombre;
+   document.formEdit.apellido.value = apellido;
+   document.formEdit.tipo_doc.value = tipo_doc;
+   document.formEdit.nro_doc.value = nro_doc;
+   document.formEdit.domicilio.value = domicilio;
+   document.formEdit.cuit.value = cuit;
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
-     modal.find('.modal-title').text('Editar Productor');
+     modal.find('.modal-title').text('Editar PersonaFisica ');
      $('#update-language').show();
    });
  }
 
-function openCbProductor(action, id, codigo, nombre){
-    document.formCbProductor.id.value = id;
-    document.formCbProductor.codigo.value = codigo;
-    document.formCbProductor.nombre.value = nombre;
+function openCbPFisica(action, id, nombre,apellido,tipo_doc,nro_doc,domicilio,cuit){
+    document.formCbPFisica.id.value = id;
+    document.formCbPFisica.nombre.value = nombre;
+    document.formCbPFisica.apellido.value = apellido;
+    document.formCbPFisica.tipo_doc.value = tipo_doc;
+    document.formCbPFisica.nro_doc.value = nro_doc;
+    document.formCbPFisica.domicilio.value = domicilio;
+    document.formCbPFisica.cuit.value = cuit;
 
-    document.formCbProductor.id.disabled = (action === 'see')?true:false;
-    document.formCbProductor.codigo.disabled = (action === 'see')?true:false;
-    document.formCbProductor.nombre.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.id.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.nombre.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.apellido.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.tipo_doc.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.nro_doc.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.domicilio.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.cuit.disabled = (action === 'see')?true:false;
 
     $('#myModal').on('shown.bs.modal', function () {
         var modal = $(this);
         if (action === 'new'){
-            document.formCbProductor.id.disabled = true;
+            document.formCbPFisica.id.disabled = true;
             modal.find('.modal-title').text('Creación de Productor');
             $('#save-language').show();
             $('#update-language').hide();
@@ -319,13 +310,14 @@ function openCbEstado(action, id, descripcion) {
   });
 }
 
-  function deleteCbProductor(id,nombre){
-    document.formDeleteCbProductor.idproductordelete.value = id;
-    document.formDeleteCbProductor.nombre.value = nombre;
-    //alert(id);
-    $('#myModalDelete').on('shown.bs.modal', function () {
-      $('#myInput').focus();
-  });
+function deleteCbPFisica(id,nombre,apellido){
+  document.formDeleteCbPFisica.idproductordelete.value = id;
+  document.formDeleteCbPFisica.nombre.value = nombre;
+  document.formDeleteCbPFisica.apellido.value = apellido;
+  //alert(id);
+  $('#myModalDelete').on('shown.bs.modal', function () {
+    $('#myInput').focus();
+});
 }
 
 function deleteCbDerecho(id,codigo,descripcion){
