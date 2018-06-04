@@ -7,5 +7,5 @@ create table catastro.planos_obra (
   codigo varchar (100),
   CONSTRAINT plano_obra_pk PRIMARY KEY (id),
   CONSTRAINT fk_plano_obra_prof FOREIGN KEY (profesional)
-  REFERENCES catastro.profesional(id) MATCH FULL ON DELETE RESTRICT ON UPDATE CASCADE
+  REFERENCES catastro.profesionales(id) MATCH FULL ON DELETE RESTRICT ON UPDATE CASCADE
 )

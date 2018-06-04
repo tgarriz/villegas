@@ -8,5 +8,5 @@ create table catastro.planos_mens_ph (
   codigo varchar(255),
   CONSTRAINT plano_mens_ph_pk PRIMARY KEY (id),
   CONSTRAINT fk_plano_mens_ph_prof FOREIGN KEY (profesional)
-  REFERENCES catastro.profesional(id) MATCH FULL ON DELETE RESTRICT ON UPDATE CASCADE
+  REFERENCES catastro.profesionales(id) MATCH FULL ON DELETE RESTRICT ON UPDATE CASCADE
 )

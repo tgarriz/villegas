@@ -5,6 +5,6 @@ create table catastro.p_fisicas (
   tipo_doc varchar(3)  not null,
   nro_doc integer  not null,
   domicilio varchar(200)  not null,
-  cuit varchar(13)  not null,
+  cuit varchar(13) not null unique,
   CONSTRAINT p_fisicas_pk PRIMARY KEY (id)
 );

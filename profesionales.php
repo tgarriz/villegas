@@ -39,7 +39,7 @@
         <script src="assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="js/appPFisicas.js"></script>
+        <script src="js/appProfesionales.js"></script>
     </head>
 
     <body>
@@ -54,7 +54,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalUpdateLabel"></h4>
                             </div>
-                            <form role="form" name="formEdit" method="post" action="index.php">
+                            <form role="form" name="formEdit" method="post" action="profesionales.php">
                                 <div class="modal-body">
                                   <div class="input-group">
                                       <label for="id">Id</label>
@@ -87,6 +87,26 @@
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
+                                      <label for="matricula">Matricula</label>
+                                      <input type="number" class="form-control" id="matricula" name="matricula" placeholder="matricula" maxlength="20" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="profesion">Profesion</label>
+                                      <input type="text" class="form-control" id="profesion" name="profesion" placeholder="profesion" maxlength="100" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="mail">Mail</label>
+                                      <input type="mail" class="form-control" id="mail" name="mail" placeholder="mail" maxlength="180" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="celular">Celular</label>
+                                      <input type="text" class="form-control" id="celular" name="celular" placeholder="celular" maxlength="20" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
                                       <label for="cuit">Cuit</label>
                                       <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
@@ -111,7 +131,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCbPFisica" method="post" action="index.php">
+                            <form role="form" name="formCbProfesional" method="post" action="profesionales.php">
                                 <div class="modal-body">
                                   <div class="input-group">
                                       <label for="id">Id</label>
@@ -144,8 +164,28 @@
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
+                                      <label for="matricula">Matricula</label>
+                                      <input type="number" class="form-control" id="matricula" name="matricula" placeholder="matricula" maxlength="20" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="profesion">Profesion</label>
+                                      <input type="text" class="form-control" id="profesion" name="profesion" placeholder="profesion" maxlength="100" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="mail">Mail</label>
+                                      <input type="mail" class="form-control" id="mail" name="mail" placeholder="mail" maxlength="180" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="celular">Celular</label>
+                                      <input type="text" class="form-control" id="celular" name="celular" placeholder="celular" maxlength="20" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
                                       <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
+                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="14" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                 </div>
@@ -164,24 +204,28 @@
         	        <div class="modal-content">
                 	    <div class="modal-header">
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Productor</h4>
+	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Profesional</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbPFisica" method="post" action="index.php">
+                	    <form role="form" name="formDeleteCbProfesional" method="post" action="profesionales.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label for="idPFisica">¿Se va a eliminar el registro del productor seleccionado?</label>
+	                                    <label for="idProfesional">¿Se va a eliminar el registro del profesional seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
-         	                      	    <label for="id">Id P. Fisica</label>
+         	                      	    <label for="id">Id Profesional</label>
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
                                       <label for="nombre">Nombre</label>
                                       <input type="text" readonly class="form-control" id="nombre" name="nombre" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
+                                  <div class="input-group">
+                                      <label for="apellido">Apellido</label>
+                                      <input type="text" readonly class="form-control" id="apellido" name="apellido" > <!-- aria-describedby="sizing-addon2">-->
+                                  </div>
 	                        </div>
         	                <div class="modal-footer">
-                	                <button id="delete-pfisica-select" name="delete-pfisica-select" type="submit" class="btn btn-primary">Aceptar</button>
+                	                <button id="delete-select" name="delete-select" type="submit" class="btn btn-primary">Aceptar</button>
                         	        <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	                        </div>
         	            </form>
@@ -216,9 +260,9 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#">Pers.Fisicas <span class="sr-only">(current)</span></a></li>
+                        <li><a href="index.php">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
-                        <li><a href="profesionales.php">Profesionales</a></li>
+                        <li class="active"><a href="#">Profesionales<span class="sr-only">(current)</span></a></li>
                         <li><a href="planos_m_ph.php">Planos Mens. o PH</a></li>
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
@@ -226,16 +270,16 @@
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Personas Fisicas</h2>
+                    <h2 class="sub-header">Profesionales</h2>
 
         <?php
             include 'database/DatabaseConnect.php';
-	          include 'database/CbPFisicaController.php';
+	          include 'database/CbProfesionalController.php';
 
  	          $dConnect = new DatabaseConnect;
 	          $cdb = $dConnect->dbConnectSimple();
-	          $CbPFisicaController = new CbPFisicaController();
-	          $CbPFisicaController->cdb = $cdb;
+	          $CbProfesionalController = new CbProfesionalController();
+	          $CbProfesionalController->cdb = $cdb;
 
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];
@@ -244,25 +288,29 @@
                $tipo_doc = $_POST['tipo_doc'];
                $nro_doc = $_POST['nro_doc'];
                $domicilio = $_POST['domicilio'];
+               $matricula = $_POST['matricula'];
+               $profesion = $_POST['profesion'];
+               $mail = $_POST['mail'];
+               $celular = $_POST['celular'];
                $cuit = $_POST['cuit'];
         	if (isset($_POST["save-language"])){
-        	    $CbPFisicaController->create($nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
+        	    $CbProfesionalController->create($nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$matricula,$profesion,$mail,$celular,$cuit);
         	}else{
-        	    $CbPFisicaController->update($id,$nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
+        	    $CbProfesionalController->update($id,$apellido,$tipo_doc,$nro_doc,$domicilio,$matricula,$profesion,$mail,$celular,$cuit);
         	}
         }
 
-	     if (isset($_POST["delete-pfisica-select"]) ) {
+	     if (isset($_POST["delete-select"]) ) {
  	        $id = $_POST['id'];
           $fp = fopen("/tmp/logphp.txt", "w");
           fputs($fp, "Id = ".$id."\n");
           $fp = fclose($fp);
-		      $CbPFisicaController->delete($id);
+		      $CbProfesionalController->delete($id);
 	     }
 
         ?>
 	<!-- Añadimos un botón para el diálogo modal -->
-	<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbPFisica()'>NUEVO</button>
+	<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button>
          <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -270,17 +318,15 @@
                                     <th>ID</th>
                                     <th>NOMBRE</th>
                                     <th>APELLIDO</th>
-                                    <th>TIPO_DOC</th>
-                                    <th>NRO_DOC</th>
-                                    <th>DOMICILIO</th>
+                                    <th>PROFESION</th>
                                     <th>CUIT</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <form role="form" name="formListCbLanguage" method="post" action="index.php">
+                                <form role="form" name="formListCbLanguage" method="post" action="profesionales.php">
                                 <?php
                                 try {
-                                    $rows = $CbPFisicaController->readAll();
+                                    $rows = $CbProfesionalController->readAll();
 
                                     foreach ($rows as $row) {
                                 ?>
@@ -288,9 +334,7 @@
                                             <td><?php print($row->id); ?></td>
                                             <td><?php print($row->nombre); ?></td>
                                             <td><?php print($row->apellido); ?></td>
-                                            <td><?php print($row->tipo_doc); ?></td>
-                                            <td><?php print($row->nro_doc); ?></td>
-                                            <td><?php print($row->domicilio); ?></td>
+                                            <td><?php print($row->profesion); ?></td>
                                             <td><?php print($row->cuit); ?></td>
                                             <td>
 						<button id="see-language"
@@ -299,13 +343,17 @@
 							class="btn btn-success"
 							data-toggle="modal"
 							data-target="#myModal"
-							onclick="openCbPFisica('see',
+							onclick="openCbProfesional('see',
 								    '<?php print($row->id); ?>',
 										'<?php print($row->nombre); ?>',
 										'<?php print($row->apellido); ?>',
                     '<?php print($row->tipo_doc); ?>',
                     '<?php print($row->nro_doc); ?>',
                     '<?php print($row->domicilio); ?>',
+                    '<?php print($row->matricula); ?>',
+                    '<?php print($row->profesion); ?>',
+                    '<?php print($row->mail); ?>',
+                    '<?php print($row->celular); ?>',
                     '<?php print($row->cuit); ?>')">Ver</button>
 					    </td>
 					    <td>
@@ -315,12 +363,16 @@
 						  class="btn btn-primary"
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
-						  onclick="openEditPFisica('<?php print($row->id); ?>',
+						  onclick="openEditProfesional('<?php print($row->id); ?>',
 				           '<?php print($row->nombre); ?>',
                    '<?php print($row->apellido); ?>',
                    '<?php print($row->tipo_doc); ?>',
                    '<?php print($row->nro_doc); ?>',
                    '<?php print($row->domicilio); ?>',
+                   '<?php print($row->matricula); ?>',
+                   '<?php print($row->profesion); ?>',
+                   '<?php print($row->mail); ?>',
+                   '<?php print($row->celular); ?>',
 									 '<?php print($row->cuit); ?>')">Editar</button>
 					    </td>
 				      <td>
@@ -330,8 +382,7 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbPFisica('<?php print($row->id); ?>','<?php print($row->nombre); ?>','<?php print($row->apellido); ?>')"
-						>Eliminar</button>
+              onclick="deleteCbProfesional('<?php print($row->id); ?>','<?php print($row->nombre); ?>','<?php print($row->apellido); ?>')">Eliminar</button>
 					   </td>
 
                                         </tr>
