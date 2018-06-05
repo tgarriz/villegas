@@ -49,7 +49,6 @@ function openCbPObra(action, id,profesional,sup_cubierta,sup_semicub,sup_demoler
             $('#update-language').hide();
         }
         $('#idlanguage').focus()
-
     });
 }
 function deleteCbPObra(id,codigo){

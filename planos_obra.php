@@ -23,12 +23,6 @@
         <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
         <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
         <script src="assets/js/ie-emulation-modes-warning.js"></script>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 	<!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -208,7 +202,7 @@
                     <ul class="nav nav-sidebar">
                         <li><a href="index.php">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
-                        <li> <a href="profesionales.php">Profesionales</a></li>
+                        <li><a href="profesionales.php">Profesionales</a></li>
                         <li><a href="planos_m_ph.ph">Planos Mens. o PH</a></li>
                         <li class="active"><a href="#">Planos Obras<span class="sr-only">(current)</span></a></li>
                     </ul>
@@ -234,12 +228,12 @@
                $sup_semicub = $_POST['sup_semicub'];
                $sup_demoler = $_POST['sup_demoler'];
                $codigo = $_POST['codigo'];
-        	if (isset($_POST["save-language"])){
-        	    $CbPObraController->create($profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
-        	}else{
-        	    $CbPObraController->update($id,$profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
-        	}
-        }
+        	     if (isset($_POST["save-language"])){
+        	        $CbPObraController->create($profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
+        	     }else{
+        	        $CbPObraController->update($id,$profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
+        	     }
+             }
 
 	     if (isset($_POST["delete-select"]) ) {
  	        $id = $_POST['id'];
