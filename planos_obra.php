@@ -8,6 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="favicon.ico">
+
         <title>Catastro - Gral. Villegas</title>
 
         <!-- Bootstrap core CSS -->
@@ -38,7 +39,7 @@
         <script src="assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="js/appPJuridicas.js"></script>
+        <script src="js/appPobras.js"></script>
     </head>
 
     <body>
@@ -53,7 +54,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalUpdateLabel"></h4>
                             </div>
-                            <form role="form" name="formEdit" method="post" action="pjuridicas.php">
+                            <form role="form" name="formEdit" method="post" action="planos_obra.php">
                                 <div class="modal-body">
                                   <div class="input-group">
                                       <label for="id">Id</label>
@@ -61,18 +62,28 @@
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="rsocial">Razon Social</label>
-                                      <input type="text" class="form-control" id="rsocial" name="rsocial" placeholder="rsocial" required>
+                                      <label for="profesional">Profesional</label>
+                                      <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
+                                      <label for="sup_cubierta">Sup.Cubierta</label>
+                                      <input type="number" class="form-control" id="sup_cubierta" name="sup_cubierta" placeholder="sup_cubierta" maxlength="20" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
+                                      <label for="sup_semicub">Sup.Semicubierta</label>
+                                      <input type="number" class="form-control" id="sup_semicub" name="sup_semicub" placeholder="sup_semicub" maxlength="3" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="sup_demoler">Sup. a Demoler</label>
+                                      <input type="number" class="form-control" id="sup_demoler" name="sup_demoler" placeholder="sup_demoler" maxlength="9" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="codigo">Codigo</label>
+                                      <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" maxlength="40" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                 </div>
@@ -95,26 +106,36 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCbPJuridica" method="post" action="pjuridicas.php">
+                            <form role="form" name="formCbPObra" method="post" action="planos_obra.php">
                                 <div class="modal-body">
                                   <div class="input-group">
                                       <label for="id">Id</label>
-                                      <input type="text" readolny class="form-control" id="id" name="id">
+                                      <input type="text" readonly class="form-control" id="id" name="id" >
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="rsocial">Razon Social</label>
-                                      <input type="text" class="form-control" id="rsocial" name="rsocial" placeholder="rsocial" required>
+                                      <label for="profesional">Profesional</label>
+                                      <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
+                                      <label for="sup_cubierta">Sup.Cubierta</label>
+                                      <input type="number" class="form-control" id="sup_cubierta" name="sup_cubierta" placeholder="sup_cubierta" maxlength="20" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
+                                      <label for="sup_semicub">Sup.Semicubierta</label>
+                                      <input type="number" class="form-control" id="sup_semicub" name="sup_semicub" placeholder="sup_semicub" maxlength="3" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="sup_demoler">Sup. a Demoler</label>
+                                      <input type="number" class="form-control" id="sup_demoler" name="sup_demoler" placeholder="sup_demoler" maxlength="9" required>
+                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="codigo">Codigo</label>
+                                      <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" maxlength="30" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                 </div>
@@ -133,24 +154,24 @@
         	        <div class="modal-content">
                 	    <div class="modal-header">
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Pers. Juridica</h4>
+	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Plano de Obra</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbPJuridica" method="post" action="pjuridicas.php">
+                	    <form role="form" name="formDeleteCbPObra" method="post" action="planos_obra.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label for="idPJuridica">¿Se va a eliminar Pers.juridica?</label>
+	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
-         	                      	    <label for="id">Id P.Juridica</label>
+         	                      	    <label for="id">Id Plano</label>
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
-                                      <label for="rsocial">Razon Social</label>
-                                      <input type="text" readonly class="form-control" id="rsocial" name="rsocial" > <!-- aria-describedby="sizing-addon2">-->
+                                      <label for="codigo">Codigo</label>
+                                      <input type="text" readonly class="form-control" id="codigo" name="codigo" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
 	                        </div>
         	                <div class="modal-footer">
-                	                <button id="delete-pjuridica-select" name="delete-pjuridica-select" type="submit" class="btn btn-primary">Aceptar</button>
+                	                <button id="delete-select" name="delete-select" type="submit" class="btn btn-primary">Aceptar</button>
                         	        <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	                        </div>
         	            </form>
@@ -186,43 +207,46 @@
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
                         <li><a href="index.php">Pers.Fisicas</a></li>
-                        <li class="active"><a href="#">Pers.Juridicas<span class="sr-only">(current)</span></a></li>
-                        <li><a href="profesionales.php">Profesionales</a></li>
-			                  <li><a href="planos_m_ph.php">Planos Mens. o PH</a></li>
-			                  <li><a href="planos_obra.php">Planos Obras</a></li>
+                        <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
+                        <li> <a href="profesionales.php">Profesionales</a></li>
+                        <li><a href="planos_m_ph.ph">Planos Mens. o PH</a></li>
+                        <li class="active"><a href="#">Planos Obras<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
-                    <h2 class="sub-header">Personas Juridicas&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
+
+                    <h2 class="sub-header">Planos de Obra &nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
 
         <?php
             include 'database/DatabaseConnect.php';
-	          include 'database/CbPJuridicaController.php';
+	          include 'database/CbPObraController.php';
 
  	          $dConnect = new DatabaseConnect;
 	          $cdb = $dConnect->dbConnectSimple();
-	          $CbPJuridicaController = new CbPJuridicaController();
-	          $CbPJuridicaController->cdb = $cdb;
+	          $CbPObraController = new CbPObraController();
+	          $CbPObraController->cdb = $cdb;
 
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];
-        	     $rsocial = $_POST['rsocial'];
-               $domicilio = $_POST['domicilio'];
-               $cuit = $_POST['cuit'];
+        	     $profesional = $_POST['profesional'];
+               $sup_cubierta = $_POST['sup_cubierta'];
+               $sup_semicub = $_POST['sup_semicub'];
+               $sup_demoler = $_POST['sup_demoler'];
+               $codigo = $_POST['codigo'];
         	if (isset($_POST["save-language"])){
-        	    $CbPJuridicaController->create($rsocial,$domicilio,$cuit);
+        	    $CbPObraController->create($profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
         	}else{
-        	    $CbPJuridicaController->update($id,$rsocial,$domicilio,$cuit);
+        	    $CbPObraController->update($id,$profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
         	}
         }
 
-	     if (isset($_POST["delete-pjuridica-select"]) ) {
+	     if (isset($_POST["delete-select"]) ) {
  	        $id = $_POST['id'];
           $fp = fopen("/tmp/logphp.txt", "w");
           fputs($fp, "Id = ".$id."\n");
           $fp = fclose($fp);
-		      $CbPJuridicaController->delete($id);
+		      $CbPObraController->delete($id);
 	     }
 
         ?>
@@ -232,24 +256,28 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>RAZON SOCIAL</th>
-                                    <th>DOMICILIO</th>
-                                    <th>CUIT</th>
+                                    <th>PROFESIONAL</th>
+                                    <th>SUP.CUBIERTA</th>
+                                    <th>SUP.SEMICUBIERTA</th>
+                                    <th>SUP.A DEMOLER</th>
+                                    <th>CODIGO</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <form role="form" name="formListCbLanguage" method="post" action="pjuridicas.php">
+                                <form role="form" name="formListCbLanguage" method="post" action="planos_obra.php">
                                 <?php
                                 try {
-                                    $rows = $CbPJuridicaController->readAll();
+                                    $rows = $CbPObraController->readAll();
 
                                     foreach ($rows as $row) {
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
-                                            <td><?php print($row->rsocial); ?></td>
-                                            <td><?php print($row->domicilio); ?></td>
-                                            <td><?php print($row->cuit); ?></td>
+                                            <td><?php print($row->profesional); ?></td>
+                                            <td><?php print($row->sup_cubierta); ?></td>
+                                            <td><?php print($row->sup_semicub); ?></td>
+                                            <td><?php print($row->sup_demoler); ?></td>
+                                            <td><?php print($row->codigo); ?></td>
                                             <td>
 						<button id="see-language"
 							name="see-language"
@@ -257,11 +285,13 @@
 							class="btn btn-success"
 							data-toggle="modal"
 							data-target="#myModal"
-							onclick="openCbPJuridica('see',
+							onclick="openCbPObra('see',
 								    '<?php print($row->id); ?>',
-										'<?php print($row->rsocial); ?>',
-                    '<?php print($row->domicilio); ?>',
-                    '<?php print($row->cuit); ?>')">Ver</button>
+										'<?php print($row->profesional); ?>',
+										'<?php print($row->sup_cubierta); ?>',
+                    '<?php print($row->sup_semicub); ?>',
+                    '<?php print($row->sup_demoler); ?>',
+                    '<?php print($row->codigo); ?>')">Ver</button>
 					    </td>
 					    <td>
 						<button id="edit-language"
@@ -270,10 +300,12 @@
 						  class="btn btn-primary"
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
-						  onclick="openEditPJuridica('<?php print($row->id); ?>',
-				           '<?php print($row->rsocial); ?>',
-                   '<?php print($row->domicilio); ?>',
-									 '<?php print($row->cuit); ?>')">Editar</button>
+						  onclick="openEditPObra('<?php print($row->id); ?>',
+              '<?php print($row->profesional); ?>',
+              '<?php print($row->sup_cubierta); ?>',
+              '<?php print($row->sup_semicub); ?>',
+              '<?php print($row->sup_demoler); ?>',
+              '<?php print($row->codigo); ?>')">Editar</button>
 					    </td>
 				      <td>
 					    	<button id="delete-language-modal"
@@ -282,8 +314,7 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbPJuridica('<?php print($row->id); ?>','<?php print($row->rsocial); ?>')"
-						>Eliminar</button>
+              onclick="deleteCbPObra('<?php print($row->id); ?>','<?php print($row->codigo); ?>')">Eliminar</button>
 					   </td>
 
                                         </tr>
