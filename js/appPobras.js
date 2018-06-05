@@ -40,11 +40,11 @@ function openCbPObra(action, id,profesional,sup_cubierta,sup_semicub,sup_demoler
         var modal = $(this);
         if (action === 'new'){
             document.formCbPObra.id.disabled = true;
-            modal.find('.modal-title').text('Creación de PObra');
+            modal.find('.modal-title').text('Creación de Plano de Obra');
             $('#save-language').show();
             $('#update-language').hide();
         }else if (action === 'see'){
-            modal.find('.modal-title').text('Ver PObra');
+            modal.find('.modal-title').text('Ver Plano de Obra');
             $('#save-language').hide();
             $('#update-language').hide();
         }

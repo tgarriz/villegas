@@ -273,7 +273,8 @@
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
-                                            <td><?php print($row->profesional); ?></td>
+                                            <td><?php print($CbPObraController->readNameProfesional($row->profesional)->apellido);?>,&nbsp;
+                                                <?php print($CbPObraController->readNameProfesional($row->profesional)->nombre); ?></td>
                                             <td><?php print($row->sup_cubierta); ?></td>
                                             <td><?php print($row->sup_semicub); ?></td>
                                             <td><?php print($row->sup_demoler); ?></td>
@@ -287,7 +288,7 @@
 							data-target="#myModal"
 							onclick="openCbPObra('see',
 								    '<?php print($row->id); ?>',
-										'<?php print($row->profesional); ?>',
+										'<?php print($CbPObraController->readNameProfesional($row->profesional)->apellido);?>',
 										'<?php print($row->sup_cubierta); ?>',
                     '<?php print($row->sup_semicub); ?>',
                     '<?php print($row->sup_demoler); ?>',

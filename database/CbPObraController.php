@@ -23,6 +23,22 @@ class CbPObraController {
         return $rows;
     }
 
+    public function readProfesionales(){
+        $query = "SELECT id,nombre,apellido FROM catastro.profesionales;";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        return $rows;
+    }
+
+    public function readNameProfesional($idProf){
+        $query = "SELECT nombre,apellido FROM catastro.profesionales WHERE id = ".$idProf.";";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        return $rows[0];
+    }
+
 
     /**
  * Creamos un nuevo idioma con los parámetros pasados.
