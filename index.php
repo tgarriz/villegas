@@ -71,11 +71,18 @@
                                       <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
-                                  <div class="input-group">
+                                  <div class="input-group col-xs-2">
+                                    <label for="tipo_doc">Tipo</label>
+                                    <select class="form-control" id="tipo_doc" name="tipo_doc" maxlength="3" required>
+                                      <option value="DNI">DNI</option>
+                                      <option value="LC">LC</option>
+                                      <option value="LE">LE</option>
+                                    </select>
+                                  </div>
+                                  <!--<div class="input-group">
                                       <label for="tipo_doc">Tipo Documento</label>
                                       <input type="text" class="form-control" id="tipo_doc" name="tipo_doc" placeholder="tipo_doc" maxlength="3" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
+                                  </div>-->
                                   <div class="input-group">
                                       <label for="nro_doc">Nro. Documento</label>
                                       <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
@@ -128,10 +135,13 @@
                                       <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
-                                  <div class="input-group">
-                                      <label for="tipo_doc">Tipo Documento</label>
-                                      <input type="text" class="form-control" id="tipo_doc" name="tipo_doc" placeholder="tipo_doc" maxlength="3" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  <div class="input-group col-xs-2">
+                                    <label for="tipo_doc">Tipo</label>
+                                    <select class="form-control" id="tipo_doc" name="tipo_doc" maxlength="3" required>
+                                      <option value="DNI" selected="selected">DNI</option>
+                                      <option value="LC">LC</option>
+                                      <option value="LE">LE</option>
+                                    </select>
                                   </div>
                                   <div class="input-group">
                                       <label for="nro_doc">Nro. Documento</label>
