@@ -56,11 +56,11 @@
                             </div>
                             <form role="form" name="formEdit" method="post" action="index.php">
                                 <div class="modal-body">
-                                  <div class="input-group">
+                                  <!--<div class="input-group">
                                       <label for="id">Id</label>
                                       <input type="text" readonly class="form-control" id="id" name="id" >
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
+                                  </div>-->
+                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="nombre">Nombre</label>
                                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
@@ -113,11 +113,11 @@
                             </div>
                             <form role="form" name="formCbPFisica" method="post" action="index.php">
                                 <div class="modal-body">
-                                  <div class="input-group">
+                                  <!--<div class="input-group">
                                       <label for="id">Id</label>
                                       <input type="text" readolny class="form-control" id="id" name="id">
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
+                                  </div>-->
+                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="nombre">Nombre</label>
                                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
@@ -164,12 +164,12 @@
         	        <div class="modal-content">
                 	    <div class="modal-header">
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Productor</h4>
+	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Registro</h4>
         	            </div>
                 	    <form role="form" name="formDeleteCbPFisica" method="post" action="index.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label for="idPFisica">¿Se va a eliminar el registro del productor seleccionado?</label>
+	                                    <label for="idPFisica">¿Se va a eliminar el registro seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
          	                      	    <label for="id">Id P. Fisica</label>

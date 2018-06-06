@@ -50,11 +50,11 @@
                             </div>
                             <form role="form" name="formEdit" method="post" action="planos_obra.php">
                                 <div class="modal-body">
-                                  <div class="input-group">
+                                  <!--<div class="input-group">
                                       <label for="id">Id</label>
                                       <input type="text" readonly class="form-control" id="id" name="id" >
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
+                                  </div>-->
+                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="profesional">Profesional</label>
                                       <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>
@@ -102,11 +102,11 @@
                             </div>
                             <form role="form" name="formCbPObra" method="post" action="planos_obra.php">
                                 <div class="modal-body">
-                                  <div class="input-group">
+                                  <!--<div class="input-group">
                                       <label for="id">Id</label>
                                       <input type="text" readonly class="form-control" id="id" name="id" >
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
+                                  </div>-->
+                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="profesional">Profesional</label>
                                       <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>

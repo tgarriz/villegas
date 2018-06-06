@@ -56,11 +56,11 @@
                             </div>
                             <form role="form" name="formEdit" method="post" action="profesionales.php">
                                 <div class="modal-body">
-                                  <div class="input-group">
+                                  <!--<div class="input-group">
                                       <label for="id">Id</label>
                                       <input type="text" readonly class="form-control" id="id" name="id" >
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
+                                  </div>-->
+                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="nombre">Nombre</label>
                                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
@@ -133,11 +133,11 @@
                             </div>
                             <form role="form" name="formCbProfesional" method="post" action="profesionales.php">
                                 <div class="modal-body">
-                                  <div class="input-group">
+                                  <!--<div class="input-group">
                                       <label for="id">Id</label>
                                       <input type="text" readolny class="form-control" id="id" name="id">
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
+                                  </div>-->
+                                  <input type="text" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="nombre">Nombre</label>
                                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>

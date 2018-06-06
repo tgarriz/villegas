@@ -9,6 +9,7 @@ function newCbPFisica(){
 /*------------PersonasFisicas---------------*/
  function openEditPFisica(id,nombre,apellido,tipo_doc,nro_doc,domicilio,cuit){
    document.formEdit.id.value = id;
+   document.formCbPFisica.id.disabled = true;
    document.formEdit.nombre.value = nombre;
    document.formEdit.apellido.value = apellido;
    document.formEdit.tipo_doc.value = tipo_doc;
@@ -31,7 +32,7 @@ function openCbPFisica(action, id, nombre,apellido,tipo_doc,nro_doc,domicilio,cu
     document.formCbPFisica.domicilio.value = domicilio;
     document.formCbPFisica.cuit.value = cuit;
 
-    document.formCbPFisica.id.disabled = (action === 'see')?true:false;
+    document.formCbPFisica.id.disabled = true;
     document.formCbPFisica.nombre.disabled = (action === 'see')?true:false;
     document.formCbPFisica.apellido.disabled = (action === 'see')?true:false;
     document.formCbPFisica.tipo_doc.disabled = (action === 'see')?true:false;
