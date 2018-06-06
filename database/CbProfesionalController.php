@@ -75,7 +75,7 @@ class CbProfesionalController {
    }
 
 /**
- * Eliminamos Persona Fisica.
+ * Eliminamos Profesional.
  * @param type $id
  */
    public function delete($id){

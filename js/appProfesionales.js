@@ -41,7 +41,7 @@ function openCbProfesional(action, id,nombre,apellido,tipo_doc,nro_doc,domicilio
 
     document.formCbProfesional.id.disabled = true;
     document.formCbProfesional.nombre.disabled = (action === 'see')?true:false;
-    document.formCbProfesional.apellido.di'... ^sabled = (action === 'see')?true:false;
+    document.formCbProfesional.apellido.disabled = (action === 'see')?true:false;
     document.formCbProfesional.tipo_doc.disabled = (action === 'see')?true:false;
     document.formCbProfesional.nro_doc.disabled = (action === 'see')?true:false;
     document.formCbProfesional.domicilio.disabled = (action === 'see')?true:false;
@@ -64,14 +64,13 @@ function openCbProfesional(action, id,nombre,apellido,tipo_doc,nro_doc,domicilio
             $('#update-language').hide();
         }
         $('#idlanguage').focus()
-
     });
 }
 function deleteCbProfesional(id,nombre,apellido){
   document.formDeleteCbProfesional.id.value = id;
   document.formDeleteCbProfesional.nombre.value = nombre;
   document.formDeleteCbProfesional.apellido.value = apellido;
-  //alert(id);
+
   $('#myModalDelete').on('shown.bs.modal', function () {
     $('#myInput').focus();
 });
