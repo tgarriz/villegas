@@ -41,14 +41,14 @@ class DatabaseConnect {
         $dsn=$dbsystem.':host='.$host.';dbname='.$dbname;
         try {
             $connection = new PDO($dsn, $username, $passwd);
-            $connection->exec('ALTER USER mineria_us SET search_path TO mineria');
+            //$connection->exec('ALTER USER mineria_us SET search_path TO mineria');
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $pdoExcetion) {
             $connection = null;
             echo 'Error al establecer la conexión: '.$pdoExcetion;
             exit();
         }
-        echo 'Conectado a la base de datos: '.$dbname;
+        //echo 'Conectado a la base de datos: '.$dbname;
         return $connection;
     }
 }

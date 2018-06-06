@@ -226,7 +226,7 @@
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Personas Fisicas</h2>
+                    <h2 class="sub-header">Personas Fisicas&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
 
         <?php
             include 'database/DatabaseConnect.php';
@@ -262,7 +262,6 @@
 
         ?>
 	<!-- Añadimos un botón para el diálogo modal -->
-	<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbPFisica()'>NUEVO</button>
          <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>

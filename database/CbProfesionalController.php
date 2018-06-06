@@ -44,6 +44,7 @@ class CbProfesionalController {
       try {
         $this->cdb->exec($sqlInsert);
       } catch (PDOException $pdoException) {
+        echo ($sqlInsert);
         echo 'Error al crear un nuevo elemento Profesionales en create(...): '.$pdoException->getMessage();
         exit();
       }
@@ -64,7 +65,7 @@ class CbProfesionalController {
  * @param type $cuit
  */
    public function update($id,$nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$matricula,$profesion,$mail,$celular,$cuit){
-    $sqlUpdate = "UPDATE catastro.profesionales SET nombre = '".$nombre."', apellido = '".$apellido."', tipo_doc = '".$tipo_doc."', nro_doc = '".$nro_doc."', domicilio = '".$domicilio."', matricula = '".$matricula."', profesion = '".$profesion."', mail = '".$mail."', celular = '".$celular."', cuit = '".$cuit."' WHERE  id  = ".$id.";";
+    $sqlUpdate = "UPDATE catastro.profesionales SET nombre = '".$nombre."', apellido = '".$apellido."', tipo_doc = '".$tipo_doc."', nro_doc = '".$nro_doc."', domicilio = '".$domicilio."', matricula = ".$matricula.", profesion = '".$profesion."', mail = '".$mail."', celular = '".$celular."', cuit = '".$cuit."' WHERE  id  = ".$id.";";
     try {
         $this->cdb->exec($sqlUpdate);
     } catch (PDOException $pdoException) {

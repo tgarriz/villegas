@@ -108,7 +108,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
+                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="15" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                 </div>
@@ -270,7 +270,7 @@
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Profesionales</h2>
+                    <h2 class="sub-header">Profesionales&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
 
         <?php
             include 'database/DatabaseConnect.php';
@@ -296,7 +296,7 @@
         	if (isset($_POST["save-language"])){
         	    $CbProfesionalController->create($nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$matricula,$profesion,$mail,$celular,$cuit);
         	}else{
-        	    $CbProfesionalController->update($id,$apellido,$tipo_doc,$nro_doc,$domicilio,$matricula,$profesion,$mail,$celular,$cuit);
+        	    $CbProfesionalController->update($id,$nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$matricula,$profesion,$mail,$celular,$cuit);
         	}
         }
 
@@ -310,7 +310,6 @@
 
         ?>
 	<!-- Añadimos un botón para el diálogo modal -->
-	<button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button>
          <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
