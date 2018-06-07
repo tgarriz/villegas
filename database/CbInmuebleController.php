@@ -23,6 +23,14 @@ class CbInmuebleController {
         return $rows;
     }
 
+    public function readUsos(){
+        $query = "SELECT * FROM catastro.uso_inmueble;";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        return $rows;
+    }
+
 
     /**
  * Creamos un nuevo idioma con los parámetros pasados.
@@ -50,9 +58,9 @@ class CbInmuebleController {
  * @param type $nomencla
  * @param type $nomencla_sp
  */
-    function create($circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente,$nomencla,$nomencla_sp){
-      $sqlInsert = "INSERT INTO catastro.inmuebles(circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente,nomencla,nomencla_sp)"
-             . "    VALUES ('".$circ."', '".$secc."', '".$chac_n."', '".$chac_l."', '".$quin_n."', '".$quin_l."','".$frac_n."', '".$frac_l."', '".$manz_n."', '".$manz_l."', '".$parc_n."', '".$parc_l."', '".$subp."', '".$superficie."','".$nro_puerta."','".$p_municipal."', '".$domicilio."', '".$tipo."', '".$uso."', '".$frente."', '".$nomencla."','".$nomencla_sp."' )";
+    function create($circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente){
+      $sqlInsert = "INSERT INTO catastro.inmuebles(circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente)"
+             . "    VALUES ('".$circ."', '".$secc."', '".$chac_n."', '".$chac_l."', '".$quin_n."', '".$quin_l."','".$frac_n."', '".$frac_l."', '".$manz_n."', '".$manz_l."', '".$parc_n."', '".$parc_l."', '".$subp."', ".$superficie.", '".$nro_puerta."', '".$p_municipal."', '".$domicilio."', '".$tipo."', ".$uso.", ".$frente.")";
       try {
         $this->cdb->exec($sqlInsert);
       } catch (PDOException $pdoException) {

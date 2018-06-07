@@ -43,6 +43,15 @@
     </head>
 
     <body>
+      <?php
+          include 'database/DatabaseConnect.php';
+          include 'database/CbInmuebleController.php';
+
+          $dConnect = new DatabaseConnect;
+          $cdb = $dConnect->dbConnectSimple();
+          $CbInmuebleController = new CbInmuebleController();
+          $CbInmuebleController->cdb = $cdb;
+     ?>
       <!--
             Update
             Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
@@ -54,50 +63,89 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalUpdateLabel"></h4>
                             </div>
-                            <form role="form" name="formEdit" method="post" action="index.php">
+                            <form role="form" name="formEdit" method="post" action="inmuebles.php">
                                 <div class="modal-body">
-                                  <!--<div class="input-group">
-                                      <label for="id">Id</label>
-                                      <input type="text" readonly class="form-control" id="id" name="id" >
-                                  </div>-->
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="circ">Circunscripcion</label>
+                                      <input type="text" class="form-control" id="circ" name="circ" maxlength="4" required>
                                   </div>
                                   <div class="input-group">
-                                      <label for="apellido">Apellido</label>
-                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="secc">Seccion</label>
+                                      <input type="text" class="form-control" id="secc" name="secc" maxlength="4" >
                                   </div>
-                                  <div class="input-group col-xs-2">
-                                    <label for="tipo_doc">Tipo</label>
-                                    <select class="form-control" id="tipo_doc" name="tipo_doc" maxlength="3" required>
-                                      <option value="DNI">DNI</option>
-                                      <option value="LC">LC</option>
-                                      <option value="LE">LE</option>
-                                    </select>
-                                  </div>
-                                  <!--<div class="input-group">
-                                      <label for="tipo_doc">Tipo Documento</label>
-                                      <input type="text" class="form-control" id="tipo_doc" name="tipo_doc" placeholder="tipo_doc" maxlength="3" required>
-                                  </div>-->
                                   <div class="input-group">
-                                      <label for="nro_doc">Nro. Documento</label>
-                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="chac_n">Chacra</label>
+                                      <input type="number" class="form-control" id="chac_n" name="chac_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="chac_l" name="chac_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="quin_n">Quinta</label>
+                                      <input type="number" class="form-control" id="quin_n" name="quin_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="quin_l" name="quin_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="frac_n">Fraccion</label>
+                                      <input type="number" class="form-control" id="frac_n" name="frac_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="frac_l" name="frac_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="manz_n">Manzana</label>
+                                      <input type="number" class="form-control" id="manz_n" name="manz_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="manz_l" name="manz_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="parc_n">Parcela</label>
+                                      <input type="number" class="form-control" id="parc_n" name="parc_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="parc_l" name="parc_l" maxlength="4" readonl>
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="subp">Subparcela</label>
+                                      <input type="text" class="form-control" id="subp" name="subp" maxlength="6" readonl>
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="superficie">Superficie</label>
+                                      <input type="number" class="form-control" id="superficie" name="superficie" maxlength="10" required>
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="nro_puerta">Nro. Puerta</label>
+                                      <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="p_municipal">Padron Municipal</label>
+                                      <input type="number" class="form-control" id="p_municipal" name="p_municipal" maxlength="10" required>
                                   </div>
                                   <div class="input-group">
                                       <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="10" >
                                   </div>
-                                  <div class="input-group">
-                                      <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  <div class="input-group col-xs-2">
+                                    <label for="tipo">Tipo</label>
+                                    <select class="form-control" id="tipo" name="tipo" maxlength="12" required>
+                                      <option value="PROV">PROVISORIO</option>
+                                      <option value="DEF">DEFINITIVO</option>
+                                    </select>
                                   </div>
+                                </div>
+                                <div class="input-group col-xs-6 col-md-4">
+                                  <label for="uso">Uso</label>
+                                  <select class="form-control" id="uso" name="uso" required>
+                                    <?php try {
+                                          $rows = $CbInmuebleController->readUsos();
+                                          foreach ($rows as $row) {
+                                    ?>
+                                          <option value='<?php print($row->id); ?>'><?php print($row->descripcion); ?></option>
+                                  <?php
+                                      }
+                                  } catch (Exception $exception) {
+                                      echo 'Error hacer la consulta de usos: ' . $exception;
+                                  }
+                                  ?>
+                                  </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="frente">Mts de frente</label>
+                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" >
                                 </div>
                                 <div class="modal-footer">
 		                                <button id="update-language" name="update-language" type="submit" class="btn btn-primary">Actualizar</button>
@@ -108,17 +156,17 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
     	<!--
-            Create - Read
+            Create
             Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
             We create a modal window used to create a new language, update or display.-->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="myModalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCbPFisica" method="post" action="index.php">
+                            <form role="form" name="formCbInmueble" method="post" action="inmuebles.php">
                                 <div class="modal-body">
                                   <!--<div class="input-group">
                                       <label for="id">Id</label>
@@ -126,38 +174,84 @@
                                   </div>-->
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="circ">Circunscripcion</label>
+                                      <input type="text" class="form-control" id="circ" name="circ" maxlength="4" required>
                                   </div>
                                   <div class="input-group">
-                                      <label for="apellido">Apellido</label>
-                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
-                                  <div class="input-group col-xs-2">
-                                    <label for="tipo_doc">Tipo</label>
-                                    <select class="form-control" id="tipo_doc" name="tipo_doc" maxlength="3" required>
-                                      <option value="DNI" selected="selected">DNI</option>
-                                      <option value="LC">LC</option>
-                                      <option value="LE">LE</option>
-                                    </select>
+                                      <label for="secc">Seccion</label>
+                                      <input type="text" class="form-control" id="secc" name="secc" maxlength="4">
                                   </div>
                                   <div class="input-group">
-                                      <label for="nro_doc">Nro. Documento</label>
-                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="chac_n">Chacra</label>
+                                      <input type="number" class="form-control" id="chac_n" name="chac_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="chac_l" name="chac_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="quin_n">Quinta</label>
+                                      <input type="number" class="form-control" id="quin_n" name="quin_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="quin_l" name="quin_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="frac_n">Fraccion</label>
+                                      <input type="number" class="form-control" id="frac_n" name="frac_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="frac_l" name="frac_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="manz_n">Manzana</label>
+                                      <input type="number" class="form-control" id="manz_n" name="manz_n" maxlength="4" >
+                                      <input type="text" class="form-control" id="manz_l" name="manz_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="parc_n">Parcela</label>
+                                      <input type="number" class="form-control" id="parc_n" name="parc_n" maxlength="4" required>
+                                      <input type="text" class="form-control" id="parc_l" name="parc_l" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="subp">Subparcela</label>
+                                      <input type="text" class="form-control" id="subp" name="subp" maxlength="6" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="superficie">Superficie</label>
+                                      <input type="number" class="form-control" id="superficie" name="superficie" maxlength="10" required>
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="nro_puerta">Nro. Puerta</label>
+                                      <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="p_municipal">Padron Municipal</label>
+                                      <input type="number" class="form-control" id="p_municipal" name="p_municipal" maxlength="10" required>
                                   </div>
                                   <div class="input-group">
                                       <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="10" >
                                   </div>
-                                  <div class="input-group">
-                                      <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  <div class="input-group col-xs-2">
+                                    <label for="tipo">Tipo</label>
+                                    <select class="form-control" id="tipo" name="tipo" maxlength="12" required>
+                                      <option value="PROV">PROVISORIO</option>
+                                      <option value="DEF">DEFINITIVO</option>
+                                    </select>
                                   </div>
+                                <div class="input-group col-xs-6 col-md-4">
+                                  <label for="uso">Uso</label>
+                                  <select class="form-control" id="uso" name="uso" required>
+                                    <?php try {
+                                          $rows = $CbInmuebleController->readUsos();
+                                          foreach ($rows as $row) {
+                                    ?>
+                                          <option value='<?php print($row->id); ?>'><?php print($row->descripcion); ?></option>
+                                  <?php
+                                      }
+                                  } catch (Exception $exception) {
+                                      echo 'Error hacer la consulta de usos: ' . $exception;
+                                  }
+                                  ?>
+                                  </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="frente">Mts de frente</label>
+                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" >
                                 </div>
                                 <div class="modal-footer">
                                     <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
@@ -168,6 +262,104 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
 
+                <!--
+                      Read
+                      Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
+                      We create a modal window used to create a new language, update or display.-->
+                          <div class="modal fade" id="myModalRead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                          <h4 class="modal-title" id="myModalLabel"></h4>
+                                      </div>
+                                      <form role="form" name="formCbInmueble" method="post" action="inmuebles.php">
+                                          <div class="modal-body">
+                                            <input type="hidden" readonly class="form-control" id="id" name="id" >
+                                            <div class="input-group">
+                                                <label for="circ">Circunscripcion</label>
+                                                <input type="text" class="form-control" id="circ" name="circ" maxlength="4" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="secc">Seccion</label>
+                                                <input type="text" class="form-control" id="secc" name="secc" maxlength="4" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="chac_n">Chacra</label>
+                                                <input type="number" class="form-control" id="chac_n" name="chac_n" maxlength="4" readonly>
+                                                <input type="text" class="form-control" id="chac_l" name="chac_l" maxlength="4" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="quin_n">Quinta</label>
+                                                <input type="number" class="form-control" id="quin_n" name="quin_n" maxlength="4" readonly>
+                                                <input type="text" class="form-control" id="quin_l" name="quin_l" maxlength="4" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="frac_n">Fraccion</label>
+                                                <input type="number" class="form-control" id="frac_n" name="frac_n" maxlength="4" readonly>
+                                                <input type="text" class="form-control" id="frac_l" name="frac_l" maxlength="4" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="manz_n">Manzana</label>
+                                                <input type="number" class="form-control" id="manz_n" name="manz_n" maxlength="4" readonly>
+                                                <input type="text" class="form-control" id="manz_l" name="manz_l" maxlength="4" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="parc_n">Parcela</label>
+                                                <input type="number" class="form-control" id="parc_n" name="parc_n" maxlength="4" readonly>
+                                                <input type="text" class="form-control" id="parc_l" name="parc_l" maxlength="4" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="subp">Subparcela</label>
+                                                <input type="text" class="form-control" id="subp" name="subp" maxlength="6" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="superficie">Superficie</label>
+                                                <input type="number" class="form-control" id="superficie" name="superficie" maxlength="10" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="nro_puerta">Nro. Puerta</label>
+                                                <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="p_municipal">Padron Municipal</label>
+                                                <input type="number" class="form-control" id="p_municipal" name="p_municipal" maxlength="10" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="domicilio">Domicilio</label>
+                                                <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="10" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="tipo">Tipo</label>
+                                                <input type="text" class="form-control" id="tipo" name="tipo" maxlength="10" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="uso">Uso</label>
+                                                <input type="text" class="form-control" id="uso" name="uso" maxlength="15" readonly>
+                                            </div>
+                                          </div>
+                                          <div class="input-group">
+                                              <label for="frente">Mts de frente</label>
+                                              <input type="number" class="form-control" id="frente" name="frente" maxlength="10" readonly>
+                                          </div>
+                                          <div class="input-group">
+                                              <label for="nomencla">Nomenclatura</label>
+                                              <input type="number" class="form-control" id="nomencla" name="nomencla" maxlength="42" readonly>
+                                          </div>
+                                          <div class="input-group">
+                                              <label for="nomencla_sp">Nomenclatura</label>
+                                              <input type="number" class="form-control" id="nomencla_sp" name="nomencla_sp" maxlength="48" readonly>
+                                          </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
+                                              <button id="cancel"type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                          </div>
+                                      </form>
+                                  </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                          </div><!-- /.modal -->
+
 		<!-- Modal DELETE -->
 		<div class="modal fade" id="myModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalDeleteLabel">
 	            <div class="modal-dialog" role="document">
@@ -176,13 +368,13 @@
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Registro</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbPFisica" method="post" action="index.php">
+                	    <form role="form" name="formDeleteCbInmueble" method="post" action="inmuebles.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label for="idPFisica">¿Se va a eliminar el registro seleccionado?</label>
+	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
-         	                      	    <label for="id">Id P. Fisica</label>
+         	                      	    <label for="id">Id Inmueble</label>
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
@@ -191,7 +383,7 @@
                                   </div>
 	                        </div>
         	                <div class="modal-footer">
-                	                <button id="delete-pfisica-select" name="delete-pfisica-select" type="submit" class="btn btn-primary">Aceptar</button>
+                	                <button id="delete-select" name="delete-select" type="submit" class="btn btn-primary">Aceptar</button>
                         	        <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	                        </div>
         	            </form>
@@ -226,10 +418,10 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#">Pers.Fisicas <span class="sr-only">(current)</span></a></li>
+                        <li><a href="index.php">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
-                        <li><a href="inmuebles.php">Inmuebles</a></li>
+                        <li class="active"><a href="#">Inmuebles <span class="sr-only">(current)</span></a></li>
                         <li><a href="planos_m_ph.php">Planos Mens. o PH</a></li>
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
@@ -237,38 +429,46 @@
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Personas Fisicas&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
+                    <h2 class="sub-header">Inmuebles&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCreate" onclick='newCbInmueble()'>NUEVO</button></h2>
 
         <?php
-            include 'database/DatabaseConnect.php';
-	          include 'database/CbPFisicaController.php';
-
- 	          $dConnect = new DatabaseConnect;
-	          $cdb = $dConnect->dbConnectSimple();
-	          $CbPFisicaController = new CbPFisicaController();
-	          $CbPFisicaController->cdb = $cdb;
-
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];
-        	     $nombre = $_POST['nombre'];
-               $apellido = $_POST['apellido'];
-               $tipo_doc = $_POST['tipo_doc'];
-               $nro_doc = $_POST['nro_doc'];
+        	     $circ = $_POST['circ'];
+               $secc = $_POST['secc'];
+               $chac_n = $_POST['chac_n'];
+               $chac_l = $_POST['chac_l'];
+               $quin_n = $_POST['quin_n'];
+               $quin_l = $_POST['quin_l'];
+               $frac_n = $_POST['frac_n'];
+               $frac_l = $_POST['frac_l'];
+               $manz_n = $_POST['manz_n'];
+               $manz_l = $_POST['manz_l'];
+               $parc_n = $_POST['parc_n'];
+               $parc_l = $_POST['parc_l'];
+               $subp = $_POST['subp'];
+               $superficie = $_POST['superficie'];
+               $nro_puerta = $_POST['nro_puerta'];
+               $p_municipal = $_POST['p_municipal'];
                $domicilio = $_POST['domicilio'];
-               $cuit = $_POST['cuit'];
+               $tipo = $_POST['tipo'];
+               $frente = $_POST['frente'];
+               $uso = $_POST['uso'];
+               $nomencla = $_POST['nomencla'];
+               $nomencla_sp = $_POST['nomencla_sp'];
         	if (isset($_POST["save-language"])){
-        	    $CbPFisicaController->create($nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
+        	    $CbInmuebleController->create($circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente,$nomencla,$nomencla_sp);
         	}else{
-        	    $CbPFisicaController->update($id,$nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
+        	    $CbInmuebleController->update($id,$circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente,$nomencla,$nomencla_sp);
         	}
         }
 
-	     if (isset($_POST["delete-pfisica-select"]) ) {
+	     if (isset($_POST["delete-select"]) ) {
  	        $id = $_POST['id'];
           $fp = fopen("/tmp/logphp.txt", "w");
           fputs($fp, "Id = ".$id."\n");
           $fp = fclose($fp);
-		      $CbPFisicaController->delete($id);
+		      $CbInmuebleController->delete($id);
 	     }
 
         ?>
@@ -278,45 +478,67 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NOMBRE</th>
-                                    <th>APELLIDO</th>
-                                    <th>TIPO_DOC</th>
-                                    <th>NRO_DOC</th>
-                                    <th>DOMICILIO</th>
-                                    <th>CUIT</th>
+                                    <th>CIRC.</th>
+                                    <th>SECC.</th>
+                                    <th>CHAC.</th>
+                                    <th>QUIN.</th>
+                                    <th>FRACC.</th>
+                                    <th>MANZ.</th>
+                                    <th>PARC.</th>
+                                    <th>SUBPC.</th>
+                                    <th>SUPERF.</th>
+                                    <th>FRENT</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <form role="form" name="formListCbLanguage" method="post" action="index.php">
+                                <form role="form" name="formListCbLanguage" method="post" action="inmuebles.php">
                                 <?php
                                 try {
-                                    $rows = $CbPFisicaController->readAll();
+                                    $rows = $CbInmuebleController->readAll();
 
                                     foreach ($rows as $row) {
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
-                                            <td><?php print($row->nombre); ?></td>
-                                            <td><?php print($row->apellido); ?></td>
-                                            <td><?php print($row->tipo_doc); ?></td>
-                                            <td><?php print($row->nro_doc); ?></td>
-                                            <td><?php print($row->domicilio); ?></td>
-                                            <td><?php print($row->cuit); ?></td>
+                                            <td><?php print($row->circ); ?></td>
+                                            <td><?php print($row->secc); ?></td>
+                                            <td><?php print($row->chac_n); ?>-<?php print($row->chac_l); ?></td>
+                                            <td><?php print($row->quin_n); ?>-<?php print($row->quin_l); ?></td>
+                                            <td><?php print($row->frac_n); ?>-<?php print($row->frac_l); ?></td>
+                                            <td><?php print($row->manz_n); ?>-<?php print($row->manz_l); ?></td>
+                                            <td><?php print($row->parc_n); ?>-<?php print($row->parc_l); ?></td>
+                                            <td><?php print($row->subp); ?></td>
+                                            <td><?php print($row->superficie); ?></td>
+                                            <td><?php print($row->frente); ?></td>
                                             <td>
 						<button id="see-language"
 							name="see-language"
 							type="button"
 							class="btn btn-success"
 							data-toggle="modal"
-							data-target="#myModal"
-							onclick="openCbPFisica('see',
+							data-target="#myModalRead"
+							onclick="openCbInmueble('see',
 								    '<?php print($row->id); ?>',
-										'<?php print($row->nombre); ?>',
-										'<?php print($row->apellido); ?>',
-                    '<?php print($row->tipo_doc); ?>',
-                    '<?php print($row->nro_doc); ?>',
+										'<?php print($row->circ); ?>',
+										'<?php print($row->secc); ?>',
+                    '<?php print($row->chac_n); ?>',
+                    '<?php print($row->chac_l); ?>',
+                    '<?php print($row->quin_n); ?>',
+                    '<?php print($row->quin_l); ?>',
+                    '<?php print($row->frac_n); ?>',
+                    '<?php print($row->frac_l); ?>',
+                    '<?php print($row->manz_n); ?>',
+                    '<?php print($row->manz_l); ?>',
+                    '<?php print($row->parc_n); ?>',
+                    '<?php print($row->parc_l); ?>',
+                    '<?php print($row->subp); ?>',
+                    '<?php print($row->superficie); ?>',
+                    '<?php print($row->nro_puerta); ?>',
+                    '<?php print($row->p_municipal); ?>',
                     '<?php print($row->domicilio); ?>',
-                    '<?php print($row->cuit); ?>')">Ver</button>
+                    '<?php print($row->tipo); ?>',
+                    '<?php print($row->uso); ?>',
+                    '<?php print($row->frente); ?>')">Ver</button>
 					    </td>
 					    <td>
 						<button id="edit-language"
@@ -325,13 +547,27 @@
 						  class="btn btn-primary"
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
-						  onclick="openEditPFisica('<?php print($row->id); ?>',
-				           '<?php print($row->nombre); ?>',
-                   '<?php print($row->apellido); ?>',
-                   '<?php print($row->tipo_doc); ?>',
-                   '<?php print($row->nro_doc); ?>',
-                   '<?php print($row->domicilio); ?>',
-									 '<?php print($row->cuit); ?>')">Editar</button>
+						  onclick="openEditInmueble('<?php print($row->id); ?>',
+              '<?php print($row->circ); ?>',
+              '<?php print($row->secc); ?>',
+              '<?php print($row->chac_n); ?>',
+              '<?php print($row->chac_l); ?>',
+              '<?php print($row->quin_n); ?>',
+              '<?php print($row->quin_l); ?>',
+              '<?php print($row->frac_n); ?>',
+              '<?php print($row->frac_l); ?>',
+              '<?php print($row->manz_n); ?>',
+              '<?php print($row->manz_l); ?>',
+              '<?php print($row->parc_n); ?>',
+              '<?php print($row->parc_l); ?>',
+              '<?php print($row->subp); ?>',
+              '<?php print($row->superficie); ?>',
+              '<?php print($row->nro_puerta); ?>',
+              '<?php print($row->p_municipal); ?>',
+              '<?php print($row->domicilio); ?>',
+              '<?php print($row->tipo); ?>',
+              '<?php print($row->uso); ?>',
+              '<?php print($row->frente); ?>')">Editar</button>
 					    </td>
 				      <td>
 					    	<button id="delete-language-modal"
@@ -340,7 +576,7 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbPFisica('<?php print($row->id); ?>','<?php print($row->nombre); ?>','<?php print($row->apellido); ?>')"
+              onclick="deleteCbInmueble('<?php print($row->id); ?>','<?php print($row->nomencla); ?>','<?php print($row->p_municipal); ?>')"
 						>Eliminar</button>
 					   </td>
 

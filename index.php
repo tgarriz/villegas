@@ -79,10 +79,6 @@
                                       <option value="LE">LE</option>
                                     </select>
                                   </div>
-                                  <!--<div class="input-group">
-                                      <label for="tipo_doc">Tipo Documento</label>
-                                      <input type="text" class="form-control" id="tipo_doc" name="tipo_doc" placeholder="tipo_doc" maxlength="3" required>
-                                  </div>-->
                                   <div class="input-group">
                                       <label for="nro_doc">Nro. Documento</label>
                                       <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
