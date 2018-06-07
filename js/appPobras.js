@@ -4,7 +4,7 @@
  * @returns {undefined}
  */
 function newCbPObra(){
-    openCbPObra('new', null, null,null,null,null,null);
+    openCbPObra('new',null,null,null,null,null);
 }
 /*------------PersonasFisicas---------------*/
  function openEditPObra(id,profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
@@ -21,22 +21,38 @@ function newCbPObra(){
    });
  }
 
-function openCbPObra(action, id,profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
-    document.formCbPObra.id.value = id;
+function openCbPObra(action,profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
     document.formCbPObra.profesional.value = profesional;
     document.formCbPObra.sup_cubierta.value = sup_cubierta;
     document.formCbPObra.sup_semicub.value = sup_semicub;
     document.formCbPObra.sup_demoler.value = sup_demoler;
     document.formCbPObra.codigo.value = codigo;
 
-    document.formCbPObra.id.disabled = true;
     document.formCbPObra.profesional.disabled = (action === 'see')?true:false;
     document.formCbPObra.sup_cubierta.disabled = (action === 'see')?true:false;
     document.formCbPObra.sup_semicub.disabled = (action === 'see')?true:false;
     document.formCbPObra.sup_demoler.disabled = (action === 'see')?true:false;
     document.formCbPObra.codigo.disabled = (action === 'see')?true:false;
 
-    $('#myModal').on('shown.bs.modal', function () {
+    if (action === 'new'){
+      $('#myModal').on('shown.bs.modal', function () {
+          var modal = $(this);
+          document.formCbPObra.id.disabled = true;
+          $('#save-language').show();
+          $('#update-language').hide();
+          $('#idlanguage').focus();
+      })
+    }else if (action === 'see'){
+      alert('entro por see del opencb');
+      $('#myModalRead').on('shown.bs.modal', function () {
+          var modal = $(this);
+          $('#save-language').hide();
+          $('#update-language').hide();
+          $('#idlanguage').focus();
+        })
+    }
+
+    /*$('#myModal').on('shown.bs.modal', function () {
         var modal = $(this);
         if (action === 'new'){
             document.formCbPObra.id.disabled = true;
@@ -49,8 +65,31 @@ function openCbPObra(action, id,profesional,sup_cubierta,sup_semicub,sup_demoler
             $('#update-language').hide();
         }
         $('#idlanguage').focus()
-    });
+    });*/
 }
+
+function openSeePObra(profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
+    document.formSeePObra.profesional.value = profesional;
+    document.formSeePObra.sup_cubierta.value = sup_cubierta;
+    document.formSeePObra.sup_semicub.value = sup_semicub;
+    document.formSeePObra.sup_demoler.value = sup_demoler;
+    document.formSeePObra.codigo.value = codigo;
+
+    document.formSeePObra.profesional.disabled = true;
+    document.formSeePObra.sup_cubierta.disabled = true;
+    document.formSeePObra.sup_semicub.disabled = true;
+    document.formSeePObra.sup_demoler.disabled = true;
+    document.formSeePObra.codigo.disabled = true;
+
+      alert('entro por see');
+      $('#myModalRead').on('shown.bs.modal', function () {
+          $('#myModalRead').find('.modal-title').text('Ver Registro ');
+          $('#save-language').hide();
+          $('#update-language').hide();
+          $('#idlanguage').focus();
+        })
+    }
+
 function deleteCbPObra(id,codigo){
   document.formDeleteCbPObra.id.value = id;
   document.formDeleteCbPObra.codigo.value = codigo;

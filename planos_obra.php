@@ -90,7 +90,7 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
     	<!--
-            Create - Read
+            Create
             Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
             We create a modal window used to create a new language, update or display.-->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -98,15 +98,10 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"></h4>
+                                <h4 class="modal-title" id="myModalLabel">Planos de Obra</h4>
                             </div>
                             <form role="form" name="formCbPObra" method="post" action="planos_obra.php">
                                 <div class="modal-body">
-                                  <!--<div class="input-group">
-                                      <label for="id">Id</label>
-                                      <input type="text" readonly class="form-control" id="id" name="id" >
-                                  </div>-->
-                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="profesional">Profesional</label>
                                       <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>
@@ -141,6 +136,51 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
+                <!--
+                      Read
+                      Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
+                      We create a modal window used to create a new language, update or display.-->
+                          <div class="modal fade" id="myModalRead" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                              <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                          <h4 class="modal-title" id="myModalLabel">Registro de Plano de Obra</h4>
+                                      </div>
+                                      <form role="form" name="formSeePObra" method="post" action="planos_obra.php">
+                                          <div class="modal-body">
+                                            <div class="input-group">
+                                                <label for="profesional">Profesional</label>
+                                                <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="sup_cubierta">Sup.Cubierta</label>
+                                                <input type="number" class="form-control" id="sup_cubierta" name="sup_cubierta" placeholder="sup_cubierta" maxlength="20" required>
+                                                <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="sup_semicub">Sup.Semicubierta</label>
+                                                <input type="number" class="form-control" id="sup_semicub" name="sup_semicub" placeholder="sup_semicub" maxlength="3" required>
+                                                <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="sup_demoler">Sup. a Demoler</label>
+                                                <input type="number" class="form-control" id="sup_demoler" name="sup_demoler" placeholder="sup_demoler" maxlength="9" required>
+                                                <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="codigo">Codigo</label>
+                                                <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" maxlength="30" required>
+                                                <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button id="cancel"type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                          </div>
+                                      </form>
+                                  </div><!-- /.modal-content -->
+                              </div><!-- /.modal-dialog -->
+                          </div><!-- /.modal -->
 
 		<!-- Modal DELETE -->
 		<div class="modal fade" id="myModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalDeleteLabel">
@@ -203,6 +243,7 @@
                         <li><a href="index.php">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
+                        <li><a href="inmuebles.php">Inmuebles</a></li>
                         <li><a href="planos_m_ph.ph">Planos Mens. o PH</a></li>
                         <li class="active"><a href="#">Planos Obras<span class="sr-only">(current)</span></a></li>
                     </ul>
@@ -210,7 +251,7 @@
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Planos de Obra &nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
+                    <h2 class="sub-header">Planos de Obra &nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbPObra()'>NUEVO</button></h2>
 
         <?php
             include 'database/DatabaseConnect.php';
@@ -279,14 +320,13 @@
 							type="button"
 							class="btn btn-success"
 							data-toggle="modal"
-							data-target="#myModal"
-							onclick="openCbPObra('see',
-								    '<?php print($row->id); ?>',
-										'<?php print($CbPObraController->readNameProfesional($row->profesional)->apellido);?>',
+							data-target="#myModalRead"
+							onclick="openSeePObra(
+								    '<?php print($CbPObraController->readNameProfesional($row->profesional)->apellido);?>',
 										'<?php print($row->sup_cubierta); ?>',
                     '<?php print($row->sup_semicub); ?>',
                     '<?php print($row->sup_demoler); ?>',
-                    '<?php print($row->codigo); ?>')">Ver</button>
+                    '<?php print($row->codigo) ?>')">Ver</button>
 					    </td>
 					    <td>
 						<button id="edit-language"
