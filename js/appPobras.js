@@ -28,47 +28,23 @@ function openCbPObra(action,profesional,sup_cubierta,sup_semicub,sup_demoler,cod
     document.formCbPObra.sup_demoler.value = sup_demoler;
     document.formCbPObra.codigo.value = codigo;
 
-    document.formCbPObra.profesional.disabled = (action === 'see')?true:false;
-    document.formCbPObra.sup_cubierta.disabled = (action === 'see')?true:false;
-    document.formCbPObra.sup_semicub.disabled = (action === 'see')?true:false;
-    document.formCbPObra.sup_demoler.disabled = (action === 'see')?true:false;
-    document.formCbPObra.codigo.disabled = (action === 'see')?true:false;
+    document.formCbPObra.profesional.disabled = false;
+    document.formCbPObra.sup_cubierta.disabled = false;
+    document.formCbPObra.sup_semicub.disabled = false;
+    document.formCbPObra.sup_demoler.disabled = false;
+    document.formCbPObra.codigo.disabled = false;
 
-    if (action === 'new'){
-      $('#myModal').on('shown.bs.modal', function () {
+    $('#myModal').on('shown.bs.modal', function () {
           var modal = $(this);
           document.formCbPObra.id.disabled = true;
           $('#save-language').show();
           $('#update-language').hide();
           $('#idlanguage').focus();
       })
-    }else if (action === 'see'){
-      alert('entro por see del opencb');
-      $('#myModalRead').on('shown.bs.modal', function () {
-          var modal = $(this);
-          $('#save-language').hide();
-          $('#update-language').hide();
-          $('#idlanguage').focus();
-        })
     }
 
-    /*$('#myModal').on('shown.bs.modal', function () {
-        var modal = $(this);
-        if (action === 'new'){
-            document.formCbPObra.id.disabled = true;
-            modal.find('.modal-title').text('Creación de Plano de Obra');
-            $('#save-language').show();
-            $('#update-language').hide();
-        }else if (action === 'see'){
-            modal.find('.modal-title').text('Ver Plano de Obra');
-            $('#save-language').hide();
-            $('#update-language').hide();
-        }
-        $('#idlanguage').focus()
-    });*/
-}
-
 function openSeePObra(profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
+
     document.formSeePObra.profesional.value = profesional;
     document.formSeePObra.sup_cubierta.value = sup_cubierta;
     document.formSeePObra.sup_semicub.value = sup_semicub;
