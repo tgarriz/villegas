@@ -251,7 +251,7 @@
                                 </div>
                                 <div class="input-group">
                                     <label for="frente">Mts de frente</label>
-                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" >
+                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" value="0" >
                                 </div>
                                 <div class="modal-footer">
                                     <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
