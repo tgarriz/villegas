@@ -37,6 +37,15 @@
     </head>
 
     <body>
+      <?php
+          include 'database/DatabaseConnect.php';
+          include 'database/CbPObraController.php';
+
+          $dConnect = new DatabaseConnect;
+          $cdb = $dConnect->dbConnectSimple();
+          $CbPObraController = new CbPObraController();
+          $CbPObraController->cdb = $cdb;
+      ?>
       <!--
             Update
             Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
@@ -50,35 +59,38 @@
                             </div>
                             <form role="form" name="formEdit" method="post" action="planos_obra.php">
                                 <div class="modal-body">
-                                  <!--<div class="input-group">
-                                      <label for="id">Id</label>
-                                      <input type="text" readonly class="form-control" id="id" name="id" >
-                                  </div>-->
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
-                                  <div class="input-group">
-                                      <label for="profesional">Profesional</label>
-                                      <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  <div class="input-group col-xs-6 col-md-4">
+                                    <label for="profesional">Profesional</label>
+                                    <select class="form-control" id="profesional" name="profesional" required>
+                                      <?php try {
+                                            $rows = $CbPObraController->readProfesionales();
+                                            foreach ($rows as $row) {
+                                      ?>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
+                                    <?php
+                                        }
+                                    } catch (Exception $exception) {
+                                        echo 'Error hacer la consulta profesionales: ' . $exception;
+                                    }
+                                    ?>
+                                    </select>
                                   </div>
                                   <div class="input-group">
                                       <label for="sup_cubierta">Sup.Cubierta</label>
                                       <input type="number" class="form-control" id="sup_cubierta" name="sup_cubierta" placeholder="sup_cubierta" maxlength="20" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
                                       <label for="sup_semicub">Sup.Semicubierta</label>
                                       <input type="number" class="form-control" id="sup_semicub" name="sup_semicub" placeholder="sup_semicub" maxlength="3" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
                                       <label for="sup_demoler">Sup. a Demoler</label>
                                       <input type="number" class="form-control" id="sup_demoler" name="sup_demoler" placeholder="sup_demoler" maxlength="9" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
                                       <label for="codigo">Codigo</label>
                                       <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" maxlength="40" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -102,10 +114,21 @@
                             </div>
                             <form role="form" name="formCbPObra" method="post" action="planos_obra.php">
                                 <div class="modal-body">
-                                  <div class="input-group">
-                                      <label for="profesional">Profesional</label>
-                                      <input type="text" class="form-control" id="profesional" name="profesional" placeholder="profesional" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                  <div class="input-group col-xs-6 col-md-4">
+                                    <label for="profesional">Profesional</label>
+                                    <select class="form-control" id="profesional" name="profesional" required>
+                                      <?php try {
+                                            $rows = $CbPObraController->readProfesionales();
+                                            foreach ($rows as $row) {
+                                      ?>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
+                                    <?php
+                                        }
+                                    } catch (Exception $exception) {
+                                        echo 'Error hacer la consulta profesionales: ' . $exception;
+                                    }
+                                    ?>
+                                    </select>
                                   </div>
                                   <div class="input-group">
                                       <label for="sup_cubierta">Sup.Cubierta</label>
@@ -254,13 +277,6 @@
                     <h2 class="sub-header">Planos de Obra &nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbPObra()'>NUEVO</button></h2>
 
         <?php
-            include 'database/DatabaseConnect.php';
-	          include 'database/CbPObraController.php';
-
- 	          $dConnect = new DatabaseConnect;
-	          $cdb = $dConnect->dbConnectSimple();
-	          $CbPObraController = new CbPObraController();
-	          $CbPObraController->cdb = $cdb;
 
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];

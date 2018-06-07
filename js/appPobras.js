@@ -57,7 +57,6 @@ function openSeePObra(profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
     document.formSeePObra.sup_demoler.disabled = true;
     document.formSeePObra.codigo.disabled = true;
 
-      alert('entro por see');
       $('#myModalRead').on('shown.bs.modal', function () {
           $('#myModalRead').find('.modal-title').text('Ver Registro ');
           $('#save-language').hide();
@@ -69,7 +68,6 @@ function openSeePObra(profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
 function deleteCbPObra(id,codigo){
   document.formDeleteCbPObra.id.value = id;
   document.formDeleteCbPObra.codigo.value = codigo;
-  //alert(id);
   $('#myModalDelete').on('shown.bs.modal', function () {
     $('#myInput').focus();
 });
