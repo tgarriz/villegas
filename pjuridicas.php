@@ -189,7 +189,8 @@
                         <li class="active"><a href="#">Pers.Juridicas<span class="sr-only">(current)</span></a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
                         <li><a href="inmuebles.php">Inmuebles</a></li>
-			                  <li><a href="planos_m_ph.php">Planos Mens. o PH</a></li>
+                        <li><a href="mensuras.php">Planos Mensura</a></li>
+                        <li><a href="phs.php">Planos PH</a></li>
 			                  <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
                 </div>

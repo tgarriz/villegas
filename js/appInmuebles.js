@@ -38,8 +38,6 @@ function newCbInmueble(){
  }
 
 function openCbInmueble(action, id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente){
-    alert(id);
-    alert(action);
     document.formCbInmueble.id.value = id;
     document.formCbInmueble.circ.value = circ;
     document.formCbInmueble.secc.value = secc;

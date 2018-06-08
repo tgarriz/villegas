@@ -39,18 +39,17 @@
         <script src="assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="js/appInmuebles.js"></script>
+        <script src="js/appMensuras.js"></script>
     </head>
 
     <body>
       <?php
           include 'database/DatabaseConnect.php';
-          include 'database/CbInmuebleController.php';
-
+          include 'database/CbMensuraController.php';
           $dConnect = new DatabaseConnect;
           $cdb = $dConnect->dbConnectSimple();
-          $CbInmuebleController = new CbInmuebleController();
-          $CbInmuebleController->cdb = $cdb;
+          $CbMensuraController = new CbMensuraController();
+          $CbMensuraController->cdb = $cdb;
      ?>
       <!--
             Update
@@ -63,90 +62,38 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalUpdateLabel"></h4>
                             </div>
-                            <form role="form" name="formEdit" method="post" action="inmuebles.php">
+                            <form role="form" name="formEdit" method="post" action="mensuras.php">
                                 <div class="modal-body">
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
-                                  <div class="input-group">
-                                      <label for="circ">Circunscripcion</label>
-                                      <input type="text" class="form-control" id="circ" name="circ" maxlength="4" required>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="secc">Seccion</label>
-                                      <input type="text" class="form-control" id="secc" name="secc" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="chac_n">Chacra</label>
-                                      <input type="number" class="form-control" id="chac_n" name="chac_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="chac_l" name="chac_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="quin_n">Quinta</label>
-                                      <input type="number" class="form-control" id="quin_n" name="quin_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="quin_l" name="quin_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="frac_n">Fraccion</label>
-                                      <input type="number" class="form-control" id="frac_n" name="frac_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="frac_l" name="frac_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="manz_n">Manzana</label>
-                                      <input type="number" class="form-control" id="manz_n" name="manz_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="manz_l" name="manz_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="parc_n">Parcela</label>
-                                      <input type="number" class="form-control" id="parc_n" name="parc_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="parc_l" name="parc_l" maxlength="4" readonl>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="subp">Subparcela</label>
-                                      <input type="text" class="form-control" id="subp" name="subp" maxlength="6" readonl>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="superficie">Superficie</label>
-                                      <input type="number" class="form-control" id="superficie" name="superficie" maxlength="10" required>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="nro_puerta">Nro. Puerta</label>
-                                      <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="p_municipal">Padron Municipal</label>
-                                      <input type="number" class="form-control" id="p_municipal" name="p_municipal" maxlength="10" required>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="10" >
-                                  </div>
-                                  <div class="input-group col-xs-2">
-                                    <label for="tipo">Tipo</label>
-                                    <select class="form-control" id="tipo" name="tipo" maxlength="12" required>
-                                      <option value="PROV">PROVISORIO</option>
-                                      <option value="DEF">DEFINITIVO</option>
+                                  <div class="input-group col-xs-6 col-md-4">
+                                    <label for="profesional">Profesional</label>
+                                    <select class="form-control" id="profesional" name="profesional" required>
+                                      <?php try {
+                                            $rows = $CbPObraController->readProfesionales();
+                                            foreach ($rows as $row) {
+                                      ?>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
+                                    <?php
+                                        }
+                                    } catch (Exception $exception) {
+                                        echo 'Error hacer la consulta profesionales: ' . $exception;
+                                    }
+                                    ?>
                                     </select>
                                   </div>
-                                  <div class="input-group col-xs-6 col-md-4">
-                                  <label for="uso">Uso</label>
-                                  <select class="form-control" id="uso" name="uso" required>
-                                    <?php try {
-                                          $rows = $CbInmuebleController->readUsos();
-                                          foreach ($rows as $row) {
-                                    ?>
-                                          <option value='<?php print($row->id); ?>'><?php print($row->descripcion); ?></option>
-                                  <?php
-                                      }
-                                  } catch (Exception $exception) {
-                                      echo 'Error hacer la consulta de usos: ' . $exception;
-                                  }
-                                  ?>
-                                  </select>
+                                  <div class="input-group">
+                                      <label for="objetos">Seccion</label>
+                                      <input type="text" class="form-control" id="objetos" name="objetos" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="secuencia">Secuencia</label>
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="anio">Año</label>
+                                      <input type="number" class="form-control" id="anio" name="anio" maxlength="4" >
+                                  </div>
                                 </div>
-                                <div class="input-group">
-                                    <label for="frente">Mts de frente</label>
-                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" >
-                                </div>
-                              </div>
                                 <div class="modal-footer">
 		                                <button id="update-language" name="update-language" type="submit" class="btn btn-primary">Actualizar</button>
                                     <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -166,93 +113,42 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCbInmueble" method="post" action="inmuebles.php">
+                            <form role="form" name="formCbMensura" method="post" action="mensuras.php">
                                 <div class="modal-body">
-                                  <!--<div class="input-group">
-                                      <label for="id">Id</label>
-                                      <input type="text" readolny class="form-control" id="id" name="id">
-                                  </div>-->
-                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
-                                  <div class="input-group">
-                                      <label for="circ">Circunscripcion</label>
-                                      <input type="text" class="form-control" id="circ" name="circ" maxlength="4" required>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="secc">Seccion</label>
-                                      <input type="text" class="form-control" id="secc" name="secc" maxlength="4">
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="chac_n">Chacra</label>
-                                      <input type="number" class="form-control" id="chac_n" name="chac_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="chac_l" name="chac_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="quin_n">Quinta</label>
-                                      <input type="number" class="form-control" id="quin_n" name="quin_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="quin_l" name="quin_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="frac_n">Fraccion</label>
-                                      <input type="number" class="form-control" id="frac_n" name="frac_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="frac_l" name="frac_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="manz_n">Manzana</label>
-                                      <input type="number" class="form-control" id="manz_n" name="manz_n" maxlength="4" >
-                                      <input type="text" class="form-control" id="manz_l" name="manz_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="parc_n">Parcela</label>
-                                      <input type="number" class="form-control" id="parc_n" name="parc_n" maxlength="4" required>
-                                      <input type="text" class="form-control" id="parc_l" name="parc_l" maxlength="4" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="subp">Subparcela</label>
-                                      <input type="text" class="form-control" id="subp" name="subp" maxlength="6" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="superficie">Superficie</label>
-                                      <input type="number" class="form-control" id="superficie" name="superficie" maxlength="10" required>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="nro_puerta">Nro. Puerta</label>
-                                      <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="p_municipal">Padron Municipal</label>
-                                      <input type="number" class="form-control" id="p_municipal" name="p_municipal" maxlength="10" required>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="10" >
-                                  </div>
-                                  <div class="input-group col-xs-2">
-                                    <label for="tipo">Tipo</label>
-                                    <select class="form-control" id="tipo" name="tipo" maxlength="12" required>
-                                      <option value="PROV">PROVISORIO</option>
-                                      <option value="DEF">DEFINITIVO</option>
+                                  <div class="input-group col-xs-6 col-md-4">
+                                    <label for="profesional">Profesional</label>
+                                    <select class="form-control" id="profesional" name="profesional" required>
+                                      <?php try {
+                                            $rows = $CbPObraController->readProfesionales();
+                                            foreach ($rows as $row) {
+                                      ?>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
+                                    <?php
+                                        }
+                                    } catch (Exception $exception) {
+                                        echo 'Error hacer la consulta profesionales: ' . $exception;
+                                    }
+                                    ?>
                                     </select>
                                   </div>
-                                  <div class="input-group col-xs-6 col-md-4">
-                                  <label for="uso">Uso</label>
-                                  <select class="form-control" id="uso" name="uso" required>
-                                    <?php try {
-                                          $rows = $CbInmuebleController->readUsos();
-                                          foreach ($rows as $row) {
-                                    ?>
-                                          <option value='<?php print($row->id); ?>'><?php print($row->descripcion); ?></option>
-                                  <?php
-                                      }
-                                  } catch (Exception $exception) {
-                                      echo 'Error hacer la consulta de usos: ' . $exception;
-                                  }
-                                  ?>
-                                  </select>
+                                  <div class="input-group">
+                                      <label for="objetos">Seccion</label>
+                                      <input type="text" class="form-control" id="objetos" name="objetos" maxlength="4" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="secuencia">Secuencia</label>
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" >
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="anio">Año</label>
+                                      <input type="number" class="form-control" id="anio" name="anio" maxlength="4" >
+                                  </div>
                                 </div>
                                 <div class="input-group">
                                     <label for="frente">Mts de frente</label>
                                     <input type="number" class="form-control" id="frente" name="frente" maxlength="10" value="0" >
                                 </div>
+                              </div>
                                 <div class="modal-footer">
                                     <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
                                     <button id="cancel"type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -273,23 +169,22 @@
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                           <h4 class="modal-title" id="myModalLabel"></h4>
                                       </div>
-                                      <form role="form" name="formReadInmueble" method="post" action="inmuebles.php">
+                                      <form role="form" name="formRead" method="post" action="mensuras.php">
                                           <div class="modal-body">
                                             <div class="input-group">
-                                                <label for="circ">Circunscripcion</label>
-                                                <input type="text" class="form-control" id="circ" name="circ" maxlength="4" readonly>
+                                                <label for="profesional">Profesional</label>
+                                                <input type="text" class="form-control" id="profesional" name="profesional" maxlength="60" readonly>
                                             </div>
                                             <div class="input-group">
-                                                <label for="secc">Seccion</label>
-                                                <input type="text" class="form-control" id="secc" name="secc" maxlength="4" readonly>
+                                                <label for="objetos">Objetos</label>
+                                                <input type="text" class="form-control" id="objetos" name="objetos" maxlength="255" readonly>
                                             </div>
                                             <div class="input-group">
-                                                <label for="chac_n">Chacra</label>
-                                                <input type="number" class="form-control" id="chac_n" name="chac_n" maxlength="4" readonly>
-                                                <input type="text" class="form-control" id="chac_l" name="chac_l" maxlength="4" readonly>
+                                                <label for="secuencia">Secuencia</label>
+                                                <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" readonly>
                                             </div>
                                             <div class="input-group">
-                                                <label for="quin_n">Quinta</label>
+                                                <label for="quin_n">Año</label>
                                                 <input type="number" class="form-control" id="quin_n" name="quin_n" maxlength="4" readonly>
                                                 <input type="text" class="form-control" id="quin_l" name="quin_l" maxlength="4" readonly>
                                             </div>
@@ -336,18 +231,11 @@
                                                 <label for="uso">Uso</label>
                                                 <input type="text" class="form-control" id="uso" name="uso" maxlength="15" readonly>
                                             </div>
-                                            <div class="input-group">
-                                                <label for="frente">Mts de frente</label>
-                                                <input type="number" class="form-control" id="frente" name="frente" maxlength="10" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="nomencla">Nomenclatura</label>
-                                                <input type="number" class="form-control" id="nomencla" name="nomencla" maxlength="42" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="nomencla_sp">Nomenclatura</label>
-                                                <input type="number" class="form-control" id="nomencla_sp" name="nomencla_sp" maxlength="48" readonly>
-                                            </div>
+                                          <div class="input-group">
+                                              <label for="frente">Mts de frente</label>
+                                              <input type="number" class="form-control" id="frente" name="frente" maxlength="10" readonly>
+                                          </div>
+
                                           </div>
                                           <div class="modal-footer">
                                               <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
@@ -366,13 +254,13 @@
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Registro</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbInmueble" method="post" action="inmuebles.php">
+                	    <form role="form" name="formDeleteCbMensura" method="post" action="mensuras.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label>¿Se va a eliminar el registro seleccionado?</label>
+	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
-         	                      	    <label for="id">Id Inmueble</label>
+         	                      	    <label for="id">Id Mensura</label>
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
@@ -419,15 +307,16 @@
                         <li><a href="index.php">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
-                        <li class="active"><a href="#">Inmuebles <span class="sr-only">(current)</span></a></li>
-                        <li><a href="planos_m_ph.php">Planos Mens. o PH</a></li>
+                        <li><a href="#">Inmuebles</a></li>
+                        <li class="active"><a href="mensuras.php">Planos Mensura <span class="sr-only">(current)</span></a></li>
+                        <li><a href="phs.php">Planos PH</a></li>
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Inmuebles&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCreate" onclick='newCbInmueble()'>NUEVO</button></h2>
+                    <h2 class="sub-header">Mensuras&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCreate" onclick='newCbMensura()'>NUEVO</button></h2>
 
         <?php
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
@@ -452,21 +341,21 @@
                $tipo = $_POST['tipo'];
                $frente = $_POST['frente'];
                $uso = $_POST['uso'];
+               $nomencla = $_POST['nomencla'];
+               $nomencla_sp = $_POST['nomencla_sp'];
         	if (isset($_POST["save-language"])){
-        	    $CbInmuebleController->create($circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
+        	    $CbMensuraController->create($circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
         	}else{
-        	    $CbInmuebleController->update($id,$circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
+        	    $CbMensuraController->update($id,$circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
         	}
         }
-
 	     if (isset($_POST["delete-select"]) ) {
  	        $id = $_POST['id'];
           $fp = fopen("/tmp/logphp.txt", "w");
           fputs($fp, "Id = ".$id."\n");
           $fp = fclose($fp);
-		      $CbInmuebleController->delete($id);
+		      $CbMensuraController->delete($id);
 	     }
-
         ?>
 	<!-- Añadimos un botón para el diálogo modal -->
          <div class="table-responsive">
@@ -487,22 +376,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <form role="form" name="formListCbLanguage" method="post" action="inmuebles.php">
+                                <form role="form" name="formListCbLanguage" method="post" action="mensuras.php">
                                 <?php
                                 try {
-                                    $rows = $CbInmuebleController->readAll();
-
+                                    $rows = $CbMensuraController->readAll();
                                     foreach ($rows as $row) {
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
                                             <td><?php print($row->circ); ?></td>
                                             <td><?php print($row->secc); ?></td>
-                                            <td><?php print($row->chac_n); ?>-<?php print($row->chac_l); ?></td>
-                                            <td><?php print($row->quin_n); ?>-<?php print($row->quin_l); ?></td>
-                                            <td><?php print($row->frac_n); ?>-<?php print($row->frac_l); ?></td>
-                                            <td><?php print($row->manz_n); ?>-<?php print($row->manz_l); ?></td>
-                                            <td><?php print($row->parc_n); ?>-<?php print($row->parc_l); ?></td>
+                                            <td><?php print($row->chac_n); ?>&nbsp;<?php print($row->chac_l); ?></td>
+                                            <td><?php print($row->quin_n); ?>&nbsp;<?php print($row->quin_l); ?></td>
+                                            <td><?php print($row->frac_n); ?>&nbsp;<?php print($row->frac_l); ?></td>
+                                            <td><?php print($row->manz_n); ?>&nbsp;<?php print($row->manz_l); ?></td>
+                                            <td><?php print($row->parc_n); ?>&nbsp;<?php print($row->parc_l); ?></td>
                                             <td><?php print($row->subp); ?></td>
                                             <td><?php print($row->superficie); ?></td>
                                             <td><?php print($row->frente); ?></td>
@@ -513,7 +401,7 @@
 							class="btn btn-success"
 							data-toggle="modal"
 							data-target="#myModalRead"
-							onclick="openSeeInmueble(
+							onclick="openReadMensura(
 										'<?php print($row->circ); ?>',
 										'<?php print($row->secc); ?>',
                     '<?php print($row->chac_n); ?>',
@@ -542,7 +430,7 @@
 						  class="btn btn-primary"
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
-						  onclick="openEditInmueble('<?php print($row->id); ?>',
+						  onclick="openEditMensura('<?php print($row->id); ?>',
               '<?php print($row->circ); ?>',
               '<?php print($row->secc); ?>',
               '<?php print($row->chac_n); ?>',
@@ -571,12 +459,11 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbInmueble(
-                '<?php print($row->id); ?>',
-                '<?php print($row->nomencla); ?>',
-                '<?php print($row->p_municipal); ?>')">Eliminar</button>
+              onclick="deleteCbMensura('<?php print($row->id); ?>','<?php print($row->nomencla); ?>','<?php print($row->p_municipal); ?>')"
+						>Eliminar</button>
 					   </td>
-          </tr>
+
+                                        </tr>
 
                                 <?php
                                     }

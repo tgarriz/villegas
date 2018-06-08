@@ -414,7 +414,8 @@
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
                         <li class="active"><a href="#">Inmuebles <span class="sr-only">(current)</span></a></li>
-                        <li><a href="planos_m_ph.php">Planos Mens. o PH</a></li>
+                        <li><a href="mensuras.php">Planos Mensura</a></li>
+                        <li><a href="phs.php">Planos PH</a></li>
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
                 </div>
