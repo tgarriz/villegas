@@ -4,12 +4,12 @@
  * @returns {undefined}
  */
 function newCbInmueble(){
-    openCbPInmueble('new', null, null,null,null,null,null, null, null,null,null,null,null, null, null,null,null,null,null, null, null,null,null,null);
+    openCbInmueble('new', null, null,null,null,null,null, null, null,null,null,null,null, null, null,null,null,null,null, null, null,null,null,null);
 }
 /*------------PersonasFisicas---------------*/
- function openEditInmueble(id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente,nomencla,nomencla_sp){
+ function openEditInmueble(id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente){
+   alert(id);
    document.formEdit.id.value = id;
-   document.formEdit.id.disabled = true;
    document.formEdit.circ.value = circ;
    document.formEdit.secc.value = secc;
    document.formEdit.chac_n.value = chac_n;
@@ -30,8 +30,6 @@ function newCbInmueble(){
    document.formEdit.tipo.value = tipo;
    document.formEdit.frente.value = frente;
    document.formEdit.uso.value = uso;
-   document.formEdit.nomencla.value = nomencla;
-   document.formEdit.nomencla_sp.value = nomencla_sp;
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
      modal.find('.modal-title').text('Editar');
@@ -39,7 +37,9 @@ function newCbInmueble(){
    });
  }
 
-function openCbInmueble(action, id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente,nomencla,nomencla_sp){
+function openCbInmueble(action, id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente){
+    alert(id);
+    alert(action);
     document.formCbInmueble.id.value = id;
     document.formCbInmueble.circ.value = circ;
     document.formCbInmueble.secc.value = secc;
@@ -61,10 +61,8 @@ function openCbInmueble(action, id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,
     document.formCbInmueble.tipo.value = tipo;
     document.formCbInmueble.frente.value = frente;
     document.formCbInmueble.uso.value = uso;
-    document.formCbInmueble.nomencla.value = nomencla;
-    document.formCbInmueble.nomencla_sp.value = nomencla_sp;
 
-    document.formCbInmueble.id.disabled = true;
+    document.formCbInmueble.id.disabled = (action === 'see')?true:false;
     document.formCbInmueble.circ.disabled = (action === 'see')?true:false;
     document.formCbInmueble.secc.disabled = (action === 'see')?true:false;
     document.formCbInmueble.chac_n.disabled = (action === 'see')?true:false;
@@ -85,10 +83,8 @@ function openCbInmueble(action, id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,
     document.formCbInmueble.tipo.disabled = (action === 'see')?true:false;
     document.formCbInmueble.frente.disabled = (action === 'see')?true:false;
     document.formCbInmueble.uso.disabled = (action === 'see')?true:false;
-    document.formCbInmueble.nomencla.disabled = (action === 'see')?true:false;
-    document.formCbInmueble.nomencla_sp.disabled = (action === 'see')?true:false;
 
-    $('#myModal').on('shown.bs.modal', function () {
+    $('#myModalCreate').on('shown.bs.modal', function () {
         var modal = $(this);
         if (action === 'new'){
             document.formCbInmueble.id.disabled = true;
@@ -100,11 +96,61 @@ function openCbInmueble(action, id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,
             $('#save-language').hide();
             $('#update-language').hide();
         }
-        $('#idlanguage').focus()
     });
 }
 
-function deleteCbPFisica(id,nombre,apellido){
+function openReadInmueble(circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente){
+    document.formRead.circ.value = circ;
+    document.formRead.secc.value = secc;
+    document.formRead.chac_n.value = chac_n;
+    document.formRead.chac_l.value = chac_l;
+    document.formRead.quin_n.value = quin_n;
+    document.formRead.quin_l.value = quin_l;
+    document.formRead.frac_n.value = frac_n;
+    document.formRead.frac_l.value = frac_l;
+    document.formRead.manz_n.value = manz_n;
+    document.formRead.manz_l.value = manz_l;
+    document.formRead.parc_n.value = parc_n;
+    document.formRead.parc_l.value = parc_l;
+    document.formRead.subp.value = subp;
+    document.formRead.superficie.value = superficie;
+    document.formRead.nro_puerta.value = nro_puerta;
+    document.formRead.p_municipal.value = p_municipal;
+    document.formRead.domicilio.value = domicilio;
+    document.formRead.tipo.value = tipo;
+    document.formRead.frente.value = frente;
+    document.formRead.uso.value = uso;
+
+    document.formRead.circ.disabled = true;
+    document.formRead.secc.disabled = true;
+    document.formRead.chac_n.disabled = true;
+    document.formRead.chac_l.disabled = true;
+    document.formRead.quin_n.disabled = true;
+    document.formRead.quin_l.disabled = true;
+    document.formRead.frac_n.disabled = true;
+    document.formRead.frac_l.disabled = true;
+    document.formRead.manz_n.disabled = true;
+    document.formRead.manz_l.disabled = true;
+    document.formRead.parc_n.disabled = true;
+    document.formRead.parc_l.disabled = true;
+    document.formRead.subp.disabled = true;
+    document.formRead.superficie.disabled = true;
+    document.formRead.nro_puerta.disabled = true;
+    document.formRead.p_municipal.disabled = true;
+    document.formRead.domicilio.disabled = true;
+    document.formRead.tipo.disabled = true;
+    document.formRead.frente.disabled = true;
+    document.formRead.uso.disabled = true;
+
+    $('#myModalRead').on('shown.bs.modal', function () {
+        var modal = $(this);
+        modal.find('.modal-title').text('Ver Registro');
+        $('#save-language').hide();
+        $('#update-language').hide();
+    });
+}
+
+function deleteCbInmueble(id,nombre,apellido){
   document.formDeleteCbInmueble.id.value = id;
   document.formDeleteCbInmueble.nomencla.value = nomencla;
   document.formDeleteCbInmueble.p_municipal.value = p_municipal;

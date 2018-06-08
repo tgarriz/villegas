@@ -46,6 +46,7 @@
       <?php
           include 'database/DatabaseConnect.php';
           include 'database/CbInmuebleController.php';
+
           $dConnect = new DatabaseConnect;
           $cdb = $dConnect->dbConnectSimple();
           $CbInmuebleController = new CbInmuebleController();
@@ -125,7 +126,7 @@
                                       <option value="DEF">DEFINITIVO</option>
                                     </select>
                                   </div>
-                                <div class="input-group col-xs-6 col-md-4">
+                                  <div class="input-group col-xs-6 col-md-4">
                                   <label for="uso">Uso</label>
                                   <select class="form-control" id="uso" name="uso" required>
                                     <?php try {
@@ -145,7 +146,7 @@
                                     <label for="frente">Mts de frente</label>
                                     <input type="number" class="form-control" id="frente" name="frente" maxlength="10" >
                                 </div>
-                                </div>
+                              </div>
                                 <div class="modal-footer">
 		                                <button id="update-language" name="update-language" type="submit" class="btn btn-primary">Actualizar</button>
                                     <button id="cancel" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -232,7 +233,7 @@
                                       <option value="DEF">DEFINITIVO</option>
                                     </select>
                                   </div>
-                                <div class="input-group col-xs-6 col-md-4">
+                                  <div class="input-group col-xs-6 col-md-4">
                                   <label for="uso">Uso</label>
                                   <select class="form-control" id="uso" name="uso" required>
                                     <?php try {
@@ -252,7 +253,6 @@
                                     <label for="frente">Mts de frente</label>
                                     <input type="number" class="form-control" id="frente" name="frente" maxlength="10" value="0" >
                                 </div>
-                              </div>
                                 <div class="modal-footer">
                                     <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
                                     <button id="cancel"type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -273,9 +273,8 @@
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                           <h4 class="modal-title" id="myModalLabel"></h4>
                                       </div>
-                                      <form role="form" name="formRead" method="post" action="inmuebles.php">
+                                      <form role="form" name="formReadInmueble" method="post" action="inmuebles.php">
                                           <div class="modal-body">
-                                            <input type="hidden" readonly class="form-control" id="id" name="id" >
                                             <div class="input-group">
                                                 <label for="circ">Circunscripcion</label>
                                                 <input type="text" class="form-control" id="circ" name="circ" maxlength="4" readonly>
@@ -337,11 +336,18 @@
                                                 <label for="uso">Uso</label>
                                                 <input type="text" class="form-control" id="uso" name="uso" maxlength="15" readonly>
                                             </div>
-                                          <div class="input-group">
-                                              <label for="frente">Mts de frente</label>
-                                              <input type="number" class="form-control" id="frente" name="frente" maxlength="10" readonly>
-                                          </div>
-
+                                            <div class="input-group">
+                                                <label for="frente">Mts de frente</label>
+                                                <input type="number" class="form-control" id="frente" name="frente" maxlength="10" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="nomencla">Nomenclatura</label>
+                                                <input type="number" class="form-control" id="nomencla" name="nomencla" maxlength="42" readonly>
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="nomencla_sp">Nomenclatura</label>
+                                                <input type="number" class="form-control" id="nomencla_sp" name="nomencla_sp" maxlength="48" readonly>
+                                            </div>
                                           </div>
                                           <div class="modal-footer">
                                               <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
@@ -363,7 +369,7 @@
                 	    <form role="form" name="formDeleteCbInmueble" method="post" action="inmuebles.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
+	                                    <label>¿Se va a eliminar el registro seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
          	                      	    <label for="id">Id Inmueble</label>
@@ -446,14 +452,13 @@
                $tipo = $_POST['tipo'];
                $frente = $_POST['frente'];
                $uso = $_POST['uso'];
-               $nomencla = $_POST['nomencla'];
-               $nomencla_sp = $_POST['nomencla_sp'];
         	if (isset($_POST["save-language"])){
         	    $CbInmuebleController->create($circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
         	}else{
         	    $CbInmuebleController->update($id,$circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
         	}
         }
+
 	     if (isset($_POST["delete-select"]) ) {
  	        $id = $_POST['id'];
           $fp = fopen("/tmp/logphp.txt", "w");
@@ -461,6 +466,7 @@
           $fp = fclose($fp);
 		      $CbInmuebleController->delete($id);
 	     }
+
         ?>
 	<!-- Añadimos un botón para el diálogo modal -->
          <div class="table-responsive">
@@ -485,17 +491,18 @@
                                 <?php
                                 try {
                                     $rows = $CbInmuebleController->readAll();
+
                                     foreach ($rows as $row) {
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
                                             <td><?php print($row->circ); ?></td>
                                             <td><?php print($row->secc); ?></td>
-                                            <td><?php print($row->chac_n); ?>&nbsp;<?php print($row->chac_l); ?></td>
-                                            <td><?php print($row->quin_n); ?>&nbsp;<?php print($row->quin_l); ?></td>
-                                            <td><?php print($row->frac_n); ?>&nbsp;<?php print($row->frac_l); ?></td>
-                                            <td><?php print($row->manz_n); ?>&nbsp;<?php print($row->manz_l); ?></td>
-                                            <td><?php print($row->parc_n); ?>&nbsp;<?php print($row->parc_l); ?></td>
+                                            <td><?php print($row->chac_n); ?>-<?php print($row->chac_l); ?></td>
+                                            <td><?php print($row->quin_n); ?>-<?php print($row->quin_l); ?></td>
+                                            <td><?php print($row->frac_n); ?>-<?php print($row->frac_l); ?></td>
+                                            <td><?php print($row->manz_n); ?>-<?php print($row->manz_l); ?></td>
+                                            <td><?php print($row->parc_n); ?>-<?php print($row->parc_l); ?></td>
                                             <td><?php print($row->subp); ?></td>
                                             <td><?php print($row->superficie); ?></td>
                                             <td><?php print($row->frente); ?></td>
@@ -506,7 +513,7 @@
 							class="btn btn-success"
 							data-toggle="modal"
 							data-target="#myModalRead"
-							onclick="openReadInmueble(
+							onclick="openSeeInmueble(
 										'<?php print($row->circ); ?>',
 										'<?php print($row->secc); ?>',
                     '<?php print($row->chac_n); ?>',
@@ -564,11 +571,12 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbInmueble('<?php print($row->id); ?>','<?php print($row->nomencla); ?>','<?php print($row->p_municipal); ?>')"
-						>Eliminar</button>
+              onclick="deleteCbInmueble(
+                '<?php print($row->id); ?>',
+                '<?php print($row->nomencla); ?>',
+                '<?php print($row->p_municipal); ?>')">Eliminar</button>
 					   </td>
-
-                                        </tr>
+          </tr>
 
                                 <?php
                                     }
