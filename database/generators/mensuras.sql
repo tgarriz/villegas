@@ -1,7 +1,7 @@
 create table catastro.mensuras (
   id serial not null,
   profesional integer not null,
-  objetos text not null,
+  objetos varchar(255) not null,
   secuencia integer not null,
   anio integer not null,
   codigo varchar(255),

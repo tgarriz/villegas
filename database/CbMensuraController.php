@@ -43,7 +43,7 @@ class CbMensuraController {
  */
     function create($profesional,$objetos,$secuencia,$anio){
       $sqlInsert = "INSERT INTO catastro.mensuras(profesional,objetos,secuencia,anio)"
-             . " VALUES ('".$profesional."', '".$objetos."', '".$secuencia."', '".$anio.")";
+             . " VALUES (".$profesional.", '".$objetos."', ".$secuencia.", ".$anio.")";
       try {
         $this->cdb->exec($sqlInsert);
       } catch (PDOException $pdoException) {
@@ -61,7 +61,7 @@ class CbMensuraController {
  * @param type $anio
  */
    public function update($id,$profesional,$objetos,$secuencia,$anio){
-    $sqlUpdate = "UPDATE catastro.mensuras SET profesional = '".$profesional."', objetos = '".$objetos."', secuencia = '".$secuencia."', anio = '".$anio.";";
+    $sqlUpdate = "UPDATE catastro.mensuras SET profesional = ".$profesional.", objetos = '".$objetos."', secuencia = ".$secuencia.", anio = ".$anio.";";
     try {
         $this->cdb->exec($sqlUpdate);
     } catch (PDOException $pdoException) {

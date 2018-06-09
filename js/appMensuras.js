@@ -49,7 +49,7 @@ function openCbMensura(action, id,profesional,objetos,secuencia,anio){
     });
 }
 
-function openReadMensura(id,profesional,objetos,secuencia,anio,codigo){
+function openReadMensura(profesional,objetos,secuencia,anio,codigo){
     document.formRead.profesional.value = profesional;
     document.formRead.objetos.value = objetos;
     document.formRead.secuencia.value = secuencia;

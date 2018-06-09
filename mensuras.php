@@ -69,7 +69,7 @@
                                     <label for="profesional">Profesional</label>
                                     <select class="form-control" id="profesional" name="profesional" required>
                                       <?php try {
-                                            $rows = $CbPObraController->readProfesionales();
+                                            $rows = $CbMensuraController->readProfesionales();
                                             foreach ($rows as $row) {
                                       ?>
                                             <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
@@ -82,8 +82,8 @@
                                     </select>
                                   </div>
                                   <div class="input-group">
-                                      <label for="objetos">Seccion</label>
-                                      <input type="text" class="form-control" id="objetos" name="objetos" maxlength="4" >
+                                      <label for="objetos">Objetos</label>
+                                      <textarea class="form-control" rows="5" id="objetos" name="objetos"></textarea>
                                   </div>
                                   <div class="input-group">
                                       <label for="secuencia">Secuencia</label>
@@ -119,7 +119,7 @@
                                     <label for="profesional">Profesional</label>
                                     <select class="form-control" id="profesional" name="profesional" required>
                                       <?php try {
-                                            $rows = $CbPObraController->readProfesionales();
+                                            $rows = $CbMensuraController->readProfesionales();
                                             foreach ($rows as $row) {
                                       ?>
                                             <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
@@ -132,8 +132,8 @@
                                     </select>
                                   </div>
                                   <div class="input-group">
-                                      <label for="objetos">Seccion</label>
-                                      <input type="text" class="form-control" id="objetos" name="objetos" maxlength="4" >
+                                      <label for="objetos">Objetos</label>
+                                      <textarea class="form-control" rows="5" id="objetos" name="objetos"></textarea>
                                   </div>
                                   <div class="input-group">
                                       <label for="secuencia">Secuencia</label>
@@ -144,11 +144,6 @@
                                       <input type="number" class="form-control" id="anio" name="anio" maxlength="4" >
                                   </div>
                                 </div>
-                                <div class="input-group">
-                                    <label for="frente">Mts de frente</label>
-                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" value="0" >
-                                </div>
-                              </div>
                                 <div class="modal-footer">
                                     <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
                                     <button id="cancel"type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -177,7 +172,7 @@
                                             </div>
                                             <div class="input-group">
                                                 <label for="objetos">Objetos</label>
-                                                <input type="text" class="form-control" id="objetos" name="objetos" maxlength="255" readonly>
+                                                <input type="textarea" class="form-control" id="objetos" name="objetos" maxlength="255" readonly>
                                             </div>
                                             <div class="input-group">
                                                 <label for="secuencia">Secuencia</label>
@@ -185,56 +180,12 @@
                                             </div>
                                             <div class="input-group">
                                                 <label for="quin_n">Año</label>
-                                                <input type="number" class="form-control" id="quin_n" name="quin_n" maxlength="4" readonly>
-                                                <input type="text" class="form-control" id="quin_l" name="quin_l" maxlength="4" readonly>
+                                                <input type="number" class="form-control" id="anio" name="anio" maxlength="4" readonly>
                                             </div>
                                             <div class="input-group">
-                                                <label for="frac_n">Fraccion</label>
-                                                <input type="number" class="form-control" id="frac_n" name="frac_n" maxlength="4" readonly>
-                                                <input type="text" class="form-control" id="frac_l" name="frac_l" maxlength="4" readonly>
+                                                <label for="codigo">Codigo</label>
+                                                <input type="text" class="form-control" id="codigo" name="codigo" maxlength="15" readonly>
                                             </div>
-                                            <div class="input-group">
-                                                <label for="manz_n">Manzana</label>
-                                                <input type="number" class="form-control" id="manz_n" name="manz_n" maxlength="4" readonly>
-                                                <input type="text" class="form-control" id="manz_l" name="manz_l" maxlength="4" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="parc_n">Parcela</label>
-                                                <input type="number" class="form-control" id="parc_n" name="parc_n" maxlength="4" readonly>
-                                                <input type="text" class="form-control" id="parc_l" name="parc_l" maxlength="4" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="subp">Subparcela</label>
-                                                <input type="text" class="form-control" id="subp" name="subp" maxlength="6" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="superficie">Superficie</label>
-                                                <input type="number" class="form-control" id="superficie" name="superficie" maxlength="10" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="nro_puerta">Nro. Puerta</label>
-                                                <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="p_municipal">Padron Municipal</label>
-                                                <input type="number" class="form-control" id="p_municipal" name="p_municipal" maxlength="10" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="domicilio">Domicilio</label>
-                                                <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="10" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="tipo">Tipo</label>
-                                                <input type="text" class="form-control" id="tipo" name="tipo" maxlength="10" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="uso">Uso</label>
-                                                <input type="text" class="form-control" id="uso" name="uso" maxlength="15" readonly>
-                                            </div>
-                                          <div class="input-group">
-                                              <label for="frente">Mts de frente</label>
-                                              <input type="number" class="form-control" id="frente" name="frente" maxlength="10" readonly>
-                                          </div>
 
                                           </div>
                                           <div class="modal-footer">
@@ -260,12 +211,16 @@
 	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
-         	                      	    <label for="id">Id Mensura</label>
+         	                      	    <label for="id">Id</label>
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" readonly class="form-control" id="nombre" name="nombre" > <!-- aria-describedby="sizing-addon2">-->
+                                      <label for="secuencia">Secuencia</label>
+                                      <input type="text" readonly class="form-control" id="secuencia" name="secuencia" > <!-- aria-describedby="sizing-addon2">-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="anio">Ano</label>
+                                      <input type="text" readonly class="form-control" id="anio" name="anio" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
 	                        </div>
         	                <div class="modal-footer">
@@ -307,8 +262,8 @@
                         <li><a href="index.php">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
-                        <li><a href="#">Inmuebles</a></li>
-                        <li class="active"><a href="mensuras.php">Planos Mensura <span class="sr-only">(current)</span></a></li>
+                        <li><a href="inmuebles.php">Inmuebles</a></li>
+                        <li class="active"><a href="#">Planos Mensura <span class="sr-only">(current)</span></a></li>
                         <li><a href="phs.php">Planos PH</a></li>
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
@@ -321,32 +276,15 @@
         <?php
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];
-        	     $circ = $_POST['circ'];
-               $secc = $_POST['secc'];
-               $chac_n = $_POST['chac_n'];
-               $chac_l = $_POST['chac_l'];
-               $quin_n = $_POST['quin_n'];
-               $quin_l = $_POST['quin_l'];
-               $frac_n = $_POST['frac_n'];
-               $frac_l = $_POST['frac_l'];
-               $manz_n = $_POST['manz_n'];
-               $manz_l = $_POST['manz_l'];
-               $parc_n = $_POST['parc_n'];
-               $parc_l = $_POST['parc_l'];
-               $subp = $_POST['subp'];
-               $superficie = $_POST['superficie'];
-               $nro_puerta = $_POST['nro_puerta'];
-               $p_municipal = $_POST['p_municipal'];
-               $domicilio = $_POST['domicilio'];
-               $tipo = $_POST['tipo'];
-               $frente = $_POST['frente'];
-               $uso = $_POST['uso'];
-               $nomencla = $_POST['nomencla'];
-               $nomencla_sp = $_POST['nomencla_sp'];
+        	     $profesional = $_POST['profesional'];
+               $objetos = $_POST['objetos'];
+               $secuencia = $_POST['secuencia'];
+               $anio = $_POST['anio'];
+               $codigo = $_POST['codigo'];
         	if (isset($_POST["save-language"])){
-        	    $CbMensuraController->create($circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
+        	    $CbMensuraController->create($profesional,$objetos,$secuencia,$anio);
         	}else{
-        	    $CbMensuraController->update($id,$circ,$secc,$chac_n,$chac_l,$quin_n,$quin_l,$frac_n,$frac_l,$manz_n,$manz_l,$parc_n,$parc_l,$subp,$superficie,$nro_puerta,$p_municipal,$domicilio,$tipo,$uso,$frente);
+        	    $CbMensuraController->update($id,$profesional,$objetos,$secuencia,$anio);
         	}
         }
 	     if (isset($_POST["delete-select"]) ) {
@@ -363,16 +301,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>CIRC.</th>
-                                    <th>SECC.</th>
-                                    <th>CHAC.</th>
-                                    <th>QUIN.</th>
-                                    <th>FRACC.</th>
-                                    <th>MANZ.</th>
-                                    <th>PARC.</th>
-                                    <th>SUBPC.</th>
-                                    <th>SUPERF.</th>
-                                    <th>FRENT</th>
+                                    <th>PROF.</th>
+                                    <th>OBJETOS</th>
+                                    <th>SECUENCIA</th>
+                                    <th>ANO</th>
+                                    <th>CODIGO</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -384,16 +317,11 @@
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
-                                            <td><?php print($row->circ); ?></td>
-                                            <td><?php print($row->secc); ?></td>
-                                            <td><?php print($row->chac_n); ?>&nbsp;<?php print($row->chac_l); ?></td>
-                                            <td><?php print($row->quin_n); ?>&nbsp;<?php print($row->quin_l); ?></td>
-                                            <td><?php print($row->frac_n); ?>&nbsp;<?php print($row->frac_l); ?></td>
-                                            <td><?php print($row->manz_n); ?>&nbsp;<?php print($row->manz_l); ?></td>
-                                            <td><?php print($row->parc_n); ?>&nbsp;<?php print($row->parc_l); ?></td>
-                                            <td><?php print($row->subp); ?></td>
-                                            <td><?php print($row->superficie); ?></td>
-                                            <td><?php print($row->frente); ?></td>
+                                            <td><?php print($row->profesional); ?></td>
+                                            <td><?php print($row->objetos); ?></td>
+                                            <td><?php print($row->secuencia); ?></td>
+                                            <td><?php print($row->anio); ?></td>
+                                            <td><?php print($row->codigo); ?></td>
                                             <td>
 						<button id="see-language"
 							name="see-language"
@@ -402,26 +330,11 @@
 							data-toggle="modal"
 							data-target="#myModalRead"
 							onclick="openReadMensura(
-										'<?php print($row->circ); ?>',
-										'<?php print($row->secc); ?>',
-                    '<?php print($row->chac_n); ?>',
-                    '<?php print($row->chac_l); ?>',
-                    '<?php print($row->quin_n); ?>',
-                    '<?php print($row->quin_l); ?>',
-                    '<?php print($row->frac_n); ?>',
-                    '<?php print($row->frac_l); ?>',
-                    '<?php print($row->manz_n); ?>',
-                    '<?php print($row->manz_l); ?>',
-                    '<?php print($row->parc_n); ?>',
-                    '<?php print($row->parc_l); ?>',
-                    '<?php print($row->subp); ?>',
-                    '<?php print($row->superficie); ?>',
-                    '<?php print($row->nro_puerta); ?>',
-                    '<?php print($row->p_municipal); ?>',
-                    '<?php print($row->domicilio); ?>',
-                    '<?php print($row->tipo); ?>',
-                    '<?php print($row->uso); ?>',
-                    '<?php print($row->frente); ?>')">Ver</button>
+										'<?php print($row->profesional); ?>',
+										'<?php print($row->objetos); ?>',
+                    '<?php print($row->secuencia); ?>',
+                    '<?php print($row->anio); ?>',
+                    '<?php print($row->codigo); ?>')">Ver</button>
 					    </td>
 					    <td>
 						<button id="edit-language"
@@ -431,26 +344,11 @@
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
 						  onclick="openEditMensura('<?php print($row->id); ?>',
-              '<?php print($row->circ); ?>',
-              '<?php print($row->secc); ?>',
-              '<?php print($row->chac_n); ?>',
-              '<?php print($row->chac_l); ?>',
-              '<?php print($row->quin_n); ?>',
-              '<?php print($row->quin_l); ?>',
-              '<?php print($row->frac_n); ?>',
-              '<?php print($row->frac_l); ?>',
-              '<?php print($row->manz_n); ?>',
-              '<?php print($row->manz_l); ?>',
-              '<?php print($row->parc_n); ?>',
-              '<?php print($row->parc_l); ?>',
-              '<?php print($row->subp); ?>',
-              '<?php print($row->superficie); ?>',
-              '<?php print($row->nro_puerta); ?>',
-              '<?php print($row->p_municipal); ?>',
-              '<?php print($row->domicilio); ?>',
-              '<?php print($row->tipo); ?>',
-              '<?php print($row->uso); ?>',
-              '<?php print($row->frente); ?>')">Editar</button>
+										'<?php print($row->profesional); ?>',
+										'<?php print($row->objetos); ?>',
+                    '<?php print($row->secuencia); ?>',
+                    '<?php print($row->anio); ?>',
+                    '<?php print($row->codigo); ?>')">Editar</button>
 					    </td>
 				      <td>
 					    	<button id="delete-language-modal"
@@ -459,7 +357,7 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbMensura('<?php print($row->id); ?>','<?php print($row->nomencla); ?>','<?php print($row->p_municipal); ?>')"
+              onclick="deleteCbMensura('<?php print($row->id); ?>','<?php print($row->secuencia); ?>','<?php print($row->anio); ?>')"
 						>Eliminar</button>
 					   </td>
 
