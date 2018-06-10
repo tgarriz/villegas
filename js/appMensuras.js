@@ -8,10 +8,9 @@ function newCbMensura(){
 }
 /*------------PersonasFisicas---------------*/
  function openEditMensura(id,profesional,objetos,secuencia,anio){
-   alert(id);
    document.formEdit.id.value = id;
    document.formEdit.profesional.value = profesional;
-   document.formEdit.objetos.value = objetos;
+   document.formEdit.a_objetos.value = objetos;
    document.formEdit.secuencia.value = secuencia;
    document.formEdit.anio.value = anio;
    $('#myModalUpdate').on('shown.bs.modal', function () {
@@ -24,13 +23,13 @@ function newCbMensura(){
 function openCbMensura(action, id,profesional,objetos,secuencia,anio){
     document.formCbMensura.id.value = id;
     document.formCbMensura.profesional.value = profesional;
-    document.formCbMensura.objetos.value = objetos;
+    document.formCbMensura.a_objetos.value = objetos;
     document.formCbMensura.secuencia.value = secuencia;
     document.formCbMensura.anio.value = anio;
 
     document.formCbMensura.id.disabled = (action === 'see')?true:false;
     document.formCbMensura.profesional.disabled = (action === 'see')?true:false;
-    document.formCbMensura.objetos.disabled = (action === 'see')?true:false;
+    document.formCbMensura.a_objetos.disabled = (action === 'see')?true:false;
     document.formCbMensura.secuencia.disabled = (action === 'see')?true:false;
     document.formCbMensura.anio.disabled = (action === 'see')?true:false;
 
@@ -74,7 +73,7 @@ function deleteCbMensura(id,secuencia,anio){
   document.formDeleteCbMensura.id.value = id;
   document.formDeleteCbMensura.secuencia.value = secuencia;
   document.formDeleteCbMensura.anio.value = anio;
-  //alert(id);
+
   $('#myModalDelete').on('shown.bs.modal', function () {
     $('#myInput').focus();
  });

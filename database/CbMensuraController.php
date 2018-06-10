@@ -61,7 +61,7 @@ class CbMensuraController {
  * @param type $anio
  */
    public function update($id,$profesional,$objetos,$secuencia,$anio){
-    $sqlUpdate = "UPDATE catastro.mensuras SET profesional = ".$profesional.", objetos = '".$objetos."', secuencia = ".$secuencia.", anio = ".$anio.";";
+    $sqlUpdate = "UPDATE catastro.mensuras SET profesional = ".$profesional.", objetos = '".$objetos."', secuencia = ".$secuencia.", anio = ".$anio." WHERE id = ".$id.";";
     try {
         $this->cdb->exec($sqlUpdate);
     } catch (PDOException $pdoException) {
