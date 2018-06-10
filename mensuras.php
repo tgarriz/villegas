@@ -208,7 +208,6 @@
 
                                           </div>
                                           <div class="modal-footer">
-                                              <button id="save-language" name="save-language" type="submit" class="btn btn-primary">Guardar</button>
                                               <button id="cancel"type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                           </div>
                                       </form>
