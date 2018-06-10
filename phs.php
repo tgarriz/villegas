@@ -282,7 +282,7 @@
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
                         <li><a href="inmuebles.php">Inmuebles</a></li>
-                        <li class="active"><a href="mensuras.php">Planos phs</a></li>
+                        <li class="active"><a href="mensuras.php">Planos Mensura</a></li>
                         <li class="active"><a href="#">Planos PH <span class="sr-only">(current)</span></a></li>
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                     </ul>
