@@ -1,8 +1,8 @@
-create table catastro.destinatario_tasa (
+create table catastro.destinatarios_tasa (
   id serial not null,
-  inmueble integer not null,
-  pfisica integer,
-  pjuridica integer,
+  inmueble integer not null unique,
+  pfisica integer default null,
+  pjuridica integer default null,
   domicilio varchar(200) not null,
   CONSTRAINT destinatario_tasa_pk PRIMARY KEY (id),
   CONSTRAINT fk_inmueble FOREIGN KEY (inmueble)
