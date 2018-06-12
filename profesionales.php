@@ -110,7 +110,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="celular">Celular</label>
-                                      <input type="text" class="form-control" id="celular" name="celular" placeholder="celular" maxlength="20" required>
+                                      <input type="tel" class="form-control" id="celular" name="celular" placeholder="celular" maxlength="20" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
@@ -194,7 +194,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="celular">Celular</label>
-                                      <input type="text" class="form-control" id="celular" name="celular" placeholder="celular" maxlength="20" required>
+                                      <input type="tel" class="form-control" id="celular" name="celular" placeholder="celular" maxlength="20" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
