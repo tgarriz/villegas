@@ -270,6 +270,7 @@
                         <li><a href="mensuras.php">Planos Mensura</a></li>
                         <li><a href="phs.php">Planos PH</a></li>
                         <li class="active"><a href="#">Planos Obras<span class="sr-only">(current)</span></a></li>
+                        <li><a href="propietarios.php">Propietarios</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
