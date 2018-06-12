@@ -73,7 +73,7 @@
                                             $rows = $CbPropietarioController->listarPersonas();
                                             foreach ($rows as $row) {
                                       ?>
-                                            <option value='<?php print($row->id); ?><?php print($row->tipo); ?>'><?php print($row->nombre); ?></option>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->nombre); ?></option>
                                     <?php
                                         }
                                     } catch (Exception $exception) {
@@ -89,7 +89,7 @@
                                               $rows = $CbPropietarioController->listarInmuebles();
                                               foreach ($rows as $row) {
                                         ?>
-                                              <option value='<?php print($row->id); ?><?php print($row->tipo); ?>'><?php print($row->nomencla); ?></option>
+                                              <option value='<?php print($row->id); ?>'><?php print($row->nomencla); ?></option>
                                       <?php
                                           }
                                       } catch (Exception $exception) {
@@ -139,7 +139,7 @@
                                             $rows = $CbPropietarioController->listarPersonas();
                                             foreach ($rows as $row) {
                                       ?>
-                                            <option value='<?php print($row->id); ?><?php print($row->tipo); ?>'><?php print($row->nombre); ?></option>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->nombre); ?></option>
                                     <?php
                                         }
                                     } catch (Exception $exception) {
@@ -155,7 +155,7 @@
                                               $rows = $CbPropietarioController->listarInmuebles();
                                               foreach ($rows as $row) {
                                         ?>
-                                              <option value='<?php print($row->id); ?><?php print($row->tipo); ?>'><?php print($row->nomencla); ?></option>
+                                              <option value='<?php print($row->id); ?>'><?php print($row->nomencla); ?></option>
                                       <?php
                                           }
                                       } catch (Exception $exception) {
@@ -309,7 +309,7 @@
         <?php
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
                $id = $_POST['id'];
-               $tipo = $CbPropietarioController->obtienteTipo($id);
+               $tipo = $CbPropietarioController->obtieneTipo($id);
         	     $persona = $_POST['persona'];
                $inmueble = $_POST['inmueble'];
                $porcentaje = $_POST['porcentaje'];

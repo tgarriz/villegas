@@ -41,9 +41,9 @@ class CbPropietarioController {
     }
 
     public function listarPersonas(){
-        $query = "SELECT id, (nombre, apellido) as nombre FROM catastro.p_fisicas
+        $query = "SELECT id, string_agg(nombre, apellido) as nombre FROM catastro.p_fisicas group by id
                   union
-                  SELECT id, rsocial as nombre FROM catastro.p_juridicas;";
+                  SELECT id, (rsocial) as nombre FROM catastro.p_juridicas group by id;";
         $statement = $this->cdb->prepare($query);
         $statement->execute();
         $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
@@ -55,14 +55,14 @@ class CbPropietarioController {
     * @param type $id
     */
     public function obtieneTipo($id){
-        $query1 = "select count(*) from p_fisicas where id = ".$id.";";
+        $query1 = "select count(*) as res from catastro.p_fisicas where id = ".$id.";";
         $statement = $this->cdb->prepare($query1);
         $statement->execute();
         $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
-        if (rows[0][0] == 0) {
-          return 'J';
+        if (rows[0]->res == 1) {
+          return 'F';
         }
-        else { return 'F';}
+        else { return 'J';}
     }
 
     /**
@@ -71,16 +71,16 @@ class CbPropietarioController {
     * @param type $id
     */
     public function obtieneNombre($id){
-        $tipo = obtieneTipo($id);
+        $tipo = $this->obtieneTipo($id);
         if ($tipo == 'F') {
-          $query = "select (nombre, apellido) as nombre from p_fisicas where id = ".$id.";";
+          $query = "select (nombre, apellido) as nombre from catastro.p_fisicas where id = ".$id.";";
           $statement = $this->cdb->prepare($query);
           $statement->execute();
           $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
           return $rows[0]->nombre;
         }
         else {
-          $query = "select (rsocial) as nombre from p_juridicas where id = ".$id.";";
+          $query = "select (rsocial) as nombre from catastro.p_juridicas where id = ".$id.";";
           $statement = $this->cdb->prepare($query);
           $statement->execute();
           $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
@@ -89,7 +89,7 @@ class CbPropietarioController {
     }
 
     public function listarInmuebles(){
-        $query = "SELECT id, nomencla as nomenclatura FROM catastro.inmuebles;";
+        $query = "SELECT id, nomencla FROM catastro.inmuebles;";
         $statement = $this->cdb->prepare($query);
         $statement->execute();
         $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
