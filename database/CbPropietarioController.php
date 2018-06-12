@@ -52,9 +52,9 @@ class CbPropietarioController {
     /**
     * Creamos un nuevo idioma con los parámetros pasados.
     * We create a new language with parameters .
-    * @param type $tipo
+    * @param type $id
     */
-    public obtieneTipo($id){
+    public function obtieneTipo($id){
         $query1 = "select count(*) from p_fisicas where id = ".$id.";";
         $statement = $this->cdb->prepare($query1);
         $statement->execute();
@@ -63,6 +63,29 @@ class CbPropietarioController {
           return 'J';
         }
         else { return 'F';}
+    }
+
+    /**
+    * Creamos un nuevo idioma con los parámetros pasados.
+    * We create a new language with parameters .
+    * @param type $id
+    */
+    public function obtieneNombre($id){
+        $tipo = obtieneTipo($id);
+        if ($tipo == 'F') {
+          $query = "select (nombre, apellido) as nombre from p_fisicas where id = ".$id.";";
+          $statement = $this->cdb->prepare($query);
+          $statement->execute();
+          $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+          return $rows[0]->nombre;
+        }
+        else {
+          $query = "select (rsocial) as nombre from p_juridicas where id = ".$id.";";
+          $statement = $this->cdb->prepare($query);
+          $statement->execute();
+          $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+          return $rows[0]->nombre;
+        }
     }
 
     public function listarInmuebles(){
