@@ -22,11 +22,13 @@ function newCbPropietario(){
    });
  }
 
-function openCbPropietario(tipo,id,inmueble,persona,porcentaje,f_alta,f_baja){
+function openCbPropietario(tipo,id,inmueble,pfisica,pjuridica,porcentaje,f_alta,f_baja){
     document.formCb.tipo.value = tipo;
     document.formCb.id.value = id;
     document.formCb.inmueble.value = inmueble;
-    document.formCb.persona.value = persona;
+    if (top === 'F') {
+      document.formCb.persona.value = pfisica;
+    }else{document.formCb.persona.value = pjuridica}
     document.formCb.porcentaje.value = porcentaje;
     document.formCb.f_alta.value = f_alta;
     document.formCb.f_baja.value = f_baja;

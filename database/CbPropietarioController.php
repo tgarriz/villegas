@@ -23,23 +23,6 @@ class CbPropietarioController {
         return $rows;
     }
 
-
-    public function listarPersonasF(){
-        $query = "SELECT id, nombre, apellido FROM catastro.p_fisicas;";
-        $statement = $this->cdb->prepare($query);
-        $statement->execute();
-        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
-        return $rows;
-    }
-
-    public function listarPersonasJ(){
-        $query = "SELECT id, rsocial FROM catastro.p_juridicas;";
-        $statement = $this->cdb->prepare($query);
-        $statement->execute();
-        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
-        return $rows;
-    }
-
     public function listarPersonas(){
         $query = "SELECT id, string_agg(nombre, apellido) as nombre FROM catastro.p_fisicas group by id
                   union
@@ -54,15 +37,28 @@ class CbPropietarioController {
     * We create a new language with parameters .
     * @param type $id
     */
-    public function obtieneTipo($id){
-        $query1 = "select count(*) as res from catastro.p_fisicas where id = ".$id.";";
+    public function obtieneTipo($idPersona){
+        $query1 = "select count(*) as res from catastro.p_fisicas where id = ".$idPersona.";";
         $statement = $this->cdb->prepare($query1);
         $statement->execute();
         $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
-        if (rows[0]->res == 1) {
+        if ($rows[0]->res == 1) {
           return 'F';
         }
         else { return 'J';}
+    }
+
+    public function obtieneTipoPorProp($idPropietario){
+      $query1 = "select * from catastro.propietarios where id = ".$idPropietario.";";
+      $statement = $this->cdb->prepare($query1);
+      $statement->execute();
+      $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+      if ($rows[0]->pfisica == null){
+        return 'J';
+      }
+      else {
+        return 'F';
+      }
     }
 
     /**
@@ -70,21 +66,51 @@ class CbPropietarioController {
     * We create a new language with parameters .
     * @param type $id
     */
-    public function obtieneNombre($id){
-        $tipo = $this->obtieneTipo($id);
+    public function obtieneNombre($idPersona){
+        $tipo = $this->obtieneTipo($idPersona);
         if ($tipo == 'F') {
-          $query = "select (nombre, apellido) as nombre from catastro.p_fisicas where id = ".$id.";";
+          $query = "select (apellido,nombre) as nombre from catastro.p_fisicas where id = ".$idPersona.";";
           $statement = $this->cdb->prepare($query);
           $statement->execute();
           $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
           return $rows[0]->nombre;
         }
         else {
-          $query = "select (rsocial) as nombre from catastro.p_juridicas where id = ".$id.";";
+          $query = "select (rsocial) as nombre from catastro.p_juridicas where id = ".$idPersona.";";
           $statement = $this->cdb->prepare($query);
           $statement->execute();
           $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
           return $rows[0]->nombre;
+        }
+    }
+
+    public function obtieneNombreConTipo($idPersona,$tipo){
+      if ($tipo == 'F') {
+        $query = "select (apellido, nombre) as nombre from catastro.p_fisicas where id = ".$idPersona.";";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        return $rows[0]->nombre;
+      }
+      else {
+        $query = "select (rsocial) as nombre from catastro.p_juridicas where id = ".$idPersona.";";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        return $rows[0]->nombre;
+      }
+    }
+
+    public function obtieneNombrePorProp($idPropietario){
+        $query = "select * from catastro.propietarios where id = ".$idPropietario.";";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        if ($rows[0]->pfisica == null){
+          return $this->obtieneNombreConTipo($rows[0]->pjuridica,'J');
+        }
+        else {
+          return $this->obtieneNombreConTipo($rows[0]->pfisica,'F');
         }
     }
 
@@ -142,7 +168,7 @@ class CbPropietarioController {
  */
    public function update($tipo,$id,$inmueble,$persona,$porcentaje,$f_alta,$f_baja){
      if ($tipo = 'F') {
-       $sqlUpdate = "UPDATE catastro.propietarios SET inmueble = ".$inmueble.",  pfisica = '".$persona."', porcentaje = ".$porcentaje.", f_alta = ".$f_alta.", f_baja = ".$f_baja." WHERE id = ".$id.";";
+       $sqlUpdate = "UPDATE catastro.propietarios SET inmueble = ".$inmueble.",  pfisica = ".$persona.", porcentaje = ".$porcentaje.", f_alta = '".$f_alta."', f_baja = '".$f_baja."' WHERE id = ".$id.";";
        try {
          $this->cdb->exec($sqlUpdate);
        } catch (PDOException $pdoException) {
@@ -152,7 +178,7 @@ class CbPropietarioController {
        }
      }
      else {
-       $sqlUpdate = "UPDATE catastro.propietarios SET inmueble = ".$inmueble.",  pjuridica = '".$persona."', porcentaje = ".$porcentaje.", f_alta = ".$f_alta.", f_baja = ".$f_baja." WHERE id = ".$id.";";
+       $sqlUpdate = "UPDATE catastro.propietarios SET inmueble = ".$inmueble.",  pjuridica = ".$persona.", porcentaje = ".$porcentaje.", f_alta = '".$f_alta."', f_baja = '".$f_baja."' WHERE id = ".$id.";";
        try {
          $this->cdb->exec($sqlUpdate);
        } catch (PDOException $pdoException) {

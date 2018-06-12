@@ -108,7 +108,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="nro_puerta">Nro. Puerta</label>
-                                      <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" >
+                                      <input type="number" class="form-control" id="nro_puerta" name="nro_puerta" maxlength="10" value="0" >
                                   </div>
                                   <div class="input-group">
                                       <label for="p_municipal">Padron Municipal</label>
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="input-group">
                                     <label for="frente">Mts de frente</label>
-                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" >
+                                    <input type="number" class="form-control" id="frente" name="frente" maxlength="10" value="0">
                                 </div>
                                 </div>
                                 <div class="modal-footer">

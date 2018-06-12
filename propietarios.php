@@ -309,7 +309,7 @@
         <?php
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
                $id = $_POST['id'];
-               $tipo = $CbPropietarioController->obtieneTipo($id);
+               $tipo = $CbPropietarioController->obtieneTipoPorProp($id);
         	     $persona = $_POST['persona'];
                $inmueble = $_POST['inmueble'];
                $porcentaje = $_POST['porcentaje'];
@@ -351,7 +351,7 @@
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
-                                            <td><?php print($CbPropietarioController->obtieneNombre($row->id)); ?></td>
+                                            <td><?php print($CbPropietarioController->obtieneNombrePorProp($row->id)); ?></td>
                                             <td><?php print($row->inmueble); ?></td>
                                             <td><?php print($row->porcentaje); ?></td>
                                             <td><?php print($row->f_alta); ?></td>
@@ -365,7 +365,7 @@
 							data-target="#myModalRead"
 							onclick="openReadPropietario(
                     '<?php print($row->inmueble); ?>',
-										'<?php print($CbPropietarioController->obtieneNombre($row->id)); ?>',
+										'<?php print($CbPropietarioController->obtieneNombrePorProp($row->id)); ?>',
 										'<?php print($row->porcentaje); ?>',
                     '<?php print($row->f_alta); ?>',
                     '<?php print($row->f_baja); ?>')">Ver</button>
@@ -381,7 +381,8 @@
                     '<?php print($CbPropietarioController->obtieneTipo($row->id)); ?>',
                     '<?php print($row->id); ?>',
 										'<?php print($row->inmueble); ?>',
-										'<?php print($row->persona); ?>',
+										'<?php print($row->pfisica); ?>',
+                    '<?php print($row->pjuridica); ?>',
                     '<?php print($row->porcentaje); ?>',
                     '<?php print($row->f_alta); ?>',
                     '<?php print($row->f_baja); ?>')">Editar</button>

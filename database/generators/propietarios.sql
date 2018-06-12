@@ -3,7 +3,7 @@ create table catastro.propietarios (
   inmueble integer not null,
   pfisica integer default null,
   pjuridica integer default null,
-  procentaje decimal(2,2) not null,
+  porcentaje integer not null,
   f_alta date,
   f_baja date,
   CONSTRAINT propietarios_pk PRIMARY KEY (id),
