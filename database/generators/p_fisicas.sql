@@ -6,7 +6,7 @@ CREATE SEQUENCE catastro.personas_id_seq
   CACHE 1;
 ALTER TABLE catastro.personas_id_seq
   OWNER TO postgres;
-create table catastro.p_fisicas2 (
+create table catastro.p_fisicas (
   id integer DEFAULT nextval('catastro.personas_id_seq'::regclass),
   nombre varchar(100) not null,
   apellido varchar(100)  not null,
@@ -14,5 +14,5 @@ create table catastro.p_fisicas2 (
   nro_doc integer  not null,
   domicilio varchar(200)  not null,
   cuit varchar(13) not null unique,
-  CONSTRAINT p_fisicas2_pk PRIMARY KEY (id)
+  CONSTRAINT p_fisicas_pk PRIMARY KEY (id)
 );

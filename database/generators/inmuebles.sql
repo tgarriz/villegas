@@ -17,7 +17,7 @@ create table catastro.inmuebles (
   nro_puerta varchar(10),
   p_municipal varchar(10) not null,
   domicilio varchar(200),
-  tipo varchar(2) not null,
+  tipo varchar(20) not null,
   frente integer,
   uso integer not null,
   nomencla varchar(42),
