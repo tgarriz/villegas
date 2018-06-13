@@ -133,23 +133,23 @@ class CbPropietarioController {
  * @param type $f_baja
  */
     function asignaPropietario($tipo,$inmueble,$persona,$porcentaje,$f_alta,$f_baja){
-      if ($tipo = 'F') {
+      if ($tipo == 'F') {
         $sqlInsert = "INSERT INTO catastro.propietarios(inmueble,pfisica,porcentaje,f_alta,f_baja)"
-             . " VALUES (".$inmueble.", ".$persona.", ".$porcentaje.", ".$f_alta.", ".$f_baja.")";
+             . " VALUES (".$inmueble.", ".$persona.", ".$porcentaje.", '".$f_alta."'::date, '".$f_baja."'::date)";
         try {
           $this->cdb->exec($sqlInsert);
         } catch (PDOException $pdoException) {
-          echo 'Error al crear un nuevo registro en create(...): '.$pdoException->getMessage();
+          echo 'Error en asignaPropietario en pfisica(...): '.$pdoException->getMessage();
           exit();
         }
       }
       else {
         $sqlInsert = "INSERT INTO catastro.propietarios(inmueble,pjuridica,porcentaje,f_alta,f_baja)"
-               . " VALUES (".$inmueble.", ".$persona.", ".$porcentaje.", ".$f_alta.", ".$f_baja.")";
+               . " VALUES (".$inmueble.", ".$persona.", ".$porcentaje.", '".$f_alta."'::date, '".$f_baja."'::date)";
         try {
           $this->cdb->exec($sqlInsert);
         } catch (PDOException $pdoException) {
-          echo 'Error al crear un nuevo registro en create(...): '.$pdoException->getMessage();
+          echo 'Error en asignaPropietario en pjuridica(...): '.$pdoException->getMessage();
           exit();
         }
       }
@@ -166,9 +166,8 @@ class CbPropietarioController {
  * @param type $f_alta
  * @param type $f_baja
  */
-   public function update($tipo,$id,$inmueble,$persona,$porcentaje,$f_alta,$f_baja){
-     if ($tipo = 'F') {
-       $sqlUpdate = "UPDATE catastro.propietarios SET inmueble = ".$inmueble.",  pfisica = ".$persona.", porcentaje = ".$porcentaje.", f_alta = '".$f_alta."', f_baja = '".$f_baja."' WHERE id = ".$id.";";
+   public function update($id,$inmueble,$porcentaje,$f_alta,$f_baja){
+       $sqlUpdate = "UPDATE catastro.propietarios SET inmueble = ".$inmueble.", porcentaje = ".$porcentaje.", f_alta = '".$f_alta."'::date, f_baja = '".$f_baja."'::date WHERE id = ".$id.";";
        try {
          $this->cdb->exec($sqlUpdate);
        } catch (PDOException $pdoException) {
@@ -176,18 +175,7 @@ class CbPropietarioController {
          echo 'Error actualizar un nuevo registro (...): '.$pdoException->getMessage();
          exit();
        }
-     }
-     else {
-       $sqlUpdate = "UPDATE catastro.propietarios SET inmueble = ".$inmueble.",  pjuridica = ".$persona.", porcentaje = ".$porcentaje.", f_alta = '".$f_alta."', f_baja = '".$f_baja."' WHERE id = ".$id.";";
-       try {
-         $this->cdb->exec($sqlUpdate);
-       } catch (PDOException $pdoException) {
-         echo $sqlUpdate;
-         echo 'Error actualizar un nuevo registro (...): '.$pdoException->getMessage();
-         exit();
-     }
-    }
-   }
+  }
 
 /**
  * Eliminamos Persona Fisica.

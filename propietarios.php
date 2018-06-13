@@ -66,21 +66,10 @@
                             <form role="form" name="formEdit" method="post" action="propietarios.php">
                                 <div class="modal-body">
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
+                                  <input type="hidden" readonly class="form-control" id="tipo" name="tipo" >
                                   <div class="input-group col-xs-6 col-md-4">
-                                    <label for="persona">Seleccione Propietario</label>
-                                    <select class="form-control" id="persona" name="persona" required>
-                                      <?php try {
-                                            $rows = $CbPropietarioController->listarPersonas();
-                                            foreach ($rows as $row) {
-                                      ?>
-                                            <option value='<?php print($row->id); ?>'><?php print($row->nombre); ?></option>
-                                    <?php
-                                        }
-                                    } catch (Exception $exception) {
-                                        echo 'Error hacer la consulta profesionales: ' . $exception;
-                                    }
-                                    ?>
-                                    </select>
+                                    <label for="persona">Propietario (no se puede modificar)</label>
+                                    <input type="text" class="form-control" id="persona" name="persona" readonly>
                                   </div>
                                   <div class="input-group">
                                       <label for="inmueble">Seleccione Inmueble</label>
@@ -130,7 +119,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCb" method="post" action="propietarios.php">
+                            <form role="form" name="formCreate" method="post" action="propietarios.php">
                                 <div class="modal-body">
                                   <div class="input-group col-xs-6 col-md-4">
                                     <label for="persona">Seleccione Propietario</label>
@@ -166,15 +155,15 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="porcentaje">Porcentaje</label>
-                                      <input type="number" class="form-control" id="porcentaje" name="porcentaje" maxlength="5" >
+                                      <input type="number" class="form-control" id="porcentaje" name="porcentaje" maxlength="5" default="0">
                                   </div>
                                   <div class="input-group">
                                       <label for="f_alta">Fecha Alta</label>
-                                      <input type="date" class="form-control" id="f_alta" name="f_alta" maxlength="8" >
+                                      <input type="date" class="form-control" id="f_alta" name="f_alta" maxlength="10" required>
                                   </div>
                                   <div class="input-group">
                                       <label for="f_baja">Fecha Baja</label>
-                                      <input type="date" class="form-control" id="f_baja" name="f_baja" maxlength="8" >
+                                      <input type="date" class="form-control" id="f_baja" name="f_baja" maxlength="10" required>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -237,7 +226,7 @@
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Registro</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbPhs" method="post" action="propietarios.php">
+                	    <form role="form" name="formDeleteCb" method="post" action="propietarios.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
 	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
@@ -248,7 +237,7 @@
                         	        </div>
                                   <div class="input-group">
                                       <label for="propietaro">Propietario</label>
-                                      <input type="number" readonly class="form-control" id="persona" name="persona" > <!-- aria-describedby="sizing-addon2">-->
+                                      <input type="text" readonly class="form-control" id="persona" name="persona" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
                                   <div class="input-group">
                                       <label for="inmueble">Inmueble</label>
@@ -309,16 +298,16 @@
         <?php
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
                $id = $_POST['id'];
-               $tipo = $CbPropietarioController->obtieneTipoPorProp($id);
         	     $persona = $_POST['persona'];
                $inmueble = $_POST['inmueble'];
                $porcentaje = $_POST['porcentaje'];
                $f_alta = $_POST['f_alta'];
                $f_baja = $_POST['f_baja'];
         	if (isset($_POST["save-language"])){
-        	    $CbPropietarioController->asignaPropietario($tipo,$inmueble,$persona,$porcentaje,$f_alta,$f_baja);
+            $tipo = $CbPropietarioController->obtieneTipo($persona);
+        	  $CbPropietarioController->asignaPropietario($tipo,$inmueble,$persona,$porcentaje,$f_alta,$f_baja);
         	}else{
-        	    $CbPropietarioController->update($tipo,$id,$inmueble,$persona,$porcentaje,$f_alta,$f_baja);
+        	  $CbPropietarioController->update($id,$inmueble,$porcentaje,$f_alta,$f_baja);
         	}
         }
 	     if (isset($_POST["delete-select"]) ) {
@@ -337,7 +326,7 @@
                                     <th>ID</th>
                                     <th>PROPIETARIO</th>
                                     <th>INMUEBLE</th>
-                                    <th>%</th>
+                                    <th>PORC(%)</th>
                                     <th>F_ALTA</th>
                                     <th>F_BAJA</th>
                                 </tr>
@@ -378,12 +367,10 @@
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
 						  onclick="openEditPropietario(
-                    '<?php print($CbPropietarioController->obtieneTipo($row->id)); ?>',
                     '<?php print($row->id); ?>',
+                    '<?php print($CbPropietarioController->obtieneNombrePorProp($row->id)); ?>',
 										'<?php print($row->inmueble); ?>',
-										'<?php print($row->pfisica); ?>',
-                    '<?php print($row->pjuridica); ?>',
-                    '<?php print($row->porcentaje); ?>',
+										'<?php print($row->porcentaje); ?>',
                     '<?php print($row->f_alta); ?>',
                     '<?php print($row->f_baja); ?>')">Editar</button>
 					    </td>
@@ -394,8 +381,10 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbPropietario('<?php print($row->id); ?>','<?php print($row->inmueble); ?>','<?php print($row->persona); ?>')"
-						>Eliminar</button>
+              onclick="deleteCbPropietario(
+                '<?php print($row->id); ?>',
+                '<?php print($row->inmueble); ?>',
+                '<?php print($CbPropietarioController->obtieneNombrePorProp($row->id)); ?>')">Eliminar</button>
 					   </td>
 
                                         </tr>

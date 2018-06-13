@@ -6,13 +6,7 @@
     $CbPropietarioController = new CbPropietarioController();
     $CbPropietarioController->cdb = $cdb;
 
-    $id = 4;
-    $query1 = "select count(*) as res from catastro.p_fisicas where id = ".$id.";";
-    $statement = $CbPropietarioController->cdb->prepare($query1);
-    $statement->execute();
-    $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
-    if ($rows[0]->res == 1) {
-      echo 'F';
-    }
-    else { echo  'J';}
+    $id = 8;
+    $res = $CbPropietarioController->obtieneTipo($id);
+    echo 'res es '.$res;
   ?>
