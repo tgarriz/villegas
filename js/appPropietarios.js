@@ -11,6 +11,8 @@ function newCbPropietario(){
   document.formCreate.f_baja.value = null;
   var modal = $(this);
   modal.find('.modal-title').text('Creación de Registro');
+  $('#save-language').show();
+  $('#update-language').hide();
 }
 /*------------PersonasFisicas---------------*/
  function openEditPropietario(id,persona,inmueble,porcentaje,f_alta,f_baja){
@@ -23,25 +25,10 @@ function newCbPropietario(){
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
      modal.find('.modal-title').text('Editar');
+     $('#save-language').hide();
      $('#update-language').show();
    });
  }
-
-/*function openCbPropietario(tipo,id,inmueble,pfisica,pjuridica,porcentaje,f_alta,f_baja){
-    document.formCb.tipo.value = tipo;
-    document.formCb.id.value = id;
-    document.formCb.inmueble.value = inmueble;
-    alert(tipo);
-    if (tipo === 'F') {
-      alert('tipo entro por F');
-      document.formCb.persona.value = pfisica;
-    }else{document.formCb.persona.value = pjuridica}
-    document.formCb.porcentaje.value = porcentaje;
-    document.formCb.f_alta.value = f_alta;
-    document.formCb.f_baja.value = f_baja;
-    var modal = $(this);
-    modal.find('.modal-title').text('Actualizar Registro');
-}*/
 
 function openReadPropietario(inmueble,persona,porcentaje,f_alta,f_baja){
     document.formRead.inmueble.value = inmueble;
@@ -59,7 +46,7 @@ function openReadPropietario(inmueble,persona,porcentaje,f_alta,f_baja){
     $('#myModalRead').on('shown.bs.modal', function () {
         var modal = $(this);
         modal.find('.modal-title').text('Ver Registro');
-        $('#save-language').hide();
+        //$('#save-language').hide();
         $('#update-language').hide();
     });
 }
