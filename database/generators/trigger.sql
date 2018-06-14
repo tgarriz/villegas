@@ -21,3 +21,21 @@ ALTER FUNCTION catastro.crear_nomencla()
 CREATE TRIGGER crear_nomencla BEFORE INSERT OR UPDATE
     ON catastro.inmuebles FOR EACH ROW
     EXECUTE PROCEDURE catastro.crear_nomencla_tri();
+
+
+/*Leer y fijarse bien*/
+
+    CREATE OR REPLACE FUNCTION catastro.verificador_mensuras()
+      RETURNS trigger AS $verificador_mensuras$
+    declare
+    BEGIN
+    	NEW.verificador := to_char(NEW.plano_m,'9') || '-' || to_char(NEW.inmueble,'9');
+    RETURN NEW;
+    END;
+    $verificador_mensuras$ LANGUAGE plpgsql;
+
+    CREATE TRIGGER verificador_mensuras
+  BEFORE INSERT OR UPDATE
+  ON catastro.plano_m_inm
+  FOR EACH ROW
+  EXECUTE PROCEDURE catastro.verificador_mensuras();
