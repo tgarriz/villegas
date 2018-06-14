@@ -75,7 +75,7 @@ class CbPropietarioController {
           return $rows[0]->nombre;
         }
     }
-
+    /*obtiene el nombre de la persona recibiendo el tipo de persona y el id de persona*/
     public function obtieneNombreConTipo($idPersona,$tipo){
       if ($tipo == 'F') {
         $query = "select (apellido, nombre) as nombre from catastro.p_fisicas where id = ".$idPersona.";";
@@ -92,7 +92,7 @@ class CbPropietarioController {
         return $rows[0]->nombre;
       }
     }
-
+    /*Devuelve true si el propietario ya existe sobre el inmueble seleccionado*/
     public function existePropietario($tipo,$idInmueble,$idPersona){
       if ($tipo == 'F') {
         $query1 = "select count(*) as res from catastro.propietarios where pfisica = ".$idPersona." and inmueble = ".$idInmueble.";";
@@ -108,7 +108,7 @@ class CbPropietarioController {
       else { return false;
       }
     }
-
+    /*Obtiene nombre de propietario por id de registro de tabla propietarios */
     public function obtieneNombrePorProp($idPropietario){
         $query = "select * from catastro.propietarios where id = ".$idPropietario.";";
         $statement = $this->cdb->prepare($query);
@@ -131,8 +131,7 @@ class CbPropietarioController {
     }
 
     /**
- * Creamos un nuevo idioma con los parámetros pasados.
- * We create a new language with parameters .
+ * Creamos un nuevo registro
  * @param type $tipo
  * @param type $inmueble
  * @param type $persona
@@ -191,7 +190,7 @@ class CbPropietarioController {
   }
 
 /**
- * Eliminamos Persona Fisica.
+ * Eliminamos registro.
  * @param type $id
  */
    public function delete($id){
