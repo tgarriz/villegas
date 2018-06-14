@@ -163,7 +163,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="f_baja">Fecha Baja</label>
-                                      <input type="date" class="form-control" id="f_baja" name="f_baja" maxlength="10" required>
+                                      <input type="date" class="form-control" id="f_baja" name="f_baja" maxlength="10" >
                                   </div>
                                 </div>
                                 <div class="modal-footer">

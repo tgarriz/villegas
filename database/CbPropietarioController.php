@@ -133,6 +133,7 @@ class CbPropietarioController {
  * @param type $f_baja
  */
     function asignaPropietario($tipo,$inmueble,$persona,$porcentaje,$f_alta,$f_baja){
+      if ($f_baja =='') {$f_baja = '1900-01-01';}
       if ($tipo == 'F') {
         $sqlInsert = "INSERT INTO catastro.propietarios(inmueble,pfisica,porcentaje,f_alta,f_baja)"
              . " VALUES (".$inmueble.", ".$persona.", ".$porcentaje.", '".$f_alta."'::date, '".$f_baja."'::date)";
