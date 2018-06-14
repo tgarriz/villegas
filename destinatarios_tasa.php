@@ -40,17 +40,17 @@
         <script src="assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="js/appMensuras.js"></script>
+        <script src="js/appDestinatarios.js"></script>
     </head>
 
     <body>
       <?php
           include 'database/DatabaseConnect.php';
-          include 'database/CbMensuraController.php';
+          include 'database/CbDestinatarioController.php';
           $dConnect = new DatabaseConnect;
           $cdb = $dConnect->dbConnectSimple();
-          $CbMensuraController = new CbMensuraController();
-          $CbMensuraController->cdb = $cdb;
+          $CbDestinatarioController = new CbDestinatarioController();
+          $CbDestinatarioController->cdb = $cdb;
      ?>
       <!--
             Update
@@ -63,17 +63,22 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalUpdateLabel"></h4>
                             </div>
-                            <form role="form" name="formEdit" method="post" action="mensuras.php">
+                            <form role="form" name="formEdit" method="post" action="destinatarios_tasa.php">
                                 <div class="modal-body">
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
+                                  <input type="hidden" readonly class="form-control" id="tipo" name="tipo" >
+                                  <div class="input-group">
+                                      <label for="inmueble">Inmueble</label>
+                                      <input type="text" class="form-control" id="inmueble" name="inmueble" maxlength="50" readonly>
+                                  </div>
                                   <div class="input-group col-xs-6 col-md-4">
-                                    <label for="profesional">Profesional</label>
-                                    <select class="form-control" id="profesional" name="profesional" required>
+                                    <label for="persona">Seleccione Destinatario</label>
+                                    <select class="form-control" id="persona" name="persona" required>
                                       <?php try {
-                                            $rows = $CbMensuraController->readProfesionales();
+                                            $rows = $CbDestinatarioController->listarPersonas();
                                             foreach ($rows as $row) {
                                       ?>
-                                            <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->nombre); ?></option>
                                     <?php
                                         }
                                     } catch (Exception $exception) {
@@ -83,25 +88,8 @@
                                     </select>
                                   </div>
                                   <div class="input-group">
-                                      <label for="objetos">Objetos</label>
-                                      <select multiple class="form-control" id="a_objetos" name="a_objetos[]">
-                                        <option>objetos1</option>
-                                        <option>objetos2</option>
-                                        <option>objetos3</option>
-                                        <option>objetos4</option>
-                                        <option>objetos5</option>
-                                        <option>objetos6</option>
-                                        <option>objetos7</option>
-                                        <option>objetos8</option>
-                                      </select>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="secuencia">Secuencia</label>
-                                      <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="anio">Año</label>
-                                      <input type="number" class="form-control" id="anio" name="anio" maxlength="4" >
+                                      <label for="domicilio">Domicilio</label>
+                                      <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="30" >
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -123,16 +111,32 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCbMensura" method="post" action="mensuras.php">
+                            <form role="form" name="formCreate" method="post" action="destinatarios_tasa.php">
                                 <div class="modal-body">
+                                  <div class="input-group">
+                                      <label for="inmueble">Seleccione Inmueble</label>
+                                      <select multiple class="form-control" id="inmueble" name="inmueble">
+                                        <?php try {
+                                              $rows = $CbDestinatarioController->listarInmuebles();
+                                              foreach ($rows as $row) {
+                                        ?>
+                                              <option value='<?php print($row->id); ?>'><?php print($row->nomencla); ?></option>
+                                      <?php
+                                          }
+                                      } catch (Exception $exception) {
+                                          echo 'Error hacer la consulta profesionales: ' . $exception;
+                                      }
+                                      ?>
+                                      </select>
+                                  </div>
                                   <div class="input-group col-xs-6 col-md-4">
-                                    <label for="profesional">Profesional</label>
-                                    <select class="form-control" id="profesional" name="profesional" required>
+                                    <label for="persona">Seleccione Destinatario</label>
+                                    <select class="form-control" id="persona" name="persona" required>
                                       <?php try {
-                                            $rows = $CbMensuraController->readProfesionales();
+                                            $rows = $CbDestinatarioController->listarPersonas();
                                             foreach ($rows as $row) {
                                       ?>
-                                            <option value='<?php print($row->id); ?>'><?php print($row->apellido); ?>,&nbsp;<?php print($row->nombre); ?></option>
+                                            <option value='<?php print($row->id); ?>'><?php print($row->nombre); ?></option>
                                     <?php
                                         }
                                     } catch (Exception $exception) {
@@ -142,25 +146,8 @@
                                     </select>
                                   </div>
                                   <div class="input-group">
-                                      <label for="objetos">Objetos</label>
-                                      <select multiple class="form-control" id="a_objetos" name="a_objetos[]">
-                                        <option>objetos1</option>
-                                        <option>objetos2</option>
-                                        <option>objetos3</option>
-                                        <option>objetos4</option>
-                                        <option>objetos5</option>
-                                        <option>objetos6</option>
-                                        <option>objetos7</option>
-                                        <option>objetos8</option>
-                                      </select>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="secuencia">Secuencia</label>
-                                      <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" >
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="anio">Año</label>
-                                      <input type="number" class="form-control" id="anio" name="anio" maxlength="4" >
+                                      <label for="domicilio">Domicilio</label>
+                                      <input type="text" class="form-control" id="domicilio" name="domicilio" maxlength="30" >
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -183,29 +170,20 @@
                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                           <h4 class="modal-title" id="myModalLabel"></h4>
                                       </div>
-                                      <form role="form" name="formRead" method="post" action="mensuras.php">
+                                      <form role="form" name="formRead" method="post" action="destinatarios_tasa.php">
                                           <div class="modal-body">
                                             <div class="input-group">
-                                                <label for="profesional">Profesional</label>
-                                                <input type="text" class="form-control" id="profesional" name="profesional" maxlength="60" readonly>
+                                                <label for="inmueble">Inmueble</label>
+                                                <input type="text" class="form-control" id="inmueble" name="inmueble" maxlength="255" readonly>
                                             </div>
                                             <div class="input-group">
-                                                <label for="objetos">Objetos</label>
-                                                <input type="textarea" class="form-control" id="objetos" name="objetos" maxlength="255" readonly>
+                                                <label for="persona">Destinatario</label>
+                                                <input type="text" class="form-control" id="persona" name="persona" maxlength="60" readonly>
                                             </div>
                                             <div class="input-group">
-                                                <label for="secuencia">Secuencia</label>
-                                                <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" readonly>
+                                                <label for="domiclio">Domicilio</label>
+                                                <input type="text" class="form-control" id="domiclio" name="domicilio" maxlength="30" readonly>
                                             </div>
-                                            <div class="input-group">
-                                                <label for="quin_n">Año</label>
-                                                <input type="number" class="form-control" id="anio" name="anio" maxlength="4" readonly>
-                                            </div>
-                                            <div class="input-group">
-                                                <label for="codigo">Codigo</label>
-                                                <input type="text" class="form-control" id="codigo" name="codigo" maxlength="15" readonly>
-                                            </div>
-
                                           </div>
                                           <div class="modal-footer">
                                               <button id="cancel"type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -223,7 +201,7 @@
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Registro</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbMensura" method="post" action="mensuras.php">
+                	    <form role="form" name="formDeleteCb" method="post" action="destinatarios_tasa.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
 	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
@@ -233,12 +211,12 @@
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
-                                      <label for="secuencia">Secuencia</label>
-                                      <input type="text" readonly class="form-control" id="secuencia" name="secuencia" > <!-- aria-describedby="sizing-addon2">-->
+                                      <label for="propietaro">Destinatario</label>
+                                      <input type="text" readonly class="form-control" id="persona" name="persona" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="anio">Ano</label>
-                                      <input type="text" readonly class="form-control" id="anio" name="anio" > <!-- aria-describedby="sizing-addon2">-->
+                                      <label for="inmueble">Inmueble</label>
+                                      <input type="number" readonly class="form-control" id="inmueble" name="inmueble" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
 	                        </div>
         	                <div class="modal-footer">
@@ -281,33 +259,30 @@
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
                         <li><a href="inmuebles.php">Inmuebles</a></li>
-                        <li class="active"><a href="#">Planos Mensura <span class="sr-only">(current)</span></a></li>
-                        <li><a href="phs.php">Planos PH</a></li>
+                        <li><a href="mensuras.php">Planos Mensura</a></li>
+                        <li><a href="phs.php">Planos PH </a></li>
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                         <hr style="border-color: #337ab7;border-style: inset; border-width: 0.3px;"/>
-                        <li><a href="propietarios.php">Propietarios</a></li>
-                        <li><a href="destinatarios_tasa.php">Destinatarios</a></li>
+                        <li><a href="propietarios.php" >Propietarios</a></li>
+                        <li class="active"><a href="#" >Destinatarios<span class="sr-only">(current)</span></a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Mensuras&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCreate" onclick='newCbMensura()'>NUEVO</button></h2>
+                    <h2 class="sub-header">Destinatarios&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCreate" onclick='newCbDestinatario()'>NUEVO</button></h2>
 
         <?php
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
-               foreach ($_POST['a_objetos'] as $value) {
-                  $objetos.= $value.", ";
-               }
-        	     $id = $_POST['id'];
-        	     $profesional = $_POST['profesional'];
-               $secuencia = $_POST['secuencia'];
-               $anio = $_POST['anio'];
-               $codigo = $_POST['codigo'];
+               $id = $_POST['id'];
+        	     $persona = $_POST['persona'];
+               $inmueble = $_POST['inmueble'];
+               $domicilio = $_POST['domicilio'];
+               $tipo = $CbDestinatarioController->obtieneTipo($persona);
         	if (isset($_POST["save-language"])){
-        	    $CbMensuraController->create($profesional,$objetos,$secuencia,$anio);
+        	  $CbDestinatarioController->asignaDestinatario($tipo,$inmueble,$persona,$domicilio);
         	}else{
-        	    $CbMensuraController->update($id,$profesional,$objetos,$secuencia,$anio);
+        	  $CbDestinatarioController->update($tipo,$id,$persona,$domicilio);
         	}
         }
 	     if (isset($_POST["delete-select"]) ) {
@@ -315,7 +290,7 @@
           $fp = fopen("/tmp/logphp.txt", "w");
           fputs($fp, "Id = ".$id."\n");
           $fp = fclose($fp);
-		      $CbMensuraController->delete($id);
+		      $CbDestinatarioController->delete($id);
 	     }
         ?>
 	<!-- Añadimos un botón para el diálogo modal -->
@@ -324,27 +299,23 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>PROF.</th>
-                                    <th>OBJETOS</th>
-                                    <th>SECUENCIA</th>
-                                    <th>ANO</th>
-                                    <th>CODIGO</th>
+                                    <th>DESTINATARIO</th>
+                                    <th>INMUEBLE</th>
+                                    <th>DOMICILIO</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <form role="form" name="formListCbLanguage" method="post" action="mensuras.php">
+                                <form role="form" name="formListCbLanguage" method="post" action="destinatarios_tasa.php">
                                 <?php
                                 try {
-                                    $rows = $CbMensuraController->readAll();
+                                    $rows = $CbDestinatarioController->readAll();
                                     foreach ($rows as $row) {
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
-                                            <td><?php print($row->profesional); ?></td>
-                                            <td><?php print($row->objetos); ?></td>
-                                            <td><?php print($row->secuencia); ?></td>
-                                            <td><?php print($row->anio); ?></td>
-                                            <td><?php print($row->codigo); ?></td>
+                                            <td><?php print($CbDestinatarioController->obtieneNombrePorDest($row->id)); ?></td>
+                                            <td><?php print($row->inmueble); ?></td>
+                                            <td><?php print($row->domicilio); ?></td>
                                             <td>
 						<button id="see-language"
 							name="see-language"
@@ -352,12 +323,10 @@
 							class="btn btn-success"
 							data-toggle="modal"
 							data-target="#myModalRead"
-							onclick="openReadMensura(
-										'<?php print($row->profesional); ?>',
-										'<?php print($row->objetos); ?>',
-                    '<?php print($row->secuencia); ?>',
-                    '<?php print($row->anio); ?>',
-                    '<?php print($row->codigo); ?>')">Ver</button>
+							onclick="openReadDestinatario(
+                    '<?php print($row->inmueble); ?>',
+										'<?php print($CbDestinatarioController->obtieneNombrePorDest($row->id)); ?>',
+										'<?php print($row->domicilio); ?>')">Ver</button>
 					    </td>
 					    <td>
 						<button id="edit-language"
@@ -366,12 +335,10 @@
 						  class="btn btn-primary"
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
-						  onclick="openEditMensura('<?php print($row->id); ?>',
-										'<?php print($row->profesional); ?>',
-										'<?php print($row->objetos); ?>',
-                    '<?php print($row->secuencia); ?>',
-                    '<?php print($row->anio); ?>',
-                    '<?php print($row->codigo); ?>')">Editar</button>
+						  onclick="openEditDestinatario(
+                    '<?php print($row->id); ?>',
+                    '<?php print($CbDestinatarioController->obtieneNombrePorDest($row->id)); ?>',
+										'<?php print($row->domicilio); ?>')">Editar</button>
 					    </td>
 				      <td>
 					    	<button id="delete-language-modal"
@@ -380,8 +347,10 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbMensura('<?php print($row->id); ?>','<?php print($row->secuencia); ?>','<?php print($row->anio); ?>')"
-						>Eliminar</button>
+              onclick="deleteCbDestinatario(
+                '<?php print($row->id); ?>',
+                '<?php print($row->inmueble); ?>',
+                '<?php print($CbDestinatarioController->obtieneNombrePorDest($row->id)); ?>')">Eliminar</button>
 					   </td>
 
                                         </tr>
