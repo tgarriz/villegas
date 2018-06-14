@@ -1,14 +1,6 @@
 <?php
 
-/**
- * CbpfisicasController clase donde agrupamos todas las acciones
- * CRUD (Create Read Update Delete), y otras utilidades adicionales para la
- * tabla de la base de datos <b>cb_language</b>.
- * Cbidpfisicadeletep_fisicasController class where we group all actions CRUD (Create Read Update Delete),
- * and additional utilities for database table data <b>cb_language</b>.
- * @author Xules Puedes seguirme en mi web http://www.codigoxules.org).
- * You can follow me on my website http://www.codigoxules.org/en
- */
+
 class CbPropietarioController {
     var $cdb = null;
     /**
@@ -101,6 +93,22 @@ class CbPropietarioController {
       }
     }
 
+    public function existePropietario($tipo,$idInmueble,$idPersona){
+      if ($tipo == 'F') {
+        $query1 = "select count(*) as res from catastro.propietarios where pfisica = ".$idPersona." and inmueble = ".$idInmueble.";";
+      } else {
+        $query1 = "select count(*) as res from catastro.propietarios where pjuridica = ".$idPersona." and inmueble = ".$idInmueble.";";
+      }
+      $statement = $this->cdb->prepare($query1);
+      $statement->execute();
+      $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+      if ($rows[0]->res == 1) {
+        return true;
+      }
+      else { return false;
+      }
+    }
+
     public function obtieneNombrePorProp($idPropietario){
         $query = "select * from catastro.propietarios where id = ".$idPropietario.";";
         $statement = $this->cdb->prepare($query);
@@ -133,6 +141,10 @@ class CbPropietarioController {
  * @param type $f_baja
  */
     function asignaPropietario($tipo,$inmueble,$persona,$porcentaje,$f_alta,$f_baja){
+      if ($this->existePropietario($tipo,$inmueble,$persona)){
+        echo "LA PERSONA YA ES PROPIETARIO SOBRE EL INMUEBLE SELECCIONADO";
+        exit();
+      }
       if ($f_baja =='') {$f_baja = '1900-01-01';}
       if ($tipo == 'F') {
         $sqlInsert = "INSERT INTO catastro.propietarios(inmueble,pfisica,porcentaje,f_alta,f_baja)"
