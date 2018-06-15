@@ -43,6 +43,15 @@
     </head>
 
     <body>
+      <?php
+          include 'database/DatabaseConnect.php';
+          include 'database/CbPM_INMController.php';
+
+          $dConnect = new DatabaseConnect;
+          $cdb = $dConnect->dbConnectSimple();
+          $CbPM_INMController = new CbPM_INMController();
+          $CbPM_INMController->cdb = $cdb;
+      ?>
       <!--
             Update
             Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
@@ -100,20 +109,14 @@
                             </div>
                             <form role="form" name="formCbPFisica" method="post" action="index.php">
                                 <div class="modal-body">
-                                  <!--<div class="input-group">
-                                      <label for="id">Id</label>
-                                      <input type="text" readolny class="form-control" id="id" name="id">
-                                  </div>-->
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
                                       <label for="nombre">Nombre</label>
                                       <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
                                       <label for="apellido">Apellido</label>
                                       <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group col-xs-2">
                                     <label for="tipo_doc">Tipo</label>
@@ -224,13 +227,6 @@
                     <h2 class="sub-header">Planos Mensura - Inmuebles&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbPm_inm()'>NUEVO</button></h2>
 
         <?php
-            include 'database/DatabaseConnect.php';
-	          include 'database/CbPM_INMController.php';
-
- 	          $dConnect = new DatabaseConnect;
-	          $cdb = $dConnect->dbConnectSimple();
-	          $CbPM_INMController = new CbPM_INMController();
-	          $CbPM_INMController->cdb = $cdb;
 
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];
