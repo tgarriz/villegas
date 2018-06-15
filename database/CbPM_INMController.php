@@ -9,7 +9,7 @@
  * @author Xules Puedes seguirme en mi web http://www.codigoxules.org).
  * You can follow me on my website http://www.codigoxules.org/en
  */
-class CbPM-INMController {
+class CbPM_INMController {
     var $cdb = null;
     /**
      * Devolvemos todos los resultados de la consulta sobre cb_language.
@@ -38,7 +38,7 @@ class CbPM-INMController {
       }
     }
 
-    public function listaInmuebles(){
+    public function listarInmuebles(){
         $query = "SELECT id, nomencla FROM catastro.inmuebles;";
         $statement = $this->cdb->prepare($query);
         $statement->execute();
@@ -57,6 +57,13 @@ class CbPM-INMController {
     }
    }
 
+   public function obtieneNomencla($idInmueble){
+     $query1 = "select nomencla from catastro.inmuebles where id = ".$idInmueble.";";
+     $statement = $this->cdb->prepare($query1);
+     $statement->execute();
+     $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+     return $rows[0]->nomencla;
+   }
 
    public function delete($id){
     $sqlDelete =
