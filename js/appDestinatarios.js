@@ -13,8 +13,9 @@ function newCbDestinatario(){
   $('#update-language').hide();
 }
 /*------------PersonasFisicas---------------*/
- function openEditDestinatario(id,persona,domicilio){
+ function openEditDestinatario(id,persona,inmueble,domicilio){
    document.formEdit.id.value = id;
+   document.formEdit.inmueble.value = inmueble;
    document.formEdit.persona.value = persona;
    document.formEdit.domicilio.value = domicilio;
    $('#myModalUpdate').on('shown.bs.modal', function () {

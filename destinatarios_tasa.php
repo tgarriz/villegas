@@ -78,7 +78,7 @@
                                             $rows = $CbDestinatarioController->listarPersonas();
                                             foreach ($rows as $row) {
                                       ?>
-                                            <option value='<?php print($row->id); ?>'><?php print($row->nombre); ?></option>
+                                            <option value='<?php print($row->id); ?>' <?php if ($row->id == $persona) {print('selected="selected"');} ?> ><?php print($row->nombre); ?></option>
                                     <?php
                                         }
                                     } catch (Exception $exception) {
@@ -216,7 +216,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="inmueble">Inmueble</label>
-                                      <input type="number" readonly class="form-control" id="inmueble" name="inmueble" > <!-- aria-describedby="sizing-addon2">-->
+                                      <input type="text" readonly class="form-control" id="inmueble" name="inmueble" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
 	                        </div>
         	                <div class="modal-footer">
@@ -314,7 +314,7 @@
                                         <tr>
                                             <td><?php print($row->id); ?></td>
                                             <td><?php print($CbDestinatarioController->obtieneNombrePorDest($row->id)); ?></td>
-                                            <td><?php print($row->inmueble); ?></td>
+                                            <td><?php print($CbDestinatarioController->obtieneNomencla($row->inmueble)); ?></td>
                                             <td><?php print($row->domicilio); ?></td>
                                             <td>
 						<button id="see-language"
@@ -337,7 +337,8 @@
 						  data-target="#myModalUpdate"
 						  onclick="openEditDestinatario(
                     '<?php print($row->id); ?>',
-                    '<?php print($CbDestinatarioController->obtieneNombrePorDest($row->id)); ?>',
+                    '<?php print($CbDestinatarioController->obtieneIdPersonaPorDest($row->id)); ?>',
+                    '<?php print($CbDestinatarioController->obtieneNomencla($row->inmueble)); ?>',
 										'<?php print($row->domicilio); ?>')">Editar</button>
 					    </td>
 				      <td>
@@ -349,7 +350,7 @@
 			        data-target="#myModalDelete"
               onclick="deleteCbDestinatario(
                 '<?php print($row->id); ?>',
-                '<?php print($row->inmueble); ?>',
+                '<?php print($CbDestinatarioController->obtieneNomencla($row->inmueble)); ?>',
                 '<?php print($CbDestinatarioController->obtieneNombrePorDest($row->id)); ?>')">Eliminar</button>
 					   </td>
 

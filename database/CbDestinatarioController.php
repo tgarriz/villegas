@@ -89,8 +89,16 @@ class CbDestinatarioController {
         $statement = $this->cdb->prepare($query);
         $statement->execute();
         $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
-        return $rows[0]->nombre;
       }
+      return $rows[0]->nombre;
+    }
+
+    public function obtieneNomencla($idInmueble){
+      $query1 = "select nomencla from catastro.inmuebles where id = ".$idInmueble.";";
+      $statement = $this->cdb->prepare($query1);
+      $statement->execute();
+      $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+      return $rows[0]->nomencla;
     }
 
     /*Devuelve true si el Destinatario ya existe sobre el inmueble seleccionado*/
@@ -120,6 +128,19 @@ class CbDestinatarioController {
         }
         else {
           return $this->obtieneNombreConTipo($rows[0]->pfisica,'F');
+        }
+    }
+
+    public function obtieneIdPersonaPorDest($idDestinatario){
+        $query = "select * from catastro.destinatarios_tasa where id = ".$idDestinatario.";";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        if ($rows[0]->pfisica == null){
+          return $rows[0]->pjuridica;
+        }
+        else {
+          return $rows[0]->pfisica;
         }
     }
 

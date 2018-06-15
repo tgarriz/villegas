@@ -213,7 +213,6 @@
                 </div>
             </div>
         </nav>
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
@@ -227,7 +226,7 @@
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                         <hr style="border-color: #337ab7;border-style: inset; border-width: 0.3px;"/>
                         <li><a href="propietarios.php" >Propietarios</a></li>
-                        <li><a href="destinatarios_tasa" >Destinatarios</a></li>
+                        <li><a href="destinatarios_tasa.php" >Destinatarios</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
