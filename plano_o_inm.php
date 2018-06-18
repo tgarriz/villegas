@@ -215,7 +215,7 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li><a href="#">Pers.Fisicas</a></li>
+                        <li><a href="index.php">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
                         <li><a href="inmuebles.php">Inmuebles</a></li>
@@ -227,6 +227,7 @@
                         <li><a href="destinatarios_tasa.php" >Destinatarios</a></li>
                         <li><a href="plano_m_inm.php" >Mens.-Inmuebles</a></li>
                         <li class="active"><a href="plano_o_inm.php" >Pl. de Obras-Inmuebles <span class="sr-only">(current)</span></a></li>
+                        <li><a href="plano_ph_inm.php" >Pl. PH-Inmubles</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

@@ -234,6 +234,7 @@
                         <li><a href="destinatarios_tasa" >Destinatarios</a></li>
                         <li><a href="plano_m_inm.php" >Mens.-Inmuebles</a></li>
                         <li><a href="plano_o_inm.php" >Pl. de Obras.-Inmubles</a></li>
+                        <li><a href="plano_ph_inm.php" >Pl. PH-Inmubles</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
