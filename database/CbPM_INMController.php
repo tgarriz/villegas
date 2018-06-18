@@ -23,13 +23,10 @@ class CbPM_INMController {
         return $rows;
     }
 
-    /**
-    * Creamos un nuevo idioma con los parámetros pasados.
-    * We create a new language with parameters .
-    */
-    function create($plano,$inmueble){
+
+    function create($idPlano,$idInmueble){
       $sqlInsert = "INSERT INTO catastro.plano_m_inm (plano,inmueble)"
-             . "VALUES (".$plano.",".$inmueble.");";
+             . "VALUES (".$idPlano.",".$idInmueble.");";
       try {
         $this->cdb->exec($sqlInsert);
       } catch (PDOException $pdoException) {
@@ -38,8 +35,26 @@ class CbPM_INMController {
       }
     }
 
+    function asignaInmuebles($idPlano,$idInmuebles){
+      try {
+        foreach ($idInmuebles as $idInmueble) {
+          $this->create($idPlano,$idInmueble);
+        }
+      } catch (Exception $exception) {
+            echo 'Error al asignar inmuebles al plano: ' . $exception;
+        }
+    }
+
     public function listarInmuebles(){
         $query = "SELECT id, nomencla FROM catastro.inmuebles;";
+        $statement = $this->cdb->prepare($query);
+        $statement->execute();
+        $rows = $statement->fetchAll(\PDO::FETCH_OBJ);
+        return $rows;
+    }
+
+    public function listarPlanos(){
+        $query = "SELECT id, codigo FROM catastro.mensuras;";
         $statement = $this->cdb->prepare($query);
         $statement->execute();
         $rows = $statement->fetchAll(\PDO::FETCH_OBJ);

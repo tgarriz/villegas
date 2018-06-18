@@ -7,7 +7,7 @@ function newCbPm_inm(){
     openCb('new',null,null,null);
 }
 /*------------PersonasFisicas---------------*/
- function openEditPm_inm(id,plano,inmueble){
+ function openEdit(id,plano,inmueble){
    document.formEdit.id.value = id;
    document.formEdit.plano.value = plano;
    document.formEdit.inmueble.value = inmueble;
@@ -18,13 +18,13 @@ function newCbPm_inm(){
    });
  }
 
-function openCb(action, plano,inmueble){
+function openCb(action,id, plano,inmuebles){
     document.formCb.id.value = id;
     document.formCb.plano.value = plano;
-    document.formCb.inmueble.value = inmueble;
+    document.formCb.inmuebles.value = inmuebles;
 
     document.formCb.plano.disabled = (action === 'see')?true:false;
-    document.formCb.inmueble.disabled = (action === 'see')?true:false;
+    document.formCb.inmuebles.disabled = (action === 'see')?true:false;
 
     $('#myModal').on('shown.bs.modal', function () {
         var modal = $(this);
@@ -42,9 +42,9 @@ function openCb(action, plano,inmueble){
     });
 }
 function deleteCb(id,plano,inmueble){
-  document.formDeleteCb.id.value = id;
-  document.formDeleteCb.plano.value = plano;
-  document.formDeleteCb.inmueble.value = inmueble;
+  document.formDelete.id.value = id;
+  document.formDelete.plano.value = plano;
+  document.formDelete.inmueble.value = inmueble;
   //alert(id);
   $('#myModalDelete').on('shown.bs.modal', function () {
     $('#myInput').focus();

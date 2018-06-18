@@ -265,6 +265,7 @@
                         <hr style="border-color: #337ab7;border-style: inset; border-width: 0.3px;"/>
                         <li><a href="propietarios.php" >Propietarios</a></li>
                         <li class="active"><a href="#" >Destinatarios<span class="sr-only">(current)</span></a></li>
+                        <li><a href="plano_m_inm.php" >Mens.-Inmuebles</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
