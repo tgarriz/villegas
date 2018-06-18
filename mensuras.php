@@ -97,11 +97,11 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="secuencia">Secuencia</label>
-                                      <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" >
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" min="1" max="9999" maxlength="4" >
                                   </div>
                                   <div class="input-group">
                                       <label for="anio">Año</label>
-                                      <input type="number" class="form-control" id="anio" name="anio" maxlength="4" >
+                                      <input type="number" class="form-control" id="anio" name="anio" min="1900" max="2030" maxlength="4" >
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -156,11 +156,11 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="secuencia">Secuencia</label>
-                                      <input type="number" class="form-control" id="secuencia" name="secuencia" maxlength="10" >
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" min="1" max="9999" maxlength="4" >
                                   </div>
                                   <div class="input-group">
                                       <label for="anio">Año</label>
-                                      <input type="number" class="form-control" id="anio" name="anio" maxlength="4" >
+                                      <input type="number" class="form-control" id="anio" name="anio" min="1900" max="2030" maxlength="4" >
                                   </div>
                                 </div>
                                 <div class="modal-footer">

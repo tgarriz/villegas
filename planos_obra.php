@@ -90,11 +90,11 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="secuencia">Secuancia</label>
-                                      <input type="number" class="form-control" id="secuencia" name="secuencia" placeholder="secuencia" maxlength="9" required>
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" placeholder="secuencia" maxlength="4" min="1" max="9999" required>
                                   </div>
                                   <div class="input-group">
                                       <label for="anio">Anio</label>
-                                      <input type="number" class="form-control" id="anio" name="anio" placeholder="anio" maxlength="4" required>
+                                      <input type="number" class="form-control" id="anio" name="anio" placeholder="anio" maxlength="4" min="1900" max="2030" required>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -151,11 +151,11 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="secuencia">Secuancia</label>
-                                      <input type="number" class="form-control" id="secuencia" name="secuencia" placeholder="secuencia" maxlength="9" required>
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" placeholder="secuencia" maxlength="4" min="1" max="9999" required>
                                   </div>
                                   <div class="input-group">
                                       <label for="anio">Anio</label>
-                                      <input type="number" class="form-control" id="anio" name="anio" placeholder="anio" maxlength="4" required>
+                                      <input type="number" class="form-control" id="anio" name="anio" placeholder="anio" maxlength="4" min="1900" max="2030" required>
                                   </div>
                                 </div>
                                 <div class="modal-footer">

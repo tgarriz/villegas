@@ -81,7 +81,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="nro_doc">Nro. Documento</label>
-                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
+                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" min="5000000" max="99999999" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
@@ -141,7 +141,7 @@
                                   </div>
                                   <div class="input-group">
                                       <label for="nro_doc">Nro. Documento</label>
-                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
+                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" min="5000000" max="99999999" required>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
