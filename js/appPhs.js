@@ -15,7 +15,7 @@ function newCbPhs(){
    document.formEdit.anio.value = anio;
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
-     modal.find('.modal-title').text('Editar');
+     modal.find('.modal-title').text('Editar Registro');
      $('#update-language').show();
    });
  }

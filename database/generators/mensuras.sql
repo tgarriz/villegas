@@ -7,5 +7,6 @@ create table catastro.mensuras (
   codigo varchar(255),
   CONSTRAINT plano_mens_pk PRIMARY KEY (id),
   CONSTRAINT fk_plano_mens_prof FOREIGN KEY (profesional)
-  REFERENCES catastro.profesionales(id) MATCH FULL ON DELETE RESTRICT ON UPDATE CASCADE
+  REFERENCES catastro.profesionales(id) MATCH FULL ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT mensuras_sec_anio_key UNIQUE (secuencia,anio)
 )

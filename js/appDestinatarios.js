@@ -7,10 +7,12 @@ function newCbDestinatario(){
   document.formCreate.inmueble.value = null;
   document.formCreate.persona.value = null;
   document.formCreate.domicilio.value = null;
+  $('#myModalCreate').on('shown.bs.modal', function () {
   var modal = $(this);
   modal.find('.modal-title').text('Creación de Registro');
   $('#save-language').show();
   $('#update-language').hide();
+});
 }
 /*------------PersonasFisicas---------------*/
  function openEditDestinatario(id,persona,inmueble,domicilio){
@@ -20,7 +22,7 @@ function newCbDestinatario(){
    document.formEdit.domicilio.value = domicilio;
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
-     modal.find('.modal-title').text('Editar');
+     modal.find('.modal-title').text('Editar Destinatario');
      $('#save-language').hide();
      $('#update-language').show();
    });

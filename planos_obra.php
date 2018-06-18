@@ -89,8 +89,12 @@
                                       <input type="number" class="form-control" id="sup_demoler" name="sup_demoler" placeholder="sup_demoler" maxlength="9" required>
                                   </div>
                                   <div class="input-group">
-                                      <label for="codigo">Codigo</label>
-                                      <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" maxlength="40" required>
+                                      <label for="secuencia">Secuancia</label>
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" placeholder="secuencia" maxlength="9" required>
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="anio">Anio</label>
+                                      <input type="number" class="form-control" id="anio" name="anio" placeholder="anio" maxlength="4" required>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -146,9 +150,12 @@
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="codigo">Codigo</label>
-                                      <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" maxlength="30" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="secuencia">Secuancia</label>
+                                      <input type="number" class="form-control" id="secuencia" name="secuencia" placeholder="secuencia" maxlength="9" required>
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="anio">Anio</label>
+                                      <input type="number" class="form-control" id="anio" name="anio" placeholder="anio" maxlength="4" required>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -291,11 +298,13 @@
                $sup_cubierta = $_POST['sup_cubierta'];
                $sup_semicub = $_POST['sup_semicub'];
                $sup_demoler = $_POST['sup_demoler'];
+               $secuencia = $_POST['secuencia'];
+               $anio = $_POST['anio'];
                $codigo = $_POST['codigo'];
         	     if (isset($_POST["save-language"])){
-        	        $CbPObraController->create($profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
+        	        $CbPObraController->create($profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$secuencia,$anio);
         	     }else{
-        	        $CbPObraController->update($id,$profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo);
+        	        $CbPObraController->update($id,$profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$secuencia,$anio);
         	     }
              }
 
@@ -363,7 +372,8 @@
               '<?php print($row->sup_cubierta); ?>',
               '<?php print($row->sup_semicub); ?>',
               '<?php print($row->sup_demoler); ?>',
-              '<?php print($row->codigo); ?>')">Editar</button>
+              '<?php print($row->secuencia); ?>',
+              '<?php print($row->anio); ?>')">Editar</button>
 					    </td>
 				      <td>
 					    	<button id="delete-language-modal"

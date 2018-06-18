@@ -370,8 +370,12 @@
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" readonly class="form-control" id="nombre" name="nombre" > <!-- aria-describedby="sizing-addon2">-->
+                                      <label for="nomencla">Nomenclatura</label>
+                                      <input type="text" readonly class="form-control" id="nomencla" name="nomencla" > <!-- aria-describedby="sizing-addon2">-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="p_municipal">Padrón Municipal</label>
+                                      <input type="text" readonly class="form-control" id="p_municipal" name="p_municipal" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
 	                        </div>
         	                <div class="modal-footer">

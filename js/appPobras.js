@@ -4,35 +4,38 @@
  * @returns {undefined}
  */
 function newCbPObra(){
-    openCbPObra('new',null,null,null,null,null);
+    openCbPObra('new',null,null,null,null,null,null);
 }
 /*------------PersonasFisicas---------------*/
- function openEditPObra(id,profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
+ function openEditPObra(id,profesional,sup_cubierta,sup_semicub,sup_demoler,secuencia,anio){
    document.formEdit.id.value = id;
    document.formEdit.profesional.value = profesional;
    document.formEdit.sup_cubierta.value = sup_cubierta;
    document.formEdit.sup_semicub.value = sup_semicub;
    document.formEdit.sup_demoler.value = sup_demoler;
-   document.formEdit.codigo.value = codigo;
+   document.formEdit.secuencia.value = secuencia;
+   document.formEdit.anio.value = anio;
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
-     modal.find('.modal-title').text('Editar PObra ');
+     modal.find('.modal-title').text('Editar Plano de Obra ');
      $('#update-language').show();
    });
  }
 
-function openCbPObra(action,profesional,sup_cubierta,sup_semicub,sup_demoler,codigo){
+function openCbPObra(action,profesional,sup_cubierta,sup_semicub,sup_demoler,secuencia,anio){
     document.formCbPObra.profesional.value = profesional;
     document.formCbPObra.sup_cubierta.value = sup_cubierta;
     document.formCbPObra.sup_semicub.value = sup_semicub;
     document.formCbPObra.sup_demoler.value = sup_demoler;
-    document.formCbPObra.codigo.value = codigo;
+    document.formCbPObra.secuencia.value = secuencia;
+    document.formCbPObra.anio.value = anio;
 
     document.formCbPObra.profesional.disabled = false;
     document.formCbPObra.sup_cubierta.disabled = false;
     document.formCbPObra.sup_semicub.disabled = false;
     document.formCbPObra.sup_demoler.disabled = false;
-    document.formCbPObra.codigo.disabled = false;
+    document.formCbPObra.secuencia.disabled = false;
+    document.formCbPObra.anio.disabled = false;
 
     $('#myModal').on('shown.bs.modal', function () {
           var modal = $(this);

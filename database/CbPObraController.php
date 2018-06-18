@@ -49,9 +49,9 @@ class CbPObraController {
  * @param type $sup_demoler
  * @param type $codigo
  */
-    function create($profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo){
-      $sqlInsert = "INSERT INTO catastro.planos_obra(profesional,sup_cubierta,sup_semicub,sup_demoler,codigo)"
-             . " VALUES ('".$profesional."','".$sup_cubierta."','".$sup_semicub."','".$sup_demoler."','".$codigo."');";
+    function create($profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$secuencia,$anio){
+      $sqlInsert = "INSERT INTO catastro.planos_obra(profesional,sup_cubierta,sup_semicub,sup_demoler,secuencia,anio)"
+             . " VALUES ('".$profesional."','".$sup_cubierta."','".$sup_semicub."','".$sup_demoler."','".$secuencia."','".$anio."');";
       try {
         $this->cdb->exec($sqlInsert);
       } catch (PDOException $pdoException) {
@@ -69,8 +69,8 @@ class CbPObraController {
  * @param type $sup_demoler
  * @param type $codigo
  */
-   public function update($id,$profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$codigo){
-    $sqlUpdate = "UPDATE catastro.planos_obra SET profesional = '".$profesional."', sup_cubierta = '".$sup_cubierta."', sup_semicub = '".$sup_semicub."', sup_demoler = '".$sup_demoler."', codigo = '".$codigo."' WHERE  id  = ".$id.";";
+   public function update($id,$profesional,$sup_cubierta,$sup_semicub,$sup_demoler,$secuencia,$anio){
+    $sqlUpdate = "UPDATE catastro.planos_obra SET profesional = '".$profesional."', sup_cubierta = '".$sup_cubierta."', sup_semicub = '".$sup_semicub."', sup_demoler = '".$sup_demoler."', secuencia = '".$secuencia."', anio = '".$anio."' WHERE  id  = ".$id.";";
     try {
         $this->cdb->exec($sqlUpdate);
     } catch (PDOException $pdoException) {

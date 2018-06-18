@@ -13,7 +13,7 @@ function newCbPm_inm(){
    document.formEdit.inmueble.value = inmueble;
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
-     modal.find('.modal-title').text('Editar Pers.Fisica ');
+     modal.find('.modal-title').text('Editar Registro');
      $('#update-language').show();
    });
  }
@@ -29,11 +29,11 @@ function openCb(action,id, plano,inmuebles){
     $('#myModal').on('shown.bs.modal', function () {
         var modal = $(this);
         if (action === 'new'){
-            modal.find('.modal-title').text('Creación de Pers.Fisica');
+            modal.find('.modal-title').text('Crear Registro');
             $('#save-language').show();
             $('#update-language').hide();
         }else if (action === 'see'){
-            modal.find('.modal-title').text('Ver Pers.Fisica');
+            modal.find('.modal-title').text('Ver Registro');
             $('#save-language').hide();
             $('#update-language').hide();
         }

@@ -9,10 +9,12 @@ function newCbPropietario(){
   document.formCreate.porcentaje.value = 0;
   document.formCreate.f_alta.value = null;
   document.formCreate.f_baja.value = null;
+  $('#myModalCreate').on('shown.bs.modal', function () {
   var modal = $(this);
   modal.find('.modal-title').text('Creación de Registro');
   $('#save-language').show();
   $('#update-language').hide();
+});
 }
 /*------------PersonasFisicas---------------*/
  function openEditPropietario(id,persona,inmueble,porcentaje,f_alta,f_baja){
@@ -24,7 +26,7 @@ function newCbPropietario(){
    document.formEdit.f_baja.value = f_baja;
    $('#myModalUpdate').on('shown.bs.modal', function () {
      var modal = $(this);
-     modal.find('.modal-title').text('Editar');
+     modal.find('.modal-title').text('Editar Registro');
      $('#save-language').hide();
      $('#update-language').show();
    });

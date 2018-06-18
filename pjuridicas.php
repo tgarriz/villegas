@@ -202,7 +202,7 @@
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
-                    <h2 class="sub-header">Personas Juridicas&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
+                    <h2 class="sub-header">Personas Juridicas&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbPJuridica()'>NUEVO</button></h2>
 
         <?php
             include 'database/DatabaseConnect.php';

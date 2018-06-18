@@ -8,7 +8,6 @@ function newCbInmueble(){
 }
 /*------------PersonasFisicas---------------*/
  function openEditInmueble(id,circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,manz_n,manz_l,parc_n,parc_l,subp,superficie,nro_puerta,p_municipal,domicilio,tipo,uso,frente){
-   alert(id);
    document.formEdit.id.value = id;
    document.formEdit.circ.value = circ;
    document.formEdit.secc.value = secc;
@@ -148,7 +147,7 @@ function openReadInmueble(circ,secc,chac_n,chac_l,quin_n,quin_l,frac_n,frac_l,ma
     });
 }
 
-function deleteCbInmueble(id,nombre,apellido){
+function deleteCbInmueble(id,nomencla,p_municipal){
   document.formDeleteCbInmueble.id.value = id;
   document.formDeleteCbInmueble.nomencla.value = nomencla;
   document.formDeleteCbInmueble.p_municipal.value = p_municipal;

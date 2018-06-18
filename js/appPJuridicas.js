@@ -4,7 +4,7 @@
  * @returns {undefined}
  */
 function newCbPJuridica(){
-    openCbPJuridica('new', null, null,null);
+    openCbPJuridica('new', null, null,null,null);
 }
 /*------------PersonasJuridicas---------------*/
  function openEditPJuridica(id,rsocial,domicilio,cuit){
@@ -48,8 +48,6 @@ function openCbPJuridica(action,id,rsocial,domicilio,cuit){
 function deleteCbPJuridica(id,rsocial,cuit){
   document.formDeleteCbPJuridica.id.value = id;
   document.formDeleteCbPJuridica.rsocial.value = rsocial;
-  document.formDeleteCbPJuridica.cuit.value = cuit;
-  //alert(id);
   $('#myModalDelete').on('shown.bs.modal', function () {
     $('#myInput').focus();
 });
