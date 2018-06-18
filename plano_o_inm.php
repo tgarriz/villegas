@@ -39,10 +39,19 @@
         <script src="assets/js/vendor/holder.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-        <script src="js/appPFisicas.js"></script>
+        <script src="js/appPO_INM.js"></script>
     </head>
 
     <body>
+      <?php
+          include 'database/DatabaseConnect.php';
+          include 'database/CbPO_INMController.php';
+
+          $dConnect = new DatabaseConnect;
+          $cdb = $dConnect->dbConnectSimple();
+          $CbPO_INMController = new CbPO_INMController();
+          $CbPO_INMController->cdb = $cdb;
+      ?>
       <!--
             Update
             Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
@@ -54,45 +63,29 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalUpdateLabel"></h4>
                             </div>
-                            <form role="form" name="formEdit" method="post" action="index.php">
+                            <form role="form" name="formEdit" method="post" action="plano_o_inm.php">
                                 <div class="modal-body">
-                                  <!--<div class="input-group">
-                                      <label for="id">Id</label>
-                                      <input type="text" readonly class="form-control" id="id" name="id" >
-                                  </div>-->
                                   <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
+                                      <label for="plano">Plano</label>
+                                      <input type="text" class="form-control" id="plano" name="plano" placeholder="plano" readonly>
                                       <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
                                   </div>
                                   <div class="input-group">
-                                      <label for="apellido">Apellido</label>
-                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
-                                  <div class="input-group col-xs-2">
-                                    <label for="tipo_doc">Tipo</label>
-                                    <select class="form-control" id="tipo_doc" name="tipo_doc" maxlength="3" required>
-                                      <option value="DNI">DNI</option>
-                                      <option value="LC">LC</option>
-                                      <option value="LE">LE</option>
-                                    </select>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="nro_doc">Nro. Documento</label>
-                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="inmueble">Seleccione Inmueble</label>
+                                      <select multiple class="form-control" id="inmueble" name="inmueble">
+                                        <?php try {
+                                              $rows = $CbPO_INMController->listarInmuebles();
+                                              foreach ($rows as $row) {
+                                        ?>
+                                              <option value='<?php print($row->id); ?>'><?php print($row->nomencla); ?></option>
+                                      <?php
+                                          }
+                                      } catch (Exception $exception) {
+                                          echo 'Error hacer la consulta profesionales: ' . $exception;
+                                      }
+                                      ?>
+                                      </select>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -104,7 +97,7 @@
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
     	<!--
-            Create - Read
+            Create
             Creamos una ventana Modal que utilizaremos para crear un nuevo idioma, actualizarlo o mostrarlo.
             We create a modal window used to create a new language, update or display.-->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -114,45 +107,42 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel"></h4>
                             </div>
-                            <form role="form" name="formCbPFisica" method="post" action="index.php">
+                            <form role="form" name="formCb" method="post" action="plano_o_inm.php">
                                 <div class="modal-body">
-                                  <!--<div class="input-group">
-                                      <label for="id">Id</label>
-                                      <input type="text" readolny class="form-control" id="id" name="id">
-                                  </div>-->
-                                  <input type="hidden" readonly class="form-control" id="id" name="id" >
                                   <div class="input-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="plano">Plano</label>
+                                      <div class="input-group">
+                                          <label for="plano">Seleccione Plano</label>
+                                          <select class="form-control" id="plano" name="plano">
+                                            <?php try {
+                                                  $rows = $CbPO_INMController->listarPlanos();
+                                                  foreach ($rows as $row) {
+                                            ?>
+                                                  <option value='<?php print($row->id); ?>'><?php print($row->codigo); ?></option>
+                                          <?php
+                                              }
+                                          } catch (Exception $exception) {
+                                              echo 'Error hacer la consulta profesionales: ' . $exception;
+                                          }
+                                          ?>
+                                          </select>
+                                      </div>
                                   </div>
                                   <div class="input-group">
-                                      <label for="apellido">Apellido</label>
-                                      <input type="text" class="form-control" id="apellido" name="apellido" placeholder="apellido" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
-                                  <div class="input-group col-xs-2">
-                                    <label for="tipo_doc">Tipo</label>
-                                    <select class="form-control" id="tipo_doc" name="tipo_doc" maxlength="3" required>
-                                      <option value="DNI" selected="selected">DNI</option>
-                                      <option value="LC">LC</option>
-                                      <option value="LE">LE</option>
-                                    </select>
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="nro_doc">Nro. Documento</label>
-                                      <input type="number" class="form-control" id="nro_doc" name="nro_doc" placeholder="nro_doc" maxlength="9" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="domicilio">Domicilio</label>
-                                      <input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="domicilio" maxlength="200" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
-                                  </div>
-                                  <div class="input-group">
-                                      <label for="cuit">Cuit</label>
-                                      <input type="number" class="form-control" id="cuit" name="cuit" placeholder="cuit" maxlength="12" required>
-                                      <!--<small class="text-muted">Lo utilizamos como ID y se forma con los iso de idioma (es) y país (ES) unidos por un guión bajo.</small>-->
+                                      <label for="inmuebles">Seleccione Inmuebles</label>
+                                      <select multiple class="form-control" id="inmuebles" name="inmuebles[]">
+                                        <?php try {
+                                              $rows = $CbPO_INMController->listarInmuebles();
+                                              foreach ($rows as $row) {
+                                        ?>
+                                              <option value='<?php print($row->id); ?>'><?php print($row->nomencla); ?></option>
+                                      <?php
+                                          }
+                                      } catch (Exception $exception) {
+                                          echo 'Error hacer la consulta profesionales: ' . $exception;
+                                      }
+                                      ?>
+                                      </select>
                                   </div>
                                 </div>
                                 <div class="modal-footer">
@@ -172,18 +162,22 @@
                         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	                        <h4 class="modal-title" id="myModalDeleteLabel">Eliminación de Registro</h4>
         	            </div>
-                	    <form role="form" name="formDeleteCbPFisica" method="post" action="index.php">
+                	    <form role="form" name="formDelete" method="post" action="plano_o_inm.php">
                         	<div class="modal-body">
                                 	<div class="input-group">
-	                                    <label for="idPFisica">¿Se va a eliminar el registro seleccionado?</label>
+	                                    <label for="id">¿Se va a eliminar el registro seleccionado?</label>
         	                        </div>
                		                <div class="input-group">
-         	                      	    <label for="id">Id P. Fisica</label>
+         	                      	    <label for="id">Id</label>
                 	                    <input type="text" readonly class="form-control" id="id" name="id" readonly>
                         	        </div>
                                   <div class="input-group">
-                                      <label for="nombre">Nombre</label>
-                                      <input type="text" readonly class="form-control" id="nombre" name="nombre" > <!-- aria-describedby="sizing-addon2">-->
+                                      <label for="plano">Plano</label>
+                                      <input type="text" readonly class="form-control" id="plano" name="plano" > <!-- aria-describedby="sizing-addon2">-->
+                                  </div>
+                                  <div class="input-group">
+                                      <label for="inmueble">Inmueble</label>
+                                      <input type="text" readonly class="form-control" id="inmueble" name="inmueble" > <!-- aria-describedby="sizing-addon2">-->
                                   </div>
 	                        </div>
         	                <div class="modal-footer">
@@ -217,12 +211,11 @@
                 </div>
             </div>
         </nav>
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#">Pers.Fisicas <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Pers.Fisicas</a></li>
                         <li><a href="pjuridicas.php">Pers.Juridicas</a></li>
                         <li><a href="profesionales.php">Profesionales</a></li>
                         <li><a href="inmuebles.php">Inmuebles</a></li>
@@ -231,37 +224,27 @@
                         <li><a href="planos_obra.php">Planos Obras</a></li>
                         <hr style="border-color: #337ab7;border-style: inset; border-width: 0.3px;"/>
                         <li><a href="propietarios.php" >Propietarios</a></li>
-                        <li><a href="destinatarios_tasa" >Destinatarios</a></li>
+                        <li><a href="destinatarios_tasa.php" >Destinatarios</a></li>
                         <li><a href="plano_m_inm.php" >Mens.-Inmuebles</a></li>
-                        <li><a href="plano_o_inm.php" >Pl. de Obras.-Inmubles</a></li>
+                        <li class="active"><a href="plano_o_inm.php" >Pl. de Obras-Inmuebles <span class="sr-only">(current)</span></a></li>
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <h1 class="page-header">Administrador de Entidades</h1>
 
-                    <h2 class="sub-header">Personas Fisicas&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCbProfesional()'>NUEVO</button></h2>
+                    <h2 class="sub-header">Planos de Obra - Inmuebles&nbsp;&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick='newCb()'>NUEVO</button></h2>
 
         <?php
-            include 'database/DatabaseConnect.php';
-	          include 'database/CbPFisicaController.php';
-
- 	          $dConnect = new DatabaseConnect;
-	          $cdb = $dConnect->dbConnectSimple();
-	          $CbPFisicaController = new CbPFisicaController();
-	          $CbPFisicaController->cdb = $cdb;
 
             if (isset($_POST["save-language"]) || isset($_POST["update-language"]) ) {
         	     $id = $_POST['id'];
-        	     $nombre = $_POST['nombre'];
-               $apellido = $_POST['apellido'];
-               $tipo_doc = $_POST['tipo_doc'];
-               $nro_doc = $_POST['nro_doc'];
-               $domicilio = $_POST['domicilio'];
-               $cuit = $_POST['cuit'];
+               $inmuebles = $_POST['inmuebles'];
+        	     $plano = $_POST['plano'];
+               $inmueble = $_POST['inmueble'];
         	if (isset($_POST["save-language"])){
-        	    $CbPFisicaController->create($nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
+        	    $CbPO_INMController->asignaInmuebles($plano,$inmuebles);
         	}else{
-        	    $CbPFisicaController->update($id,$nombre,$apellido,$tipo_doc,$nro_doc,$domicilio,$cuit);
+        	    $CbPO_INMController->update($id,$inmueble);
         	}
         }
 
@@ -270,7 +253,7 @@
           $fp = fopen("/tmp/logphp.txt", "w");
           fputs($fp, "Id = ".$id."\n");
           $fp = fclose($fp);
-		      $CbPFisicaController->delete($id);
+		      $CbPO_INMController->delete($id);
 	     }
 
         ?>
@@ -280,30 +263,22 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NOMBRE</th>
-                                    <th>APELLIDO</th>
-                                    <th>TIPO_DOC</th>
-                                    <th>NRO_DOC</th>
-                                    <th>DOMICILIO</th>
-                                    <th>CUIT</th>
+                                    <th>PLANO</th>
+                                    <th>INMUEBLE</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <form role="form" name="formListCbLanguage" method="post" action="index.php">
+                                <form role="form" name="formListCbLanguage" method="post" action="plano_o_inm.php">
                                 <?php
                                 try {
-                                    $rows = $CbPFisicaController->readAll();
+                                    $rows = $CbPO_INMController->readAll();
 
                                     foreach ($rows as $row) {
                                 ?>
                                         <tr>
                                             <td><?php print($row->id); ?></td>
-                                            <td><?php print($row->nombre); ?></td>
-                                            <td><?php print($row->apellido); ?></td>
-                                            <td><?php print($row->tipo_doc); ?></td>
-                                            <td><?php print($row->nro_doc); ?></td>
-                                            <td><?php print($row->domicilio); ?></td>
-                                            <td><?php print($row->cuit); ?></td>
+                                            <td><?php print($row->plano); ?></td>
+                                            <td><?php print($row->inmueble); ?></td>
                                             <td>
 						<button id="see-language"
 							name="see-language"
@@ -311,14 +286,10 @@
 							class="btn btn-success"
 							data-toggle="modal"
 							data-target="#myModal"
-							onclick="openCbPFisica('see',
+							onclick="openCb('see',
 								    '<?php print($row->id); ?>',
-										'<?php print($row->nombre); ?>',
-										'<?php print($row->apellido); ?>',
-                    '<?php print($row->tipo_doc); ?>',
-                    '<?php print($row->nro_doc); ?>',
-                    '<?php print($row->domicilio); ?>',
-                    '<?php print($row->cuit); ?>')">Ver</button>
+										'<?php print($row->plano); ?>',
+										'<?php print($row->inmueble); ?>')">Ver</button>
 					    </td>
 					    <td>
 						<button id="edit-language"
@@ -327,13 +298,9 @@
 						  class="btn btn-primary"
 						  data-toggle="modal"
 						  data-target="#myModalUpdate"
-						  onclick="openEditPFisica('<?php print($row->id); ?>',
-				           '<?php print($row->nombre); ?>',
-                   '<?php print($row->apellido); ?>',
-                   '<?php print($row->tipo_doc); ?>',
-                   '<?php print($row->nro_doc); ?>',
-                   '<?php print($row->domicilio); ?>',
-									 '<?php print($row->cuit); ?>')">Editar</button>
+						  onclick="openEdit(
+                   '<?php print($row->id); ?>',
+				           '<?php print($row->inmueble); ?>')">Editar</button>
 					    </td>
 				      <td>
 					    	<button id="delete-language-modal"
@@ -342,7 +309,7 @@
 			        class="btn btn-danger"
               data-toggle="modal"
 			        data-target="#myModalDelete"
-              onclick="deleteCbPFisica('<?php print($row->id); ?>','<?php print($row->nombre); ?>','<?php print($row->apellido); ?>')"
+              onclick="deleteCb('<?php print($row->id); ?>','<?php print($row->plano); ?>','<?php print($row->inmueble); ?>')"
 						>Eliminar</button>
 					   </td>
 
