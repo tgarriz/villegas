@@ -1,8 +1,16 @@
-CREATE OR REPLACE FUNCTION catastro.crear_nomencla_tri()
-  RETURNS trigger AS $crear_nomencla_tri$
+CREATE TRIGGER crear_nomencla
+  BEFORE INSERT OR UPDATE
+  ON catastro.inmuebles
+  FOR EACH ROW
+  EXECUTE PROCEDURE catastro.crear_nomencla();
+
+
+
+CREATE OR REPLACE FUNCTION catastro.crear_nomencla()
+  RETURNS trigger AS $crear_nomencla$
   DECLARE
   BEGIN
-   NEW.nomencla:= '050'||trim(to_char(NEW.circ,'00'))||lpad(trim(NEW.secc),2,'0')||
+   NEW.nomencla:= '050'||lpad(trim(NEW.circ),2,'0'))||lpad(trim(NEW.secc),2,'0')||
                       lpad(trim(NEW.chac_n),4,'0')||lpad(trim(NEW.chac_l),3,'0')||
                       lpad(trim(NEW.quin_n),4,'0')||lpad(trim(NEW.quin_l),3,'0')||
                       lpad(trim(NEW.frac_n),4,'0')||lpad(trim(NEW.frac_l),3,'0')||
@@ -11,16 +19,11 @@ CREATE OR REPLACE FUNCTION catastro.crear_nomencla_tri()
    NEW.nomencla_sp:= NEW.nomencla||lpad(trim(NEW.subp),6,'0');
    RETURN NEW;
   END;
-  $crear_nomencla_tri$
+  $crear_nomencla$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION catastro.crear_nomencla_tri()
-  OWNER TO postgres;
-
-CREATE TRIGGER crear_nomencla_tri BEFORE INSERT OR UPDATE
-    ON catastro.inmuebles FOR EACH ROW
-    EXECUTE PROCEDURE catastro.crear_nomencla_tri();
-
+ALTER FUNCTION catastro.crear_nomencla()
+  OWNER TO postgres
 
     CREATE OR REPLACE FUNCTION rellenar_codigo() RETURNS TRIGGER AS $rellenar_codigo$
       DECLARE
